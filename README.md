@@ -38,10 +38,10 @@
 ## Project Updates:
 
     Project Updates tracks updates or changes...
-      that have been completed to the project from...
-        these are listed
-        from most recent update first
-        to first update made to project
+      that have been completed to the project.
+        These are listed..
+          from most recent update first
+          to first update made to project
 
   [back to Content Menu](#contents)
 
