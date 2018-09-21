@@ -39,9 +39,9 @@
      You’ll find a link to the documentation
      and to a Treehouse workshop in the project resources.
 
-## Project Instructions:
+## Contents:
 
-  13 Steps:
+  Project Instructions - 13 Steps:
 
   - [Models](#models)
   - [Home Screen](#home-screen)
@@ -56,6 +56,7 @@
   - [Patron Detail Page](#patron-detail-page)
   - [New Patron Page](#new-patron-page)
   - [Required field and Forms](#required-field-and-forms)
+  - [Extra Credit](#extra-credit)
 
 ## Models:
 
@@ -89,7 +90,7 @@
     return_by (date),
     returned_on (date).
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
 
 ## Home Screen:
 
@@ -117,7 +118,7 @@
     NOTE: You should use Pug to render your views for this project.
     Avoid using a front end framework such as Angular.js.
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
 
 ## Navigation:
 
@@ -134,7 +135,7 @@
       so I can view this information.
       See navigation on all pages for examples.
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
 
 ## Books Listing Page:
 
@@ -180,7 +181,7 @@
        use Sequelize model validation for validating your from fields.
        Don't rely simply on HTML5 built in validation.
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
 
 ## Book Detail Page:
 
@@ -226,7 +227,7 @@
       If the book is checked out,
         the “Action” column contains a link/button to return the book.
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
 
 ## Loan Listing Page:
 
@@ -251,7 +252,7 @@
       If the book is checked out,
        the “Action” column contains a link/button to return the book.
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
 
 ## New Loan Page:
 
@@ -289,7 +290,7 @@
      use Sequelize model validation for validating your from fields.
       Don't rely simply on HTML5 built in validation.
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
 
 ## Return Book Page:
 
@@ -321,7 +322,7 @@
      use Sequelize model validation for validating your from fields.
       Don't rely simply on HTML5 built in validation.
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
 
 ## Patron Listing Page:
 
@@ -341,7 +342,7 @@
     Table should include the following links:
       Names should link to that patron's detail page.
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
 
 ## Patron Detail Page:
 
@@ -389,7 +390,7 @@
       If the book is checked out,
        the “Action” column contains a link/button to return the book.
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
 
 ## New Patron Page:
 
@@ -440,4 +441,27 @@
     When form labels are clicked,
      they should bring focus to corresponding input.
 
-  [back to top](#project-instructions)
+  [back to Content Menu](#contents)
+
+## Extra Credit:
+
+    To get an "exceeds" rating,
+    you can expand on the project in the following ways:
+
+    Exceeds Feature 1:
+
+      Include pagination for both the patrons listing and books listing pages.
+
+    Exceeds Feature 2:
+
+      Include search fields for both the patrons listing and books listing pages.
+
+        Examples:
+        first_name, last_name,library_id, etc for patrons
+        title, author, genre, etc for books
+
+        NOTE: Searching should be...
+               case insensitive
+               and be good for partial matches for strings.
+
+  [back to Content Menu](#contents)
