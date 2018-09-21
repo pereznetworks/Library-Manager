@@ -4,7 +4,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Summary](#project-summary)
   - [Project Progress](#project-progress)
-  - [Issues and Challenges](#issues-challenges)
+  - [Issues and Challenges](#issues-and-challenges)
   - [For the original Project 10 ReadMe and Instructions follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/project-file-library-manager-v1)
 
 # For the Project Reviewer
@@ -45,7 +45,7 @@
     Lots pages and subpages in the html-mockup
       meaning lots of components and sub-components
 
-    Will need to make I don't make the routing is over-complicated 
+    Will need to make I don't make the routing is over-complicated
 
     UI and UI-controls will need change based on context of data presented
 
