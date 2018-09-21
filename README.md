@@ -2,8 +2,8 @@
 
 ## Contents:
   - [Project Summary and Context](#project-summary-and-context)
-  - [Before You Start](#before-you-start)
-  - [Resouce Links](#resource-links)
+    - [Before You Start](#before-you-start)
+    - [Resouce Links](#resource-links)
   - [Project Instructions](#project-instructions)
     - [Models](#models)
     - [Home Screen](#home-screen)
