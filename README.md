@@ -40,8 +40,8 @@
     Project Updates tracks updates or changes...
       that have been completed to the project.
         These are listed..
-          from most recent update first
-          to first update made to project
+          most recent update, listed first
+          first update made to project, listed last
 
   [back to Content Menu](#contents)
 
