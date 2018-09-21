@@ -51,8 +51,8 @@
       We've supplied several files for you to use:
       Use the library.db as the source of your data
 
-      *the original project files are found in this repo, folder path:
-       /project-files-library-manager-v1*
+      <dt>the original project files are found in this repo, folder path:<dt>
+       <dt>./project-files-library-manager-v1*<dt>
 
     HTML mockups and CSS files.
 
