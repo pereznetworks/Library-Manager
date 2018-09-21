@@ -39,23 +39,23 @@
      You’ll find a link to the documentation
      and to a Treehouse workshop in the project resources.
 
-# Project Instructions:
+## Project Instructions:
 
   13 Steps:
 
-  [Models](# Models)
-  [Home Screen](# Home Screen)
-  [Navigation](# Navigation)
-  [Book Listing Page](# Book Listing Page)
-  [Add a New Book](# Add a New Book)
-  [Book Details Page](# Book Details Page)
-  [Load Listing Page](# Load Listing Page)
-  [New Load Page](# New Load Page)
-  [Return Book Page](# Return Book Page)
-  [Patron Listing Page](# Patron Listing Page)
-  [Patron Detail Page](# Patron Detail Page)
-  [New Patron Page](# New Patron Page)
-  [Required field and Forms](# Required field and Forms)
+  - [Models](# Models)
+  - [Home Screen](# Home Screen)
+  - [Navigation](# Navigation)
+  - [Book Listing Page](# Book Listing Page)
+  - [Add a New Book](# Add a New Book)
+  - [Book Details Page](# Book Details Page)
+  - [Load Listing Page](# Load Listing Page)
+  - [New Load Page](# New Load Page)
+  - [Return Book Page](# Return Book Page)
+  - [Patron Listing Page](# Patron Listing Page)
+  - [Patron Detail Page](# Patron Detail Page)
+  - [New Patron Page](# New Patron Page)
+  - [Required field and Forms](# Required field and Forms)
 
 # Models:
 
@@ -89,7 +89,7 @@
   return_by (date),
   returned_on (date).
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
 
 # Home Screen:
 
@@ -117,7 +117,7 @@
   NOTE: You should use Pug to render your views for this project.
   Avoid using a front end framework such as Angular.js.
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
 
 # Navigation:
 
@@ -134,7 +134,7 @@
     so I can view this information.
     See navigation on all pages for examples.
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
 
 # Books Listing Page:
 
@@ -180,7 +180,7 @@
      use Sequelize model validation for validating your from fields.
      Don't rely simply on HTML5 built in validation.
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
 
 # Book Detail Page:
 
@@ -226,7 +226,7 @@
     If the book is checked out,
       the “Action” column contains a link/button to return the book.
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
 
 # Loan Listing Page:
 
@@ -251,7 +251,7 @@
       If the book is checked out,
        the “Action” column contains a link/button to return the book.
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
 
 # New Loan Page:
 
@@ -289,7 +289,7 @@
    use Sequelize model validation for validating your from fields.
     Don't rely simply on HTML5 built in validation.
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
 
 # Return Book Page:
 
@@ -321,7 +321,7 @@
    use Sequelize model validation for validating your from fields.
     Don't rely simply on HTML5 built in validation.
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
 
 # Patron Listing Page:
 
@@ -341,7 +341,7 @@
   Table should include the following links:
     Names should link to that patron's detail page.
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
 
 # Patron Detail Page:
 
@@ -389,7 +389,7 @@
     If the book is checked out,
      the “Action” column contains a link/button to return the book.
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
 
 # New Patron Page:
 
@@ -440,4 +440,4 @@
   When form labels are clicked,
    they should bring focus to corresponding input.
 
-  [back to top](# Project Instructions)
+  [back to top](## Project Instructions)
