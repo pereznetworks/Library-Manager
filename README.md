@@ -42,4 +42,11 @@
 
 ## Issues and Challenges:
 
+    Lots pages and subpages in the html-mockup
+      meaning lots of components and sub-components
+
+    Will need to make I don't make the routing is over-complicated 
+
+    UI and UI-controls will need change based on context of data presented
+
   [back to Content Menu](#contents)
