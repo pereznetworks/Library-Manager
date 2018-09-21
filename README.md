@@ -3,6 +3,7 @@
 ## Contents:
   - [Project Summary and Context](#project-summary-and-context)
   - [Before You Start](#before-you-start)
+  - [Resouce Links](#resource-links)
   - [Project Instructions](#project-instructions)
     - [Models](#models)
     - [Home Screen](#home-screen)
@@ -61,6 +62,24 @@
        and to a Treehouse workshop in the project resources.
 
   [back to Content Menu](#contents)
+
+## Resource Links
+
+  - [Using Sequelize with Express, Workshop](https://sequelize.readthedocs.io/en/1.7.0/articles/express/)
+
+  - [Install and Use Sequelize CLI](https://teamtreehouse.com/library/install-and-use-sequelize-cli)
+
+  - [Sequelize CLI](http://sequelize.readthedocs.io/en/1.7.0/docs/migrations/)
+
+  - [Sequelize Documentation - Adding/removing timestamps from definitions](http://sequelize.readthedocs.io/en/1.7.0/docs/models/#configuration)
+
+  - [Sequelize Documentation - Validations](http://sequelize.readthedocs.io/en/latest/docs/models-definition/#validations)
+
+  - [Sequelize Table Associations](http://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/)
+
+  - [Sequelize Documentation - Model associations](http://sequelize.readthedocs.io/en/1.7.0/docs/associations/)
+
+  - [Sequelize Documentation - Pagination and Li](http://sequelize.readthedocs.io/en/latest/docs/querying/#pagination-limiting)
 
 ## Project instructions
 
