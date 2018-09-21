@@ -53,7 +53,7 @@
 
 **the original project files are found in this repo, folder path:**
 
- __./project-files-library-manager-v1__**
+ _./project-files-library-manager-v1_**
 
 
     HTML mockups and CSS files.
