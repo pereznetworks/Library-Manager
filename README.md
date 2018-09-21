@@ -36,6 +36,8 @@
     You'll be required to implement a dynamic website
      using Express, Pug, and the SQL ORM Sequelize.
 
+  [back to Content Menu](#contents)
+
 # Before you start
 
     To prepare for this project
@@ -58,6 +60,8 @@
        You’ll find a link to the documentation
        and to a Treehouse workshop in the project resources.
 
+  [back to Content Menu](#contents)
+  
 ## Project instructions
 
     To complete this project, follow the instructions below.
