@@ -43,7 +43,7 @@
 
   13 Steps:
 
-  - [Models](# Models)
+  - [Models](## Models)
   - [Home Screen](# Home Screen)
   - [Navigation](# Navigation)
   - [Book Listing Page](# Book Listing Page)
