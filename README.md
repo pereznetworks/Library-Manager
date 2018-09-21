@@ -1,48 +1,9 @@
 # TD-Project10: Build a Library Manager
 
-# Project Summary and Context
-
-  You've been tasked with creating a library management system
-   for a small library.
-
-  The librarian has been using a simple sqlite database
-   and has been entering data in manually.
-
-  The librarian wants a more intuitive way
-   to handle the library's books, patrons and loans.
-
-  You'll be given static HTML designs,
-   a set of requirements and the existing SQLite database.
-
-  You'll be required to implement a dynamic website
-   using Express, Pug, and the SQL ORM Sequelize.
-
-# Before you start
-
-  To prepare for this project
-   you'll need to make sure you complete and understand these steps.
-
-  2 steps:
-
-  Download the project files.
-
-    We've supplied several files for you to use:
-    Use the library.db as the source of your data
-
-  HTML mockups and CSS files.
-
-    These will be the basis of..
-      the use cases described in the project instructions.
-
-    Note:
-     Install sequelize using the sequelize CLI.
-     You’ll find a link to the documentation
-     and to a Treehouse workshop in the project resources.
-
 ## Contents:
-
-  Project Instructions - 13 Steps:
-
+  - [Project Summary and Context](#project-summary-and-context)
+  - [Before You Start](#before-you-start)
+  - [Project Instructions](#project-instructions)
   - [Models](#models)
   - [Home Screen](#home-screen)
   - [Navigation](#navigation)
@@ -57,6 +18,52 @@
   - [New Patron Page](#new-patron-page)
   - [Required field and Forms](#required-field-and-forms)
   - [Extra Credit](#extra-credit)
+
+# Project Summary and Context
+
+    You've been tasked with creating a library management system
+     for a small library.
+
+    The librarian has been using a simple sqlite database
+     and has been entering data in manually.
+
+    The librarian wants a more intuitive way
+     to handle the library's books, patrons and loans.
+
+    You'll be given static HTML designs,
+     a set of requirements and the existing SQLite database.
+
+    You'll be required to implement a dynamic website
+     using Express, Pug, and the SQL ORM Sequelize.
+
+# Before you start
+
+    To prepare for this project
+     you'll need to make sure you complete and understand these steps.
+
+    2 steps:
+
+    Download the project files.
+
+      We've supplied several files for you to use:
+      Use the library.db as the source of your data
+
+    HTML mockups and CSS files.
+
+      These will be the basis of..
+        the use cases described in the project instructions.
+
+      Note:
+       Install sequelize using the sequelize CLI.
+       You’ll find a link to the documentation
+       and to a Treehouse workshop in the project resources.
+
+## Project instructions
+
+    To complete this project, follow the instructions below.
+     If you get stuck, ask a question in the community.
+
+  [back to Content Menu](#contents)
 
 ## Models:
 
