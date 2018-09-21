@@ -5,7 +5,7 @@
   - [Project Summary](#project-summary)
   - [Project Progress](#project-progress)
   - [Issues and Challenges](#issues-and-challenges)
-  - [For the original Project 10 ReadMe and Instructions follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/project-file-library-manager-v1)
+  - [For the original Project 10 File and a readme follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/project-file-library-manager-v1)
 
 # For the Project Reviewer
 
@@ -17,7 +17,11 @@
 
 ## Project Summary
 
-    Step 1:
+    For the 'Before You Start' section:
+
+      I did indeed, download the project files
+
+[For the original project files and a readme follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/project-file-library-manager-v1)
 
       Read, studied and created...
         my own markdown-style version of the project instructions
