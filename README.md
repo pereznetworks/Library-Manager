@@ -4,19 +4,19 @@
   - [Project Summary and Context](#project-summary-and-context)
   - [Before You Start](#before-you-start)
   - [Project Instructions](#project-instructions)
-  - [Models](#models)
-  - [Home Screen](#home-screen)
-  - [Navigation](#navigation)
-  - [Book Listing Page](#book-listing-page)
-  - [Add a New Book](#add-a-new-book)
-  - [Book Details Page](#book-details-page)
-  - [Load Listing Page](#load-listing-page)
-  - [New Load Page](#new-load-page)
-  - [Return Book Page](#return-book-page)
-  - [Patron Listing Page](#patron-listing-page)
-  - [Patron Detail Page](#patron-detail-page)
-  - [New Patron Page](#new-patron-page)
-  - [Required field and Forms](#required-field-and-forms)
+    - [Models](#models)
+    - [Home Screen](#home-screen)
+    - [Navigation](#navigation)
+    - [Book Listing Page](#book-listing-page)
+    - [Add a New Book](#add-a-new-book)
+    - [Book Details Page](#book-details-page)
+    - [Load Listing Page](#load-listing-page)
+    - [New Load Page](#new-load-page)
+    - [Return Book Page](#return-book-page)
+    - [Patron Listing Page](#patron-listing-page)
+    - [Patron Detail Page](#patron-detail-page)
+    - [New Patron Page](#new-patron-page)
+    - [Required field and Forms](#required-field-and-forms)
   - [Extra Credit](#extra-credit)
 
 # Project Summary and Context
@@ -61,7 +61,7 @@
        and to a Treehouse workshop in the project resources.
 
   [back to Content Menu](#contents)
-  
+
 ## Project instructions
 
     To complete this project, follow the instructions below.
