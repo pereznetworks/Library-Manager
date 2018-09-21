@@ -43,19 +43,19 @@
 
   13 Steps:
 
-  - [Models](## Models)
-  - [Home Screen](# Home Screen)
-  - [Navigation](# Navigation)
-  - [Book Listing Page](# Book Listing Page)
-  - [Add a New Book](# Add a New Book)
-  - [Book Details Page](# Book Details Page)
-  - [Load Listing Page](# Load Listing Page)
-  - [New Load Page](# New Load Page)
-  - [Return Book Page](# Return Book Page)
-  - [Patron Listing Page](# Patron Listing Page)
-  - [Patron Detail Page](# Patron Detail Page)
-  - [New Patron Page](# New Patron Page)
-  - [Required field and Forms](# Required field and Forms)
+  - [Models](#models)
+  - [Home Screen](#home-screen)
+  - [Navigation](#navigation)
+  - [Book Listing Page](#book-listing-page)
+  - [Add a New Book](#add-a-new-book)
+  - [Book Details Page](#book-details-page)
+  - [Load Listing Page](#load-listing-page)
+  - [New Load Page](#new-load-page)
+  - [Return Book Page](#return-book-page)
+  - [Patron Listing Page](#patron-listing-page)
+  - [Patron Detail Page](#patron-detail-page)
+  - [New Patron Page](#new-patron-page)
+  - [Required field and Forms](#required-field-and-forms)
 
 ## Models:
 
