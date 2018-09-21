@@ -34,9 +34,9 @@
 
 ## Project Progress
 
-    Completed _Before You Start_.
+    Completed: Before You Start.
 
-    Reviewing _Sequelize workshops and database courses_
+    In-Progess: Reviewing Sequelize workshops and database courses
 
   [back to Content Menu](#contents)
 
