@@ -57,7 +57,7 @@
   - [New Patron Page](# New Patron Page)
   - [Required field and Forms](# Required field and Forms)
 
-# Models:
+## Models:
 
   The library.db file should contain 3 tables.
 
@@ -89,9 +89,9 @@
   return_by (date),
   returned_on (date).
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
 
-# Home Screen:
+## Home Screen:
 
   As a librarian, I should have a home screen so I can...
   access functionality easily with a single click.
@@ -117,9 +117,9 @@
   NOTE: You should use Pug to render your views for this project.
   Avoid using a front end framework such as Angular.js.
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
 
-# Navigation:
+## Navigation:
 
   As a librarian, I should be able to access..
   a main navigation menu from every page of my application.
@@ -134,9 +134,9 @@
     so I can view this information.
     See navigation on all pages for examples.
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
 
-# Books Listing Page:
+## Books Listing Page:
 
   As a librarian, I should be able to filter books...
    by ‘all’ , ‘overdue’ and ‘checked out’ status on the Books Listing Page
@@ -180,9 +180,9 @@
      use Sequelize model validation for validating your from fields.
      Don't rely simply on HTML5 built in validation.
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
 
-# Book Detail Page:
+## Book Detail Page:
 
   As a librarian, I should be able to go to a book’s detail page,
    make edits and view its loan history.
@@ -226,9 +226,9 @@
     If the book is checked out,
       the “Action” column contains a link/button to return the book.
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
 
-# Loan Listing Page:
+## Loan Listing Page:
 
     As a librarian, I should be able to filter loans by...
        “All”, “Overdue”, and “Checked Out”,
@@ -251,9 +251,9 @@
       If the book is checked out,
        the “Action” column contains a link/button to return the book.
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
 
-# New Loan Page:
+## New Loan Page:
 
   As a librarian, I should be able to check out a book
    so I can lend books to patrons. Example new_loan.html.
@@ -289,9 +289,9 @@
    use Sequelize model validation for validating your from fields.
     Don't rely simply on HTML5 built in validation.
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
 
-# Return Book Page:
+## Return Book Page:
 
   As a librarian, I should be able to return a book...
    so we know the current state of a book in our library. Example:return_book.html.
@@ -321,9 +321,9 @@
    use Sequelize model validation for validating your from fields.
     Don't rely simply on HTML5 built in validation.
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
 
-# Patron Listing Page:
+## Patron Listing Page:
 
   As a librarian, I should be able to list all patrons
    so I can find and access library-goers easily.
@@ -341,9 +341,9 @@
   Table should include the following links:
     Names should link to that patron's detail page.
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
 
-# Patron Detail Page:
+## Patron Detail Page:
 
   As a librarian, I should be able to go to a patron's detail page,
    make edits and view their loan history.
@@ -389,9 +389,9 @@
     If the book is checked out,
      the “Action” column contains a link/button to return the book.
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
 
-# New Patron Page:
+## New Patron Page:
 
   As a librarian, I should be able to create new library patrons
    so they can use the facilities.
@@ -440,4 +440,4 @@
   When form labels are clicked,
    they should bring focus to corresponding input.
 
-  [back to top](## Project Instructions)
+  [back to top](# Project Instructions)
