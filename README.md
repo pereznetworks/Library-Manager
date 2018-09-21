@@ -138,93 +138,93 @@
 
 ## Books Listing Page:
 
-  As a librarian, I should be able to filter books...
-   by ‘all’ , ‘overdue’ and ‘checked out’ status on the Books Listing Page
-    so I can quickly see the state of the library.
-   Examples: all_books.html, overdue_books.html and checked_books.html.
-   Include a button to create a new book.
+    As a librarian, I should be able to filter books...
+     by ‘all’ , ‘overdue’ and ‘checked out’ status on the Books Listing Page
+      so I can quickly see the state of the library.
+     Examples: all_books.html, overdue_books.html and checked_books.html.
+     Include a button to create a new book.
 
-  Display a table of books with the following columns:
-    Book Title
-    Author
-    Genre
-    Year Released/First Published
-    Table should include the following links:
-    Book titles should link to the book's detail page.
-    Add a New Book
+    Display a table of books with the following columns:
+      Book Title
+      Author
+      Genre
+      Year Released/First Published
+      Table should include the following links:
+      Book titles should link to the book's detail page.
+      Add a New Book
 
-  As a librarian, I should be able to add a book to the database...
-   so that they can be tracked on the system.
-   Example: new_book.html.
+    As a librarian, I should be able to add a book to the database...
+     so that they can be tracked on the system.
+     Example: new_book.html.
 
-  Display a form that allows the user to add a book,
-   with the following input fields:
-    Title (required)
-    Author (required)
-    Genre (required)
-    First Published (optional)
+    Display a form that allows the user to add a book,
+     with the following input fields:
+      Title (required)
+      Author (required)
+      Genre (required)
+      First Published (optional)
+
+      When the form is submitted successfully,
+      the book is created in the database,
+      user is redirected to the Books Listing Page
+       and the book appears in the list with updated information.
+
+      When form labels are clicked,
+       they should bring focus to corresponding input.
+
+      An error is displayed if the form is...
+       submitted with blank or invalid data in required fields.
+       For example: “This field is required.”
+
+      To keep your DB safe,
+       use Sequelize model validation for validating your from fields.
+       Don't rely simply on HTML5 built in validation.
+
+  [back to top](#project-instructions)
+
+## Book Detail Page:
+
+    As a librarian, I should be able to go to a book’s detail page,
+     make edits and view its loan history.
+     Example book_detail.html.
+
+    Display a form allowing the user to update the book,
+     with the following input fields:
+      Title (required)
+      Author (required)
+      Genre (required)
+      First Published (optional)
 
     When the form is submitted successfully,
-    the book is created in the database,
-    user is redirected to the Books Listing Page
-     and the book appears in the list with updated information.
+     the book is updated in the database,
+      user is redirected to the Books Listing Page
+       and the book appears in the list with updated information.
 
     When form labels are clicked,
      they should bring focus to corresponding input.
 
     An error is displayed if the form is...
      submitted with blank or invalid data in required fields.
-     For example: “This field is required.”
+      For example: “This field is required.”
 
     To keep your DB safe,
      use Sequelize model validation for validating your from fields.
-     Don't rely simply on HTML5 built in validation.
+      Don't rely simply on HTML5 built in validation.
 
-  [back to top](#project-instructions)
+    Display a Loan History table with the following columns:
+      Book
+      Patron
+      Loaned on
+      Return by
+      Returned on
+      Action
 
-## Book Detail Page:
+    Table should include the following links:
+      The “Book” field links to the book.
 
-  As a librarian, I should be able to go to a book’s detail page,
-   make edits and view its loan history.
-   Example book_detail.html.
-
-  Display a form allowing the user to update the book,
-   with the following input fields:
-    Title (required)
-    Author (required)
-    Genre (required)
-    First Published (optional)
-
-  When the form is submitted successfully,
-   the book is updated in the database,
-    user is redirected to the Books Listing Page
-     and the book appears in the list with updated information.
-
-  When form labels are clicked,
-   they should bring focus to corresponding input.
-
-  An error is displayed if the form is...
-   submitted with blank or invalid data in required fields.
-    For example: “This field is required.”
-
-  To keep your DB safe,
-   use Sequelize model validation for validating your from fields.
-    Don't rely simply on HTML5 built in validation.
-
-  Display a Loan History table with the following columns:
-    Book
-    Patron
-    Loaned on
-    Return by
-    Returned on
-    Action
-
-  Table should include the following links:
-    The “Book” field links to the book.
-
-  The “Patron” field links to the patron who checked out the book.
-    If the book is checked out,
-      the “Action” column contains a link/button to return the book.
+    The “Patron” field links to the patron who checked out the book.
+      If the book is checked out,
+        the “Action” column contains a link/button to return the book.
 
   [back to top](#project-instructions)
 
