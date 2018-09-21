@@ -89,7 +89,7 @@
   return_by (date),
   returned_on (date).
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
 
 ## Home Screen:
 
@@ -117,7 +117,7 @@
   NOTE: You should use Pug to render your views for this project.
   Avoid using a front end framework such as Angular.js.
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
 
 ## Navigation:
 
@@ -134,7 +134,7 @@
     so I can view this information.
     See navigation on all pages for examples.
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
 
 ## Books Listing Page:
 
@@ -180,7 +180,7 @@
      use Sequelize model validation for validating your from fields.
      Don't rely simply on HTML5 built in validation.
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
 
 ## Book Detail Page:
 
@@ -226,7 +226,7 @@
     If the book is checked out,
       the “Action” column contains a link/button to return the book.
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
 
 ## Loan Listing Page:
 
@@ -251,7 +251,7 @@
       If the book is checked out,
        the “Action” column contains a link/button to return the book.
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
 
 ## New Loan Page:
 
@@ -289,7 +289,7 @@
    use Sequelize model validation for validating your from fields.
     Don't rely simply on HTML5 built in validation.
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
 
 ## Return Book Page:
 
@@ -321,7 +321,7 @@
    use Sequelize model validation for validating your from fields.
     Don't rely simply on HTML5 built in validation.
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
 
 ## Patron Listing Page:
 
@@ -341,7 +341,7 @@
   Table should include the following links:
     Names should link to that patron's detail page.
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
 
 ## Patron Detail Page:
 
@@ -389,7 +389,7 @@
     If the book is checked out,
      the “Action” column contains a link/button to return the book.
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
 
 ## New Patron Page:
 
@@ -440,4 +440,4 @@
   When form labels are clicked,
    they should bring focus to corresponding input.
 
-  [back to top](# Project Instructions)
+  [back to top](#project-instructions)
