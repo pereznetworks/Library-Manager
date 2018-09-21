@@ -53,7 +53,7 @@
 
 **the original project files are found in this repo, folder path:**
 
- [/project-files-library-manager-v1](/project-files-library-manager-v1)
+ [/project-files-library-manager-v1](https://github.com/pereznetworks/TD-Project10/tree/master/project-file-library-manager-v1)
 
 
     HTML mockups and CSS files.
