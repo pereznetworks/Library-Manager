@@ -33,6 +33,11 @@
 
     UI and UI-controls will need change based on context of data presented
 
+    This is an Express.js app
+      Sequelize for data
+        Pug for html rendering
+          with http server npm module  
+
   [back to Content Menu](#contents)
 
 ## Project Updates:
