@@ -43,11 +43,9 @@
 
 ## Project Updates:
 
-  Project Updates section to track updates or changes...
-    that have been completed to the project.
-      These are listed..
-        most recent update, listed first
-        first update made to project, listed last
+  Project Updates section to track updates or changes that have been completed to the project.
+
+  These are listed most recent update, listed most recent update to oldest 
 
   [back to Content Menu](#contents)
 
@@ -57,25 +55,21 @@
 
   will need refer to my Sequelize workshop Blog example v3 and v4 for syntax and implementation differences
 
-  making this a GitHub repo for easier reference and safe keeping
+  making these a GitHub repo for easier reference and safe keeping
 
 ## Project Update 1:
 
   Before You Start:
 
-    I did indeed, download the project files
+  I did indeed downloaded the project files
 
 [For the original project files and a readme follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/project-file-library-manager-v1)
 
-    Read, studied and created...
-      my own markdown-style version of the project instructions
+  Read, studied and created my own markdown-style version of the project instructions
 
-    Created this markdown-style project readme to...
-     track and document...
-      my progress through this project.
+  Created this markdown-style   project readme to track and document my progress through this project.
 
-    Will eventually be a how-to for developers and other students...
-      who want to clone, download and work...
-       on their version of this project.
+  Will eventually be a how-to for developers and other students...
+  who want to clone, download and work on their version of this project.
 
   [back to Content Menu](#contents)
