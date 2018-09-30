@@ -43,9 +43,7 @@
 
 ## Project Updates:
 
-  Project Updates section to track updates or changes that have been completed to the project.
-
-  These are listed most recent update, listed most recent update to oldest
+  Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
 
