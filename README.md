@@ -20,8 +20,14 @@
 
     Completed: Before You Start.
 
-    In-Progess: Reviewing Sequelize workshops and database courses
+    Completed: Reviewed Sequelize workshops and database courses
 
+    Note: need to keep in mind differences between [Sequelize v3 to v4](http://docs.sequelizejs.com/manual/tutorial/upgrade-to-v4.html)
+
+      will need refer to my Sequelize workshop Blog example v3 and v4 for syntax and implementation differences
+
+      making this a GitHub repo for easier reference and safe keeping
+      
   [back to Content Menu](#contents)
 
 ## Issues and Challenges:
