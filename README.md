@@ -45,7 +45,7 @@
 
   Project Updates section to track updates or changes that have been completed to the project.
 
-  These are listed most recent update, listed most recent update to oldest 
+  These are listed most recent update, listed most recent update to oldest
 
   [back to Content Menu](#contents)
 
@@ -53,9 +53,9 @@
 
   Note: need to keep in mind differences between [Sequelize v3 to v4](http://docs.sequelizejs.com/manual/tutorial/upgrade-to-v4.html)
 
-  will need refer to my Sequelize workshop Blog example v3 and v4 for syntax and implementation differences
+    will need refer to my Sequelize workshop Blog example v3 and v4 for syntax and implementation differences
 
-  making these a GitHub repo for easier reference and safe keeping
+    making these a GitHub repo for easier reference and safe keeping
 
 ## Project Update 1:
 
