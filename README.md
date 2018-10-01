@@ -51,30 +51,29 @@
 
 Environment Setup
 
-  Express generator:
+Step 1: Express generator:
 
     npm install install express express-generator
 
     node_modules/.bin/express . -f
 
-  Sequelize setup:
+Step 2: Sequelize setup:
 
     npm sequelize sqlite3 sequelize-cli
 
-  Replaced deprecated packages:
+Step 3: Replaced deprecated packages:
 
-     removed transformers@2.1.0, installed ...
+  removed transformers@2.1.0, installed
 
-        npm install --save jstransformer
+    npm install --save jstransformer
 
-     upgraded constantinople@3.0.2 to ...
+  upgraded constantinople@3.0.2 to ...
 
-        npm install --save constantinople@3.1.1
+    npm install --save constantinople@3.1.1
 
-    removed jade@1.11.0, installed
+  removed jade@1.11.0, installed
 
-        npm install --save pug
-
+    npm install --save pug
 
 
 ## Project Update 2:
