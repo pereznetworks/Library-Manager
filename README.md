@@ -67,7 +67,7 @@ Step 3: Replaced deprecated packages:
 
   - npm install --save jstransformer
 
-  upgraded constantinople@3.0.2 to ...
+  upgraded constantinople@3.0.2 to
 
   - npm install --save constantinople@3.1.1
 
