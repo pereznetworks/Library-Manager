@@ -47,6 +47,36 @@
 
   [back to Content Menu](#contents)
 
+## Project Update 3:
+
+  Environment Setup
+
+    Express generator:
+
+      npm install install express express-generator
+
+      node_modules/.bin/express . -f
+
+    Sequelize setup:
+
+      npm sequelize sqlite3 sequelize-cli
+
+    Replaced deprecated packages:
+
+       removed transformers@2.1.0, installed ...
+
+          npm install --save jstransformer
+
+       upgraded constantinople@3.0.2 to ...
+
+          npm install --save constantinople@3.1.1
+
+      removed jade@1.11.0, installed
+
+          npm install --save pug
+
+
+
 ## Project Update 2:
 
   Note: need to keep in mind differences between [Sequelize v3 to v4](http://docs.sequelizejs.com/manual/tutorial/upgrade-to-v4.html)
