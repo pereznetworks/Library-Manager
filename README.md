@@ -75,6 +75,10 @@ Step 3: Replaced deprecated packages:
 
   - npm install --save pug
 
+  initialzed sequelize
+
+  - node_modules/.bin/sequelize init
+
 ## Project Update 2:
 
   Note: need to keep in mind differences between [Sequelize v3 to v4](http://docs.sequelizejs.com/manual/tutorial/upgrade-to-v4.html)
