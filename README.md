@@ -5,6 +5,7 @@
   - [Project Progress](#project-progress)
   - [Issues and Challenges](#issues-and-challenges)
   - [Project Updates](#project-updates)
+    - [Project Update 3](#project-update-3)
     - [Project Update 2](#project-update-2)
     - [Project Update 1](#project-update-1)
   - [For the original project files and a project instruction, follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/project-file-library-manager-v1)
