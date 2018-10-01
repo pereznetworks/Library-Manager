@@ -75,7 +75,7 @@
 
       - npm install --save pug
 
-   - initialzed sequelize
+    - initialzed sequelize
 
       - node_modules/.bin/sequelize init
 
