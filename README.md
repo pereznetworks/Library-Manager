@@ -80,6 +80,8 @@
 
       - node_modules/.bin/sequelize init
 
+  [back to Content Menu](#contents)
+
 ## Project Update 2:
 
   Note: need to keep in mind differences between [Sequelize v3 to v4](http://docs.sequelizejs.com/manual/tutorial/upgrade-to-v4.html)
@@ -87,6 +89,8 @@
   will need refer to my Sequelize workshop Blog example v3 and v4 for syntax and implementation differences
 
   making these a GitHub repo for easier reference and safe keeping
+
+  [back to Content Menu](#contents)
 
 ## Project Update 1:
 
