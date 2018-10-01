@@ -33,7 +33,7 @@ p {
   margin: 20px auto;
 }
 ul {
-  padding: 5px;
+  padding: 0;
   list-style-type: none;
   margin-bottom: 10px;
   line-height: 1.3em;
