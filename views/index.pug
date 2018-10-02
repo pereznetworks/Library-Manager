@@ -7,35 +7,28 @@ block content
       p= booksTitle
       ul
         li
-          a New Book
-          //- path /books/new
+          a(href=newBookRoute) New Book
         li
-          a(href="/books") List All
+          a(href=listAllBooksRoute) List All
         li
-          //- query "/books?filter=overdue"
-          a List Overdue
+          a(href=listOverDueBooksRoute) List Overdue
         li
-          //- query "/books?filter=checked_out"
-          a List Checked Out
+          a(href=listCheckedOutBooksRoute) List Checked Out
     li(id=patronSectionId)
       p= patronsTitle
       ul
         li
-          a New Patron
-          //- path /patrons/new
+          a(href=newPatronRoute) New Patron
         li
-          a List All
+          a(href=listAllPatronsRoute) List All
     li(id=loanSectionId)
       p= loansTitle
       ul
         li
-          a New Loan
-          //- path /loans/new
+          a(href=newLoanRoute) New Loan
         li
-          a List All
+          a(href=listAllLoansRoute) List All
         li
-          //- query "/loans?filter=overdue"
-          a List Overdue
+          a(href=listOverDueLoansRoute) List Overdue
         li
-          //- query "/loans?filter=checked_out"
-          a List Checked Out
+          a(href=ListCheckedOutLoansRoute) List Checked Out

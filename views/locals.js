@@ -6,10 +6,20 @@ var homePg= {
   title: 'Welcome to Library Manager',
   booksTitle: 'Books',
   bookSectionId: 'bookSection',
+  newBookRoute: '/books/new',
+  listAllBooksRoute: '/books',
+  listOverDueBooksRoute: '/books?filter=overdue',
+  listCheckedOutBooksRoute: '/books?filter=checked_out',
   patronsTitle: 'Patrons',
   patronSectionId: 'patronSection',
+  newPatronRoute: '/patrons/new',
+  listAllPatronsRoute: '/patrons',
   loansTitle: 'Loans',
-  loanSectionId: 'loanSection'
+  loanSectionId: 'loanSection',
+  newLoanRoute: '/loans/new',
+  listAllLoansRoute: '/loans',
+  listOverDueLoansRoute: '/loans?filter=overdue',
+  listCheckedOutLoansRoute: '/loans?filter=checked_out',
 };
 
 var booksPg = {
