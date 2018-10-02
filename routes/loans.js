@@ -10,5 +10,10 @@ router.get('/loans', function(req, res, next) {
   res.render('loans', locals.loansPg);
 });
 
+/* GET new loans form page. */
+router.get('/loans/new', function(req, res, next) {
+  res.render('newLoans', locals.loansPg);
+});
+
 // exporting router so it can be used by express app
 module.exports = router;

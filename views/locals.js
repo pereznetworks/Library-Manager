@@ -1,5 +1,5 @@
 // static variables to pass as locals to pug when rendering each page or sub-page
-// sample data in-use only for testing changed or modifyed pug views 
+// sample data in-use only for testing changed or modifyed pug views
 // will implement sequelize sqlite3 db data
 
 var homePg= {
@@ -198,7 +198,7 @@ var loansPg = {
   };
 
 var patronsPg = {
-    title: 'Books',
+    title: 'Patrons',
     createNewRoute: '/patrons/new',
     patronHrefPath:"/patron/patron_detail",
     columnArray: ['id','Name', 'Address', 'Email', 'Library ID', 'Zip'],

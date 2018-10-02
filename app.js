@@ -34,8 +34,11 @@ app.use(patronsRouter);
 // now which routes to use routers with
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
+app.use('/books/new', booksRouter);
 app.use('/loans', loansRouter);
+app.use('/loans/new', loansRouter);
 app.use('/patrons', patronsRouter);
+app.use('/patrons/new', patronsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

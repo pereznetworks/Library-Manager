@@ -10,5 +10,10 @@ router.get('/patrons', function(req, res, next) {
   res.render('patrons', locals.patronsPg);
 });
 
+/* GET new patrons form page. */
+router.get('/patrons/new', function(req, res, next) {
+  res.render('newPatrons', locals.patronsPg);
+});
+
 // exporting router so it can be used by express app
 module.exports = router;
