@@ -1,3 +1,4 @@
+// importing express and setting up a router
 var express = require('express');
 var router = express.Router();
 
@@ -9,4 +10,5 @@ router.get('/patrons', function(req, res, next) {
   res.render('patrons', locals.patronsPg);
 });
 
+// exporting router so it can be used by express app
 module.exports = router;

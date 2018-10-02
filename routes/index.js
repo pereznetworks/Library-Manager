@@ -14,4 +14,5 @@ router.get('/', function(req, res, next) {
   res.render('index', locals.homePg);
 });
 
+// exporting router so it can be used by express app
 module.exports = router;

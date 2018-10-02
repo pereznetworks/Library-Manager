@@ -1,6 +1,6 @@
 // static variables to pass as locals to pug when rendering each page or sub-page
-// sample data for development purposes
-// will replace with sequelize sqlite3 db data
+// sample data in-use only for testing changed or modifyed pug views 
+// will implement sequelize sqlite3 db data
 
 var homePg= {
   title: 'Welcome to Library Manager',

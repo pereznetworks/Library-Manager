@@ -135,3 +135,12 @@ input[type=text], select {
 #loanSection ul li a:hover {
   background-color: #01b189;
 }
+
+#errorTitle{}
+#errorMsg, #errorStatusCode, #errorStackTitle{
+  font-size: 1em;
+}
+#errorStack{
+  font-size: .8em;
+  color: #aaa;
+}
