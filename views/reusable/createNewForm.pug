@@ -3,75 +3,75 @@ extends ../layout
 block content
   h1= title
   if title === "Books"
+    - var columnNo = 0;
     form
-      p
-        label(for="title") Title
-        input(id="title" type="text")
-      p
-        label(for="author") Author
-        input(id="author" type="text")
-      p
-        label(for="genre") Genre
-        input(id="genre" type="text")
-      p
-        label(for="first_published") First Published
-        input(id="first_published" type="text")
-      p
-        input(type="submit" value="Create New Book")
+      - console.log(columnArray)
+      each value in columnArray
+        if columnNo == 0
+           p(class="id")
+        else if columnNo > 0
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` type="text")
+        - console.log(columnNo, columnArray[columnNo])
+        - columnNo += 1
+      input(type="submit" value=`Create New ${title}`)
   else if title === "Patrons"
+    - var columnNo = 0;
     form
-      p
-        label(for="first_name") First Name
-        input(id="first_name" type="text")
-      p
-        label(for="last_name") Last Name
-        input(id="last_name" type="text")
-      p
-        label(for="address") Address
-        input(id="address" type="text")
-      p
-        label(for="email") Email
-        input(id="email" type="text")
-      p
-        label(for="library_id") Library ID
-        input(id="library_id" type="text")
-      p
-        label(for="zip_code") Zip Code
-        input(id="zip_code" type="text")
-      p
-        input(type="submit" value="Create New Patron")
+      - console.log(columnArray)
+      each value in columnArray
+        if columnNo == 0
+           p(class="id")
+        else if columnNo > 0
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` type="text")
+        - console.log(columnNo, columnArray[columnNo])
+        - columnNo += 1
+      input(type="submit" value=`Create New ${title}`)
   else if title === "Loans"
+    - var columnNo = 0;
     form
-      p
-        label(for="book_id") Book
-        select(id="book_id")
-          option(value="1") Harry Potter and the Philosopher's Stone
-          option(value="2") Harry Potter and the Chamber of Secrets
-          option(value="3") Harry Potter and the Prisoner of Azkaban
-          option(value="4") Harry Potter and the Goblet of Fire
-          option(value="5") Harry Potter and the Order of the Phoenix
-          option(value="6") Harry Potter and the Half-Blood Prince
-          option(value="7") Harry Potter and the Deathly Hallows
-          option(value="8") A Brief History of Time
-          option(value="9") The Universe in a Nutshell
-          option(value="10") Frankenstein
-          option(value="11") The Martian
-          option(value="12") Ready Player One
-          option(value="13") Armada
-          option(value="14") Pride and Prejudice
-          option(value="15") Emma
-      p
-        label(for="patron_id") Patron
-        select(id="patron_id")
-          option(value="1") Andrew Chalkley
-          option(value="2") Dave McFarland
-          option(value="3") Alena Holligan
-          option(value="4") Michael Poley
-      p
-        label(for="loaned_on") Loaned on:
-        input(id="loaned_on" type="text" value="Sun May 22 2016 17:00:00 GMT-0700 (PDT)")
-      p
-        label(for="return_by") Return by:
-        input(id="return_by" type="text" value="Sun May 29 2016 17:00:00 GMT-0700 (PDT)")
-      p
-        input(type="submit" value="Create New Loan")
+      - console.log(columnArray)
+      each value in columnArray
+        if columnNo == 0
+           p(class="id")
+        else if columnNo == 1
+           p
+             label(for="book_id") Book
+             select(id="book_id")
+               option(value="1") Harry Potter and the Philosopher's Stone
+               option(value="2") Harry Potter and the Chamber of Secrets
+               option(value="3") Harry Potter and the Prisoner of Azkaban
+               option(value="4") Harry Potter and the Goblet of Fire
+               option(value="5") Harry Potter and the Order of the Phoenix
+               option(value="6") Harry Potter and the Half-Blood Prince
+               option(value="7") Harry Potter and the Deathly Hallows
+               option(value="8") A Brief History of Time
+               option(value="9") The Universe in a Nutshell
+               option(value="10") Frankenstein
+               option(value="11") The Martian
+               option(value="12") Ready Player One
+               option(value="13") Armada
+               option(value="14") Pride and Prejudice
+               option(value="15") Emma
+        else if columnNo == 2
+           p
+             label(for="patron_id") Patron
+             select(id="patron_id")
+              option(value="1") Andrew Chalkley
+              option(value="2") Dave McFarland
+              option(value="3") Alena Holligan
+              option(value="4") Michael Poley
+        else if columnNo == 3
+           p
+            label(for="loaned_on") Loaned on:
+            input(id="loaned_on" type="text" value="Sun May 22 2016 17:00:00 GMT-0700 (PDT)")
+        else if columnNo == 4
+           p
+            label(for="return_by") Return by:
+            input(id="return_by" type="text" value="Sun May 29 2016 17:00:00 GMT-0700 (PDT)")
+        - console.log(columnNo, columnArray[columnNo])
+        - columnNo += 1
+      input(type="submit" value=`Create New ${title}`)

@@ -18,9 +18,11 @@ table
           else if rowCellNo == 0
             td(class="id")= item
           else if rowCellNo == 2
-             if patronHrefPath
+             if title == "Patrons"
                td
                  a(href=patronHrefPath)= item
+             else if title == "Books"
+               td= item
           else if rowCellNo == 6
               if actionHrefPath && item === 'Return Book'
                td
