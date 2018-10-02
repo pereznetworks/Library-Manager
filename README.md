@@ -30,12 +30,25 @@
           wont do anything until CRUD operatons are implemented
 
   NEXT:
-        could start actual filtering of sample data now...
-          but the code will change when...
-           bringing in actual sequelize models and data....
-            so....will start CRUD first
 
-        quering data and filtering using url params
+        sub-views,
+          create new
+          book, patron and loan detail
+          return book action ...
+            these wont do anything until CRUD operations are implemented
+            but having the views and associated routes working
+              will means I can focus on the CRUD data ops
+
+  TODO:
+
+        would like to finish views first...
+          then it will be easier to "visualize" the data and models
+
+       could begin to implement...
+        filtering of sample and display in table.pug
+         but the code will change when...
+          bringing in actual sequelize models and data....
+           so....will start CRUD first
 
   [back to Content Menu](#contents)
 
