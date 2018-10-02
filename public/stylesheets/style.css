@@ -1,8 +1,9 @@
 body {
-  margin: auto;
+  margin: .5% auto;
   width: 90%;
   font: 18px "Garamond", serif;
 }
+h1{}
 a {
   color: #019875;
   text-decoration: none;
@@ -33,7 +34,9 @@ p {
   margin: 20px auto;
 }
 ul {
-  padding: 5px;
+  margin: auto 0;
+  width: 90%;
+  padding: 0;
   list-style-type: none;
   margin-bottom: 10px;
   line-height: 1.3em;
@@ -46,6 +49,7 @@ nav {
 nav ul li a {
   color:#fff;
   background-color: #019875;
+  margin: 0 10px;
 }
 nav ul li {
   color: #fff;
@@ -86,6 +90,9 @@ tr:nth-child(2n) {
 td {
   padding: 5px 20px 5px 10px;
 }
+.id{
+  display: none;
+}
 label {
   font-weight: bold;
   min-width: 130px;
@@ -100,4 +107,31 @@ input {
 }
 input[type=text], select {
   margin-left: 10px;
+}
+#bookSection,
+#patronSection,
+#loanSection{
+  margin: 0 1% 1% 1%;
+  border: 2px solid #019875;
+  display: block;
+}
+#bookSection p,
+#patronSection p,
+#loanSection p{
+  margin: 0 0 1% 0;
+  padding: 0 1%;
+  color: #fff;
+  background-color:#019875
+}
+#bookSection a,
+#patronSection a,
+#loanSection a {
+  height: .5em;
+  margin: 0 0 0 5%;
+}
+
+#bookSection ul li a:hover,
+#patronSection ul li a:hover,
+#loanSection ul li a:hover {
+  background-color: #01b189;
 }

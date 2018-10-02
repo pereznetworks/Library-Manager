@@ -1,5 +1,41 @@
 extends layout
 
 block content
-  h1 Library Manager
-  p Welcome to Library Manager
+  h1= title
+  ul
+    li(id=bookSectionId)
+      p= booksTitle
+      ul
+        li
+          a New Book
+          //- path /books/new
+        li
+          a(href="/books") List All
+        li
+          //- query "/books?filter=overdue"
+          a List Overdue
+        li
+          //- query "/books?filter=checked_out"
+          a List Checked Out
+    li(id=patronSectionId)
+      p= patronsTitle
+      ul
+        li
+          a New Patron
+          //- path /patrons/new
+        li
+          a List All
+    li(id=loanSectionId)
+      p= loansTitle
+      ul
+        li
+          a New Loan
+          //- path /loans/new
+        li
+          a List All
+        li
+          //- query "/loans?filter=overdue"
+          a List Overdue
+        li
+          //- query "/loans?filter=checked_out"
+          a List Checked Out

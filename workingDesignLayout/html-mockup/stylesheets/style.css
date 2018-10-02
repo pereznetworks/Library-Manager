@@ -3,6 +3,9 @@ body {
   width: 90%;
   font: 18px "Garamond", serif;
 }
+h1 {
+
+}
 a {
   color: #019875;
   text-decoration: none;
@@ -33,6 +36,8 @@ p {
   margin: 20px auto;
 }
 ul {
+  margin: auto;
+  width: auto;
   padding: 0;
   list-style-type: none;
   margin-bottom: 10px;
@@ -100,4 +105,30 @@ input {
 }
 input[type=text], select {
   margin-left: 10px;
+}
+#bookSection,
+#patronSection,
+#loanSection{
+  margin: 0 1% 1% 1%;
+  border: 2px solid #019875;
+  display: block;
+}
+#bookSection p,
+#patronSection p,
+#loanSection p{
+  margin: 0 0 1% 0;
+  color: #fff;
+  background-color:#019875
+}
+#bookSection a,
+#patronSection a,
+#loanSection a {
+  height: .5em;
+  margin: 0 0 0 5%;
+}
+
+#bookSection ul li a:hover,
+#patronSection ul li a:hover,
+#loanSection ul li a:hover {
+  background-color: #01b189;
 }
