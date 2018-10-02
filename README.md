@@ -18,11 +18,21 @@
 
   [back to Content Menu](#contents)
 
-## Project Progress
+## Project Status
 
-  Completed: Before You Start.
+  DONE:
+        basic express app, routing and sequelize environment setup
+        sequelize models
 
-  Completed: Reviewed Sequelize workshops and database courses
+  DOING:
+        building views and sub-views using Pug templates, custom routes
+
+  NEXT:
+        could start building filtering routes now...
+          but the code will change when I bring in sequelize models and data....
+            so....will start CRUD first
+
+        quering data and filtering using url params
 
   [back to Content Menu](#contents)
 
@@ -40,6 +50,10 @@
       Pug for html rendering
         with http server npm module  
 
+  Sequelize v4 is different from the v3 demo'ed in the Sequelize/Node.js workshop
+    compelted the workshop using both
+      will use as model to make sure Sequelize v4 syntax and methods used in this app
+
   [back to Content Menu](#contents)
 
 ## Project Updates:
@@ -47,6 +61,28 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 6:
+
+  Home, Books, Patrons and Loans pages rendering complete  
+
+  verified variables in views/local.js needed to render each main page
+
+  verified modular pug template, table.pug works for ...
+    to show all books. loans and patrons
+
+  adding code comments
+## Project Update 5:
+
+  Basic routing for Home, Books, Patrons and Loans page
+    added views/locals.js
+      exporting object for each main page
+        to keep router code DRY, modular and simple
+
+## Project Update 4:
+
+  created Sequelize models for Book, Patrons and Loans
+  added require to routes
 
 ## Project Update 3:
 
@@ -79,6 +115,8 @@
     - initialzed sequelize
 
       - node_modules/.bin/sequelize init
+
+    - added sequelie require sequelize sync to .bin/www
 
   [back to Content Menu](#contents)
 
