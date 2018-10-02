@@ -12,7 +12,7 @@ router.get('/books', function(req, res, next) {
 
 /* GET new books form page */
 router.get('/books/new', function(req, res, next) {
-  res.render('newBooks', locals.booksPg);
+  res.render('./reusable/createNewForm', locals.booksPg);
 });
 
 // exporting router so it can be used by express app

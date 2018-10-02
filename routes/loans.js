@@ -12,7 +12,7 @@ router.get('/loans', function(req, res, next) {
 
 /* GET new loans form page. */
 router.get('/loans/new', function(req, res, next) {
-  res.render('newLoans', locals.loansPg);
+  res.render('./reusable/createNewForm', locals.loansPg);
 });
 
 // exporting router so it can be used by express app
