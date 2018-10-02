@@ -18,4 +18,15 @@ router.get('/', function(req, res, next) {
 router.get('/books', function(req, res, next) {
   res.render('books', locals.booksPg);
 });
+
+/* GET loans page. */
+router.get('/loans', function(req, res, next) {
+  res.render('loans', locals.loansPg);
+});
+
+/* GET patrons page. */
+router.get('/patrons', function(req, res, next) {
+  res.render('patrons', locals.patronsPg);
+});
+
 module.exports = router;

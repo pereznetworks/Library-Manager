@@ -1,0 +1,33 @@
+table
+  thead
+    - var columnNo = 0;
+    tr
+      each value in columnArray
+        if columnNo == 0
+          th(class="id")= value
+        if columnNo > 0
+          th= value
+        - columnNo += 1
+  each element in rowArray
+    - var rowCellNo = 0;
+    tr
+      each item, index in element
+          if rowCellNo == 1
+            td
+              a(href=bookHrefPath)= item
+          else if rowCellNo == 0
+            td(class="id")= item
+          else if rowCellNo == 2
+             if patronHrefPath
+               td
+                 a(href=patronHrefPath)= item
+          else if rowCellNo == 6
+              if actionHrefPath && item === 'Return Book'
+               td
+                 a(href=actionHrefPath class="button")= item
+              else if actionHrefPath
+                td
+                  a(href=actionHrefPath)= item
+          else
+              td= item
+          - rowCellNo += 1

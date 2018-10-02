@@ -1,3 +1,7 @@
+// static variables to pass as locals to pug when rendering each page or sub-page
+// sample data for development purposes
+// will replace with sequelize sqlite3 db data
+
 var homePg= {
   title: 'Welcome to Library Manager',
   booksTitle: 'Books',
@@ -8,12 +12,12 @@ var homePg= {
   loanSectionId: 'loanSection'
 };
 
-var booksPg= {
+var booksPg = {
   title: 'Books',
   createNewRoute: '/books/new',
   queryForAllRoute: '/books?filter=overdue',
   queryOverdueRoute: '/books?filter=checked_out',
-  hrefPath:"/book/book_detail",
+  bookHrefPath:"/book/book_detail",
   columnArray: ['id', 'Title', 'Author', 'Genre', 'Year Published'],
   rowArray: [
       {
@@ -125,5 +129,106 @@ var booksPg= {
     ]
   };
 
+var loansPg = {
+  title: 'Loans',
+  createNewRoute: '/loans/new',
+  queryForAllRoute: '/loans?filter=overdue',
+  queryOverdueRoute: '/loans?filter=checked_out',
+  bookHrefPath:"/book/book_detail",
+  patronHrefPath:"/patron/patron_detail",
+  actionHrefPath:"/return/return_book",
+  columnArray: ['id','Book', 'Patron', 'Loaned on', 'Return by', 'Returned on', 'Action'],
+  rowArray: [
+        {
+            id:0,
+            book:'Emma',
+            patron:'Dave McFarland',
+            loanedon:'2015-12-10',
+            returnby:'2020-10-20',
+            returnedon:' ',
+            action:'Return Book'
+        },
+        {
+            id:1,
+            book:'Harry Potter and the Goblet of Fire',
+            patron:'Andrew Chalkley',
+            loanedon:'2015-12-11',
+            returnby:'2015-12-18',
+            returnedon:'',
+            action:'Return Book'
+        },
+        {
+            id:2,
+            book:'A Brief History of Time',
+            patron:'Andrew Chalkley',
+            loanedon:'2015-12-12',
+            returnby:'2015-12-19',
+            returnedon:'',
+            action:'Return Book'
+        },
+        {
+            id:3,
+            book:'The Universe in a Nutshell',
+            patron:'Alena Holligan',
+            loanedon:'2015-12-13',
+            returnby:'2015-12-20',
+            returnedon:'',
+            action:'Return Book'
+        },
+        {
+            id:4,
+            book:'The Martian',
+            patron:'Michael Poley',
+            loanedon:'2015-12-13',
+            returnby:'2015-12-20',
+            returnedon:'2015-12-17',
+            action:''
+        },
+    ]
+  };
+
+var patronsPg = {
+    title: 'Books',
+    createNewRoute: '/patrons/new',
+    patronHrefPath:"/patron/patron_detail",
+    columnArray: ['id','Name', 'Address', 'Email', 'Library ID', 'Zip'],
+    rowArray: [
+      {
+          id:0,
+          name:'Andrew Chalkley',
+          address:'1234 NE 20st St',
+          email:'andrew.chalkley@teamtreehouse.com',
+          libraryId:'MCL1001',
+          zip:'90210'
+      },
+      {
+          id:1,
+          name:'Dave McFarland',
+          address:'5252 NW 2nd St<',
+          email:'dave.mcfarland@teamtreehouse.com',
+          libraryId:'MCL1010',
+          zip:'90210'
+      },
+      {
+          id:2,
+          name:'Alena Holligan<',
+          address:'1404 SW 101st St',
+          email:'alena.holligan@teamtreehouse.com',
+          libraryId:'MCL1100',
+          zip:'91210'
+      },
+      {
+          id:3,
+          name:'Michael Poley',
+          address:'7070 NE 10th Ave',
+          email:'michael.poley@teamtreehouse.com',
+          libraryId:'MCL1011',
+          zip:'91310'
+      }
+    ]
+  };
+
 module.exports.homePg = homePg;
 module.exports.booksPg = booksPg;
+module.exports.loansPg = loansPg;
+module.exports.patronsPg = patronsPg;
