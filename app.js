@@ -35,7 +35,7 @@ app.use(patronsRouter);
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
 app.use('/books/new', booksRouter);
-app.use('/book/book_detail/id', booksRouter);
+app.use('/books/book_detail/id', booksRouter);
 app.use('/loans', loansRouter);
 app.use('/loans/new', loansRouter);
 app.use('/loans/return_book/id', loansRouter);

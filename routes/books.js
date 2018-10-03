@@ -16,9 +16,16 @@ router.get('/books/new', function(req, res, next) {
 });
 
 /* GET new books form page */
-router.get('/book/book_detail/id', function(req, res, next) {
+router.get('/books/book_detail/:id', function(req, res, next) {
   res.locals.id = req.params.id;
-  res.render('./reusable/updateForm', locals.booksPg);
+  res.locals.columnArray = locals.loansPg.columnArray;
+  res.locals.rowArray = locals.loansPg.rowArray[req.params.id];
+  res.locals.title = "Book";
+  res.locals.bookTitle = locals.loansPg.rowArray[req.params.id].book;
+  res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+  res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+  res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+  res.render('book_detail');
 });
 
 

@@ -8,15 +8,15 @@ table
         if columnNo > 0
           th= value
         - columnNo += 1
-    each element in rowArray
-      - var rowCellNo = 0;
+    tbody
       tr
-        each item, index in element
+        - var rowCellNo = 0;
+        each item, index in rowArray
             - console.log(index, item)
             if rowCellNo == 0
               td(class="id")= item
             else if rowCellNo == 1
-              if title == "Books" || title == "Loans"
+              if title == "Book" || title == "Loans"
                 td
                   a(href=bookHrefPath + '/' + rowCellNo)= item
               if title == "Patrons"
@@ -31,10 +31,10 @@ table
             else if rowCellNo == 6
                 if title == "Loans" && item === 'Return Book'
                  td
-                   a(href=actionHrefPath class="button")= item
-                else if actionHrefPath
-                  td
-                    a(href=actionHrefPath)= item
+                   a(href=actionHrefPath + '/' + rowCellNo class="button")= item
+                else if title = "Book"
+                 td
+                   a(href=actionHrefPath + '/' + rowCellNo class="button")= item
             else
                 td= item
             - rowCellNo += 1
