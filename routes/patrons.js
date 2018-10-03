@@ -16,9 +16,16 @@ router.get('/patrons/new', function(req, res, next) {
 });
 
 /* GET new patrons form page */
-router.get('/patrons/patron_detail/id', function(req, res, next) {
+router.get('/patrons/patron_detail/:id', function(req, res, next) {
   res.locals.id = req.params.id;
-  res.render('./reusable/updateForm', locals.patronsPg);
+  res.locals.columnArray = locals.loansPg.columnArray;
+  res.locals.rowArray = locals.loansPg.rowArray[req.params.id];
+  res.locals.title = "Patron";
+  res.locals.patronName = locals.loansPg.rowArray[req.params.id].patron;
+  res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+  res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+  res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+  res.render('patron_detail');
 });
 
 // exporting router so it can be used by express app

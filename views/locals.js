@@ -145,7 +145,7 @@ var loansPg = {
   queryForAllRoute: '/loans?filter=overdue',
   queryOverdueRoute: '/loans?filter=checked_out',
   bookHrefPath:"/books/book_detail",
-  patronHrefPath:"/patron/patron_detail",
+  patronHrefPath:"/patrons/patron_detail",
   actionHrefPath:"/return/return_book",
   columnArray: ['id','Book', 'Patron', 'Loaned on', 'Return by', 'Returned on', 'Action'],
   rowArray: [
@@ -200,7 +200,7 @@ var loansPg = {
 var patronsPg = {
     title: 'Patrons',
     createNewRoute: '/patrons/new',
-    patronHrefPath:"/patron/patron_detail",
+    patronHrefPath:"/patrons/patron_detail",
     columnArray: ['id','Name', 'Address', 'Email', 'Library ID', 'Zip'],
     rowArray: [
       {

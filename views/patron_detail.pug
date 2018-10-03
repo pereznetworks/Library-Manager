@@ -1,0 +1,6 @@
+extends layout
+//- more reusable templates and passed in variables
+block content
+  h1= title + ': ' + patronName
+  include reusable/updateForm.pug
+  include reusable/detailTable.pug

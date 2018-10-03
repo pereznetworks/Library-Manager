@@ -1,0 +1,26 @@
+extends layout
+//- more reusable templates and passed in variables
+block content
+  h1= title
+  - var columnNo = 0
+  - console.log(columnArray)
+  each value in columnArray
+    if columnNo == 0
+       p(class="id")
+    else if columnNo == 1
+       p #[strong Book Title: ] #{value}
+    else if columnNo == 2
+       p #[strong Loaned By: ] #{value}
+    else if columnNo == 3
+       p #[strong Loaned On: ] #{value}
+    else if columnNo == 4
+       p #[strong Return by: ] #{value}
+    else if columnNo == 5
+     form
+       p
+        label(for="returned_on") Returned on:
+        input(id="returned_on" type="text" value='')
+       p
+        input(type="submit" value="Return Book")
+    //- console.log(columnNo, columnArray[columnNo])
+    - columnNo += 1

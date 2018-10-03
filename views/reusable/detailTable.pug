@@ -8,33 +8,26 @@ table
         if columnNo > 0
           th= value
         - columnNo += 1
-    tbody
-      tr
-        - var rowCellNo = 0;
-        each item, index in rowArray
-            - console.log(index, item)
-            if rowCellNo == 0
-              td(class="id")= item
-            else if rowCellNo == 1
-              if title == "Book" || title == "Loans"
-                td
-                  a(href=bookHrefPath + '/' + rowCellNo)= item
-              if title == "Patrons"
-                td
-                  a(href=patronHrefPath + '/' + rowCellNo)= item
-            else if rowCellNo == 2
-               if title == "Loans"
-                 td
-                   a(href=patronHrefPath)= item
-               else
-                 td= item
-            else if rowCellNo == 6
-                if title == "Loans" && item === 'Return Book'
-                 td
-                   a(href=actionHrefPath + '/' + rowCellNo class="button")= item
-                else if title = "Book"
-                 td
-                   a(href=actionHrefPath + '/' + rowCellNo class="button")= item
-            else
-                td= item
-            - rowCellNo += 1
+  tbody
+    tr
+      - var rowCellNo = 0;
+      each item, index in rowArray
+        - console.log(index, item)
+        if rowCellNo == 0
+          td(class="id")= item
+        else if rowCellNo == 1
+          td
+            a(href=bookHrefPath + '/' + rowCellNo)= item
+        else if rowCellNo == 2
+          td
+            a(href=patronHrefPath)= item
+        else if rowCellNo == 6
+          if title == "Loans" && item === 'Return Book'
+            td
+              a(href=actionHrefPath + '/' + rowCellNo class="button")= item
+          else if title = "Book"
+            td
+              a(href=actionHrefPath + '/' + rowCellNo class="button")= item
+        else
+            td= item
+        - rowCellNo += 1

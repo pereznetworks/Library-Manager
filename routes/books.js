@@ -28,7 +28,5 @@ router.get('/books/book_detail/:id', function(req, res, next) {
   res.render('book_detail');
 });
 
-
-
 // exporting router so it can be used by express app
 module.exports = router;

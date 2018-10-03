@@ -13,6 +13,7 @@ var indexRouter = require('./routes/index');
 var booksRouter = require('./routes/books');
 var patronsRouter = require('./routes/patrons');
 var loansRouter = require('./routes/loans');
+var returnsRouter = require('./routes/returnsRouter');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +31,7 @@ app.use(indexRouter);
 app.use(booksRouter);
 app.use(loansRouter);
 app.use(patronsRouter);
+app.use(returnsRouter);
 
 // now which routes to use routers with
 app.use('/', indexRouter);
@@ -38,13 +40,13 @@ app.use('/books/new', booksRouter);
 app.use('/books/book_detail/id', booksRouter);
 app.use('/loans', loansRouter);
 app.use('/loans/new', loansRouter);
-app.use('/loans/return_book/id', loansRouter);
+app.use('/return/return_book/id', returnsRouter);
 app.use('/loans/book_detail/id', loansRouter);
 app.use('/loans/patron_detail/id', loansRouter);
 app.use('/book/book_detail/id', booksRouter);
 app.use('/patrons', patronsRouter);
 app.use('/patrons/new', patronsRouter);
-app.use('/book/patron_detail/id', patronsRouter);
+app.use('/patrons/patron_detail/id', patronsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

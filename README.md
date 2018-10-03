@@ -5,6 +5,10 @@
   - [Project Progress](#project-progress)
   - [Issues and Challenges](#issues-and-challenges)
   - [Project Updates](#project-updates)
+    - [Project Update 7](#project-update-7)
+    - [Project Update 6](#project-update-6)
+    - [Project Update 5](#project-update-5)
+    - [Project Update 4](#project-update-4)
     - [Project Update 3](#project-update-3)
     - [Project Update 2](#project-update-2)
     - [Project Update 1](#project-update-1)
@@ -27,57 +31,26 @@
         rendering home, books, patrons and loans page views
             along with 'show all' for books, patrons and loans
 
-        rendering createNewForm for new books, patrons and loans
+        rendering Book, Patron detail
 
+        rendering createNewForm page for new books, patrons and loans
 
+        rendering Return book form page from Books, Patrons and Loans page
+
+        book, patron and loans detail views
 
   DOING:
-        designing implementation for...
-          book, patron and loans detail views
-
-            from books page
-              clicking on the book title
-                send book id in url
-              book detail will use param.id
-                to show book's update form and loan history of that book
-
-              can filter show all books table by overdue and checked out books
-
-            from patrons page
-              clicking on the patron name
-                send patron id in url
-              patron detail will use param.id
-               to show patron's update form and loan history of that patron
-
-            from loans page
-              can access both book and patron detail
-
-              can filter show all loans table by overdue and checked out books
-
-          at end of each row in book/patron detail or filtered table     
-            action column will have "return book"
-              if the returned-on column has no entry
+         adding sequelize data
 
   NEXT:
+         filtering show-all loans and books table
 
-        sub-views,
-          create new
-          book, patron and loan detail
-          return book action ...
-            these wont do anything until CRUD operations are implemented
-            but having the views and associated routes working
-              will means I can focus on the CRUD data ops
+         submit actions for create, update and return books page
 
   TODO:
+         verify each view, table and form perform to speqs
 
-        would like to finish views first...
-          then it will be easier to "visualize" the data and models
-
-       could begin to implement...
-        filtering of sample and display in table.pug
-         but the code will change when...
-          bringing in actual sequelize models and data....
-           so....will start CRUD first
+         verify project speqs across project
 
   [back to Content Menu](#contents)
 
@@ -106,6 +79,41 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 7:
+
+  over-all library manager UI flow:
+
+  from books page
+    clicking on the book title
+      send book id in url
+    book detail will use param.id
+      to show book's update form and loan history of that book
+
+    will be able to
+      filter show all books table by overdue and checked out books
+
+  from patrons page
+    clicking on the patron name
+      send patron id in url
+    patron detail will use param.id
+     to show patron's update form and loan history of that patron
+
+  from loans page
+    can access both book and patron detail
+
+    will be able to
+      filter show all books table by overdue and checked out books
+
+  at end of each row in books/patrons/loans table
+    and book/patron detail
+    and filtered table     
+
+    action column will have "return book"
+      if the returned-on column has no entry
+
+   'return book' action button loads the return book form page
+      will need to return to page loaded from
 
 ## Project Update 6:
 
