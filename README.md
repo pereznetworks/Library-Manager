@@ -24,10 +24,39 @@
         basic express app, routing and sequelize environment setup
         sequelize models
 
+        rendering home, books, patrons and loans page views
+            along with 'show all' for books, patrons and loans
+
+        rendering createNewForm for new books, patrons and loans
+
+
+
   DOING:
-        building views and sub-views using Pug templates, custom routes
-        sub-views, create new and return book ...
-          wont do anything until CRUD operatons are implemented
+        designing implementation for...
+          book, patron and loans detail views
+
+            from books page
+              clicking on the book title
+                send book id in url
+              book detail will use param.id
+                to show book's update form and loan history of that book
+
+              can filter show all books table by overdue and checked out books
+
+            from patrons page
+              clicking on the patron name
+                send patron id in url
+              patron detail will use param.id
+               to show patron's update form and loan history of that patron
+
+            from loans page
+              can access both book and patron detail
+
+              can filter show all loans table by overdue and checked out books
+
+          at end of each row in book/patron detail or filtered table     
+            action column will have "return book"
+              if the returned-on column has no entry
 
   NEXT:
 
