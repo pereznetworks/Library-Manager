@@ -15,5 +15,11 @@ router.get('/loans/new', function(req, res, next) {
   res.render('./reusable/createNewForm', locals.loansPg);
 });
 
+/* GET return book form page */
+router.get('/loans/return_book/id', function(req, res, next) {
+  res.locals.id = req.params.id;
+  res.render('./reusable/updateForm', locals.loansPg);
+});
+
 // exporting router so it can be used by express app
 module.exports = router;

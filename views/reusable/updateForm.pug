@@ -1,0 +1,54 @@
+extends ../layout
+//- more reusable templates and passed in variables
+block content
+  h1= title
+  if title === "Books"
+    - var columnNo = 0;
+    form
+      - console.log(columnArray)
+      each value in columnArray
+        if columnNo == 0
+           p(class="id")
+        else if columnNo > 0
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` type="text")= rowArray[id].value
+        //- console.log(columnNo, columnArray[columnNo])
+        - columnNo += 1
+      input(type="submit" value=`Update`)
+  else if title === "Patrons"
+    - var columnNo = 0;
+    form
+      - console.log(columnArray)
+      each value in columnArray
+        if columnNo == 0
+           p(class="id")
+        else if columnNo > 0
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` type="text")= rowArray[id].value
+        //- console.log(columnNo, columnArray[columnNo])
+        - columnNo += 1
+      input(type="submit" value=`Create New ${title}`)
+  else if title === "Patron: Return Book"
+    - var columnNo = 0;
+    form
+      - console.log(columnArray)
+      each value in columnArray
+        if columnNo == 0
+           p(class="id")
+        else if columnNo == 1
+           p #[strong Book Title: ] #{rowArray[id].value}
+        else if columnNo == 2
+           p #[Loaned By: ] #{rowArray[id].value}
+        else if columnNo == 3
+           p #[Loaned On: ] #{rowArray[id].value}
+        else if columnNo == 4
+           p #[Return by: ] #{rowArray[id].value}
+        else
+           p
+            label(for="returned_on") Returned on:
+            input(id="returned_on" type="text" value=#{rowArray[id].value})
+        //- console.log(columnNo, columnArray[columnNo])
+        - columnNo += 1
+      input(type="submit" value="Return Book")
