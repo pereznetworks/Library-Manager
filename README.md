@@ -40,12 +40,14 @@
         book, patron and loans detail views
 
   DOING:
-         using sequelize models to add the data 
+         using Sequelize models to create, read, update, delete the data
 
   NEXT:
          filtering show-all loans and books table
 
          submit actions for create, update and return books page
+
+         input validation for each form and implementing error pages
 
   TODO:
          verify each view, table and form perform to speqs
