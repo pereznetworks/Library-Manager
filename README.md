@@ -40,7 +40,7 @@
         book, patron and loans detail views
 
   DOING:
-         adding sequelize data
+         using sequelize models to add the data 
 
   NEXT:
          filtering show-all loans and books table
