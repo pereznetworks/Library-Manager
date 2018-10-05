@@ -2,7 +2,10 @@
   "development": {
     "storage":  "library.db",
     "dialect": "sqlite",
-    "operatorsAliases": false
+    "operatorsAliases": false,
+    "seederStorage": "json",
+    "seederStoragePath": "seedData.json",
+    "seederStorageTableName": "seed_data"
   },
   "test": {
     "storage":  "library.db",

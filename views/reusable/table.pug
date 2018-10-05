@@ -10,31 +10,30 @@ table
         - columnNo += 1
     each element in rowArray
       - var rowCellNo = 0;
+      - var actionsItem = '';
       tr
-        each item, index in element
+        each item in element
             - console.log(index, item)
             if rowCellNo == 0
-              td(class="id")= item
+              td(class="id")= item.dataValues.id
             else if rowCellNo == 1
-              if title == "Books" || title == "Loans"
-                td
-                  a(href=bookHrefPath + '/' + element.id)= item
-              if title == "Patrons"
-                td
-                  a(href=patronHrefPath + '/' + element.id)= item
-            else if rowCellNo == 2
-               if title == "Loans"
-                 td
-                   a(href=patronHrefPath)= item
-               else
-                 td= item
-            else if rowCellNo == 6
-                if title == "Loans" && item === 'Return Book'
-                 td
-                   a(href=actionHrefPath + '/' + element.id class="button")= item
-                else if actionHrefPath
+                if title == "Books" || title == "Loans"
                   td
-                    a(href=actionHrefPath + '/' + element.id)= item
-            else
-                td= item
+                    a(href=bookHrefPath + '/' + item.dataValues.id)= item.dataValues.title
+                if title == "Patrons"
+                  td
+                    a(href=patronHrefPath + '/' + item.dataValues.id)= item.dataValues.patron
+            else if rowCellNo == 2
+                if title == "Loans"
+                  td
+                    a(href=patronHrefPath)= item.dataValues.patron
+            else if rowCellNo == 3
+                 td= item.dataValues.loaned_on
+            else if rowCellNo == 4
+                 td= item.dataValues.return_by
+            else if rowCellNo == 5
+                 td= item.dataValues.returned_on
+                 if item.dataValues.return_by == Null
+                   td
+                     a(href=actionHrefPath + '/' + item.item.dataValues.id class="button")
             - rowCellNo += 1

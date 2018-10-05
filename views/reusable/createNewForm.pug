@@ -1,10 +1,10 @@
 extends ../layout
 //- more reusable templates and passed in variables
 block content
-  h1= title
-  if title === "Books"
+  h1= newFormTitle
+  if newFormTitle === "New Book"
     - var columnNo = 0;
-    form
+    form(action="/books", method="post")
       - console.log(columnArray)
       each value in columnArray
         if columnNo == 0
@@ -16,9 +16,9 @@ block content
         - console.log(columnNo, columnArray[columnNo])
         - columnNo += 1
       input(type="submit" value=`Create New ${title}`)
-  else if title === "Patrons"
+  else if newFormTitle === "New Patron"
     - var columnNo = 0;
-    form
+    form(action="/patrons", method="post")
       - console.log(columnArray)
       each value in columnArray
         if columnNo == 0
@@ -30,9 +30,9 @@ block content
         - console.log(columnNo, columnArray[columnNo])
         - columnNo += 1
       input(type="submit" value=`Create New ${title}`)
-  else if title === "Loans"
+  else if newFormTitle === "New Loan"
     - var columnNo = 0;
-    form
+    form(action="/loans", method="post")
       - console.log(columnArray)
       each value in columnArray
         if columnNo == 0

@@ -23,6 +23,7 @@ var homePg= {
 };
 
 var booksPg = {
+  newFormTitle: "New Book",
   title: 'Books',
   createNewRoute: '/books/new',
   queryForAllRoute: '/books?filter=overdue',
@@ -140,6 +141,7 @@ var booksPg = {
   };
 
 var loansPg = {
+  newFormTitle: "New Loan",
   title: 'Loans',
   createNewRoute: '/loans/new',
   queryForAllRoute: '/loans?filter=overdue',
@@ -198,6 +200,7 @@ var loansPg = {
   };
 
 var patronsPg = {
+    newFormTitle: 'New Patron',
     title: 'Patrons',
     createNewRoute: '/patrons/new',
     patronHrefPath:"/patrons/patron_detail",

@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 /* importing sequelize models */
-var books = require("../models").books;
-var patrons = require("../models").patrons;
-var loans = require("../models").loans;
+var Book = require("../models").Book;
+var Patron = require("../models").Patron;
+var Loan = require("../models").Loan;
 
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals")

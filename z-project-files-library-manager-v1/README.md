@@ -12,7 +12,7 @@
     - [Add a New Book](#add-a-new-book)
     - [Book Details Page](#book-details-page)
     - [Load Listing Page](#load-listing-page)
-    - [New Load Page](#new-load-page)
+    - [New Loan Page](#new-loan-page)
     - [Return Book Page](#return-book-page)
     - [Patron Listing Page](#patron-listing-page)
     - [Patron Detail Page](#patron-detail-page)
@@ -188,6 +188,8 @@
       Table should include the following links:
       Book titles should link to the book's detail page.
       Add a New Book
+
+## Add a New Book:
 
     As a librarian, I should be able to add a book to the database...
      so that they can be tracked on the system.
