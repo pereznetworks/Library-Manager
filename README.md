@@ -74,6 +74,9 @@
     compelted the workshop using both
       will use as model to make sure Sequelize v4 syntax and methods used in this app
 
+  Not Using sample library.db the came with project files
+    seems to work only with seqeulize v3
+
   [back to Content Menu](#contents)
 
 ## Project Updates:
@@ -81,6 +84,23 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 8:
+
+Overall UI flow the same
+  re-build all pugs
+    to work with sequelize sqlite data and
+    better performance
+    more maintainable code...
+  result is...
+   separate folder for each section:
+      book, loans and patrons
+   simpler, static templates
+   less or no calculation and/or javascript code
+
+
+
+
 
 ## Project Update 7:
 
