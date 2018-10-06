@@ -5,6 +5,7 @@
   - [Project Progress](#project-progress)
   - [Issues and Challenges](#issues-and-challenges)
   - [Project Updates](#project-updates)
+    - [Project Update 8](#project-update-8)
     - [Project Update 7](#project-update-7)
     - [Project Update 6](#project-update-6)
     - [Project Update 5](#project-update-5)
@@ -25,25 +26,25 @@
 ## Project Status
 
   DONE:
-        basic express app, routing and sequelize environment setup
-        sequelize models
+        basic express app, routing and Sequelize environment setup
+        library db and table models
 
-        rendering home, books, patrons and loans page views
+        re-factored templates for home, books, patrons and loans page views
             along with 'show all' for books, patrons and loans
 
-        rendering Book, Patron detail
-
-        rendering createNewForm page for new books, patrons and loans
-
-        rendering Return book form page from Books, Patrons and Loans page
-
-        book, patron and loans detail views
+        re-factored templates for Loan, Book, Patron details
 
   DOING:
-         using Sequelize models to create, read, update, delete the data
+        using Sequelize models to create, read, update, delete the data
 
   NEXT:
-         filtering show-all loans and books table
+        when Sequelize data integration is ready ...
+        may need to re-factor templates for
+          createNewForm page for new books, patrons and loans
+          return book form page from Books, Patrons and Loans page
+          may have to redo- updateForm as well
+
+         query for filtering loans and books table
 
          submit actions for create, update and return books page
 
