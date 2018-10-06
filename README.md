@@ -94,7 +94,9 @@ After much TROUBLEshooting....
   Not Using sample library.db the came with project files
     seems to work only with Sequelize v3
   Since I am using Sequelize v4 in this project...
-    simply: Express app runs Sequelize bootstrapped code
+
+Solution is simple:
+    Express app starts, runs Sequelize bootstrapped code
       which uses config file and creates a new library.db in none exists
       then am able to do CRUD and display from tables in library.db
 
