@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      patron_id: {
+        allowNull: false,
+        autoIncrement: true,
+        type: Sequelize.INTEGER
+      },
       first_name: {
         type: Sequelize.STRING
       },

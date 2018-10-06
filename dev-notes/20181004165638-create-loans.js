@@ -8,6 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      loan_id: {
+        allowNull: false,
+        autoIncrement: true,
+        type: Sequelize.INTEGER
+      },
       book_id: {
         type: Sequelize.INTEGER
       },

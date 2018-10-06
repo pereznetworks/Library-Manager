@@ -17,7 +17,7 @@ var locals = require("../views/locals");
 /* GET books page. */
 router.get('/', function(req, res, next) {
   Books.findAll().then(function(books){
-    res.locals.createNewRoute = locals.booksPg.createNewRoute
+    res.locals.createNewRoute = locals.booksPg.createNewRoute;
     res.locals.columnArray = locals.loansPg.columnArray;
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
@@ -34,31 +34,44 @@ router.get('/', function(req, res, next) {
    });
 });
 
-/* GET new books form page */
-router.get('/books/book_detail', function(req, res, next) {
+/* GET book detail page */
+router.get('/books/new', function(req, res, next) {
   res.locals.columnArray = locals.booksPg.columnArray;
   res.render('./reusable/createNewForm', {book: {}, newFormTitle: 'New Book', title: 'Book'});
+});
+
+/* TODO: remove this once....
+   route and handler once sequelize data is fully integrated
+   GET book detail page */
+router.get('/books/book_detail', function(req, res, next) {
+  res.locals.columnArray = locals.booksPg.columnArray;
+  res.locals.title = 'Book';
+  res.locals.bookTitle = locals.booksPg.rowArray[0].bookTitle;
+  res.render("bookViews/book_detail", {rowArray: locals.booksPg.rowArray[0]});
 });
 
 /* GET book detail page */
 router.get('/books/book_detail/:id', function(req, res, next) {
   Books.findById(req.params.id).then(function(books){
+    // TODO: this synatax and object model works
+    // but data must be inserted into db tables (sequelize db:seed)
+    // for any data to be displayed
     if(books) {
       res.locals.columnArray = locals.loansPg.columnArray;
-      res.locals.title = "Book";
+      res.locals.title = books.dataValues.title;
       res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
       res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
       res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
-      res.render("bookViews/book_detail", {rowArray: books, bookTitle: books.title});
+      res.render("bookViews/book_detail", {rowObject: books.dataValues, bookTitle: books.title});
     } else {
-      res.render(error);
+      res.send(error);
     }
   }).catch(function(error){
       next(error);
    });
 });
 
-/* POST create article. */
+/* TODO : fix tbis route and handler : POST create new book */
 router.post('/books', function(req, res, next) {
   Books.create(req.body).then(function(book) {
     res.redirect(`/books`);

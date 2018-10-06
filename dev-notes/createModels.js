@@ -12,17 +12,24 @@
     NOTE: There are no timestamps.
 */
 
-/* normal way to create models
+/* create models using cli
    node_modules/.bin/sequelize model:create --name books --attributes title:STRING,author:STRING,genre:STRING,first_published:INTEGER
    node_modules/.bin/sequelize model:create --name patrons --attributes first_name:STRING,last_name:STRING,address:STRING,email:STRING,library_id:STRING,zip_code:INTEGER;
    node_modules/.bin/sequelize model:create --name loans --attributes book_id:INTEGER,patron_id:INTEGER,loaned_on:DATE,return_by:DATE,returned_on:DATE
 
     but apparently there is no way to indicate to sequelize-cli not to use timestamps
-     so....have to use sequelize.define instead...
+     so....
+     ...have to write your own model using sequelize.define instead...
+*/
+
+/* AFTER writing custom models as shown below create seeds usng cli...
+  AFTER enabling sequelize's tracking of db:seeds in config/config.js...
+  node_modules/.bin/sequelize seed:generate --name books
+  node_modules/.bin/sequelize seed:generate --name patrons
+  node_modules/.bin/sequelize seed:generate --name loans
 */
 
 const books = sequelize.define('books', {
-               id: sequelize.INTEGER,
             title: sequelize.STRING,
            author: sequelize.STRING,
             genre: sequelize.STRING,
@@ -42,7 +49,6 @@ const books = sequelize.define('books', {
 */
 
 const patrons = sequelize.define('patrons', {
-              id: sequelize.INTEGER,
       first_name: sequelize.STRING,
        last_name: sequelize.STRING,
          address: sequelize.STRING,
@@ -66,7 +72,6 @@ const patrons = sequelize.define('patrons', {
 */
 
 const loans = sequelize.define('loans', {
-               id: sequelize.INTEGER,
           book_id: sequelize.INTEGER,
         patron_id: sequelize.INTEGER,
         loaned_on: sequelize.DATE,
