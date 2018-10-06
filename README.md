@@ -76,6 +76,8 @@
 
   Not Using sample library.db the came with project files
     seems to work only with seqeulize v3
+    simply: Express app runs sequelize bootstrapped code
+      which uses config file and creates a new libary.db in none exists
 
   [back to Content Menu](#contents)
 
@@ -87,20 +89,27 @@
 
 ## Project Update 8:
 
+After much TROUBLEshooting....
+  Not Using sample library.db the came with project files
+    seems to work only with Sequelize v3
+  Since I am using Sequelize v4 in this project...
+    simply: Express app runs Sequelize bootstrapped code
+      which uses config file and creates a new library.db in none exists
+      then am able to do CRUD and display from tables in library.db
+
+Re-factor of all pug templates
 Overall UI flow the same
-  re-build all pugs
-    to work with sequelize sqlite data and
-    better performance
-    more maintainable code...
-  result is...
-   separate folder for each section:
-      book, loans and patrons
-   simpler, static templates
-   less or no calculation and/or javascript code
-
-
-
-
+  Result is...
+    separate folder for each section:
+      folder of templates for
+        bookViews, loanViews and patronViews
+        in addition to returnBookViews
+      more but simpler, static templates
+      little or no calculation and/or javascript code
+  re-factor allows...
+      to more easily work with Sequelize's SQlite data,
+      provides better performance,
+      code is easier to understand and is more maintainable.
 
 ## Project Update 7:
 
