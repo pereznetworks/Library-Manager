@@ -1,0 +1,37 @@
+//- TODO: this table will show 1 patron's loan details
+//- TODO: pass in a patronDetials[0].detailView object from select query
+//- TODO: iterate through patronDetials[0].detailView object
+//- TODO: only one tr
+//- TODO: for each item in object, td + value
+//- TODO: insert route path/#{book_id} for each a(href="book_detail")
+//- TODO: insert route path/#{patron_id} for each a(href="patron_detail")
+table
+  thead
+    tr
+      th Book
+      th Patron
+      th Loaned on
+      th Return by
+      th Returned on
+      th Action
+  tbody
+    tr
+      td
+        a(href="book_detail.html") Harry Potter and the Goblet of Fire
+      td
+        a(href="patron_detail.html") Andrew Chalkley
+      td 2015-12-11
+      td 2015-12-18
+      td
+      td
+        a(href="return_book.html" class="button") Return Book
+    tr
+      td
+        a(href="book_detail.html") A Brief History of Time
+      td
+        a(href="patron_detail.html") Andrew Chalkley
+      td 2015-12-12
+      td 2015-12-19
+      td
+      td
+        a(href="return_book.html" class="button") Return Book

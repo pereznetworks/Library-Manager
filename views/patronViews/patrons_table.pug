@@ -1,0 +1,44 @@
+//- TODO: this table will need to display info on all patron, one row for each loan
+//- TODO: pass in a patronsTable from findALL select query
+//- TODO: iterate through patronsTable
+//- TODO: for each patron.detailView in patronsTable, tr
+//- TODO: for each item in patron.detailView, td + value
+//- TODO: insert route path/#{book_id} for each a(href="book_detail")
+//- TODO: insert route path/#{patron_id} for each a(href="patron_detail")
+table
+  thead
+    tr
+      th Name
+      th Address
+      th Email
+      th Library ID
+      th Zip
+  tbody
+    tr
+      td
+        a(href="patron_detail.html") Andrew Chalkley</a>
+      td 1234 NE 20st St
+      td andrew.chalkley@teamtreehouse.com
+      td MCL1001
+      td 90210
+    tr
+      td
+        a(href="patron_detail.html") Dave McFarland</a>
+      td 5252 NW 2nd St
+      td dave.mcfarland@teamtreehouse.com
+      td MCL1010
+      td 90210
+    tr
+      td
+        a(href="patron_detail.html") Alena Holligan</a>
+      td 1404 SW 101st St
+      td alena.holligan@teamtreehouse.com
+      td MCL1100
+      td 91210
+    tr
+      td
+        a(href="patron_detail.html") Michael Poley</a>
+      td 7070 NE 10th Ave
+      td michael.poley@teamtreehouse.com
+      td MCL1011
+      td 91310

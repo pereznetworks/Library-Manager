@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
     res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
-    res.render("books", {rowArray: books, title: "Books" } );
+    res.render("bookViews/index", {rowArray: books, title: "Books" } );
   }).catch(function(error){
     // set locals, only providing error in development
     res.locals.message = error.message;
@@ -35,12 +35,12 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET new books form page */
-router.get('/books/new', function(req, res, next) {
+router.get('/books/book_detail', function(req, res, next) {
   res.locals.columnArray = locals.booksPg.columnArray;
   res.render('./reusable/createNewForm', {book: {}, newFormTitle: 'New Book', title: 'Book'});
 });
 
-/* GET new books form page */
+/* GET book detail page */
 router.get('/books/book_detail/:id', function(req, res, next) {
   Books.findById(req.params.id).then(function(books){
     if(books) {
@@ -49,7 +49,7 @@ router.get('/books/book_detail/:id', function(req, res, next) {
       res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
       res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
       res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
-      res.render("book_detail", {rowArray: books, bookTitle: books.title});
+      res.render("bookViews/book_detail", {rowArray: books, bookTitle: books.title});
     } else {
       res.render(error);
     }
@@ -64,7 +64,7 @@ router.post('/books', function(req, res, next) {
     res.redirect(`/books`);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
-        res.render("articles/new", {book: Books.build(req.body), errors: error.errors, title: "New Book"})
+        res.render("bookViews/new", {book: Books.build(req.body), errors: error.errors, title: "New Book"})
       } else {
         throw error;
       }

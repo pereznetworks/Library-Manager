@@ -1,0 +1,6 @@
+extends ../layout
+//- template for book_detail page
+block content
+  h1= title + ': ' + bookTitle
+  include ../reusable/updateForm.pug
+  include book_detail_table.pug
