@@ -5,14 +5,11 @@ var createError = require('http-errors');
 
 /* importing sequelize models */
 var Books = require("../models").Books;
+var Loans = require("../models").Loans;
 
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals");
 
-// /* GET books page. */
-// router.get('/books', function(req, res, next) {
-//   res.render('books', locals.booksPg);
-// });
 
 /* GET books page. */
 router.get('/', function(req, res, next) {
@@ -22,7 +19,12 @@ router.get('/', function(req, res, next) {
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
     res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
-    res.render("bookViews/index", {rowArray: books, title: "Books" } );
+    if (books){
+      let booksArray = books.map(function(item, index){
+        return item.dataValues
+      });
+      res.render("bookViews/index", {rowArray: booksArray, title: "Books" } );
+    }
   }).catch(function(error){
     // set locals, only providing error in development
     res.locals.message = error.message;
@@ -52,22 +54,35 @@ router.get('/books/book_detail', function(req, res, next) {
 
 /* GET book detail page */
 router.get('/books/book_detail/:id', function(req, res, next) {
-  Books.findById(req.params.id).then(function(books){
+  Loans.findOne({ where: { book_id:req.params.id } }).then(function(loan){
     // TODO: this synatax and object model works
     // but data must be inserted into db tables (sequelize db:seed)
     // for any data to be displayed
-    if(books) {
-      res.locals.columnArray = locals.loansPg.columnArray;
-      res.locals.title = books.dataValues.title;
-      res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
-      res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
-      res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
-      res.render("bookViews/book_detail", {rowObject: books.dataValues, bookTitle: books.title});
+    res.locals.columnArray = locals.loansPg.columnArray;
+    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+    if(!loan) {
+      res.locals.error = createError(200);
+      res.status(200);
+      res.render("error", {message: 'No loan exists for that book'});
     } else {
-      res.send(error);
+      res.locals.title = 'Book';
+      res.render("bookViews/book_detail", {rowArray: loan.dataValues, bookTitle: `insert book title here`});
     }
   }).catch(function(error){
-      next(error);
+    // set locals, only providing error in development
+    if (error){
+     res.locals.message = error.message;
+     res.locals.error =  error
+   } else {
+     res.locals.message = "Oops, there's been a server error";
+     res.locals.error = createError(500);
+   }
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
    });
 });
 

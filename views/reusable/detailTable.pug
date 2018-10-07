@@ -12,7 +12,6 @@ table
     tr
       - var rowCellNo = 0;
       each item, index in rowArray
-        - console.log(index, item)
         if rowCellNo == 0
           td(class="id")= item
         else if rowCellNo == 1

@@ -18,14 +18,12 @@ table
       th Action
   tbody
     tr
-      td(class=id)
       td
-        a(href="book_detail.html")= title
+        a(href=`books/book_detail/${rowArray.book_id}`)= rowArray.book_id
+      td= rowArray.patron_id
+      td= rowArray.loaned_on
+      td= rowArray.return_by
+      td= rowArray.returned_on
       td
-        a(href="patron_detail.htm")= patron
-      td= loaned_on
-      td= return_by
-      td= returned_on
-      td
-        if returned_on != null
+        if rowArray.returned_on == null
           a(href="return_book.html" class="button") Return Book
