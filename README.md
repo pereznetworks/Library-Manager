@@ -5,6 +5,7 @@
   - [Project Progress](#project-progress)
   - [Issues and Challenges](#issues-and-challenges)
   - [Project Updates](#project-updates)
+
     - [Project Update 8](#project-update-8)
     - [Project Update 7](#project-update-7)
     - [Project Update 6](#project-update-6)
@@ -87,6 +88,34 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Peoject Update 9:
+
+  Seeders not work.
+    express app, using sequelize's bootstrapped views/index.js
+      creates a new emopty library.db with tables using models
+    then exit the app
+    run sequelize db:seed
+      and with the right syntax in seeder js files
+        was able to seed sample data into database
+
+  Verified that am able to do R in CRUD
+    able to do findAll, findOne on Books and Loans table
+
+  Now to handle a few issues
+
+    need valid dates in a book's loan details
+
+    how to make sure ...
+      to not try to get loan detail of book that has none
+      or give msg to that affect ...
+      and give choice to create a loan for that book
+
+    create a table view using mutli-table query for...
+    the different filter and options and detail table views
+
+  Finally, !!!
+    Now can start building method for CRUD operations
 
 ## Project Update 8:
 
