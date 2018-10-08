@@ -5,7 +5,8 @@
   - [Project Progress](#project-progress)
   - [Issues and Challenges](#issues-and-challenges)
   - [Project Updates](#project-updates)
-
+    - [Project Update 10](#project-update-10)  
+    - [Project Update 9](#project-update-9)
     - [Project Update 8](#project-update-8)
     - [Project Update 7](#project-update-7)
     - [Project Update 6](#project-update-6)
@@ -35,21 +36,23 @@
 
         re-factored templates for Loan, Book, Patron details
 
+        re-factor templates for
+          createNewForm page for new books, patrons and loans
+          return book form page from Books, Patrons and Loans page
+          and updateForm as well
+
   DOING:
         using Sequelize models to create, read, update, delete the data
 
   NEXT:
-        when Sequelize data integration is ready ...
-        may need to re-factor templates for
-          createNewForm page for new books, patrons and loans
-          return book form page from Books, Patrons and Loans page
-          may have to redo- updateForm as well
 
-         query for filtering loans and books table
+         queries and/or associations for filtering loans and books table
 
          submit actions for create, update and return books page
 
          input validation for each form and implementing error pages
+
+         modify forms as queries and/or associations tested and working
 
   TODO:
          verify each view, table and form perform to speqs
@@ -89,9 +92,18 @@
 
   [back to Content Menu](#contents)
 
-## Peoject Update 9:
+## Project Update 10:
 
-  Seeders not work.
+  Can now load all views and forms with data from library.db tables
+
+  now to implement associations - to replace \_id's with values referenced
+    like book_id = 'Book Title'
+
+  simpler pug templated means having more of these but way easier to maintain
+
+## Project Update 9:
+
+  Seeders now work.
     express app, using sequelize's bootstrapped views/index.js
       creates a new emopty library.db with tables using models
     then exit the app
