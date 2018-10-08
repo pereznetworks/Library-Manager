@@ -12,8 +12,7 @@ block content
         else if columnNo > 0
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text")
-        - console.log(columnNo, columnArray[columnNo])
+            input(id=`${value.toLowerCase()}` type="text" value=book.value)
         - columnNo += 1
       input(type="submit" value=`Create New ${title}`)
   else if newFormTitle === "New Patron"

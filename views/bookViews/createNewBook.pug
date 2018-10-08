@@ -1,0 +1,19 @@
+extends ../layout
+//- new Book form
+block content
+  h1= newFormTitle
+  if newFormTitle === "New Book"
+    form(action="/books", method="post")
+      p
+        label(for=`Title`) Title
+        input(type="text" name="title" value=book.title)
+      p
+        label(for=`Author`) Author
+        input(type="text" name="author" value=book.author)
+      p
+        label(for=`Genre`) Genre
+        input(type="text" name="genre" value=book.author)
+      p
+        label(for=`Year First Published`) Year
+        input(type="text" name="first_published" value=book.first_published)
+      input(type="submit" value=`Create New Book`)

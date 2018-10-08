@@ -39,7 +39,7 @@ router.get('/patrons', function(req, res, next) {
 
 /* GET new patrons form page. */
 router.get('/patrons/new', function(req, res, next) {
-  res.render('./reusable/createNewForm', locals.patronsPg);
+  res.render('patronViews/createNewPatron', {patron: {}, newFormTitle: 'New Patron'});
 });
 
 /* GET new patrons form page */

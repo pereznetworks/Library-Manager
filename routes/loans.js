@@ -17,7 +17,7 @@ var locals = require("../views/locals")
 /* GET books page. */
 router.get('/loans', function(req, res, next) {
   Loans.findAll().then(function(loans){
-    res.locals.createNewRoute = locals.booksPg.createNewRoute;
+    res.locals.createNewRoute = locals.loansPg.createNewRoute;
     res.locals.columnArray = locals.loansPg.columnArray;
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
@@ -41,8 +41,34 @@ router.get('/loans', function(req, res, next) {
 
 /* GET new loans form page. */
 router.get('/loans/new', function(req, res, next) {
-  // pass to createNewForm template (loans: {}, needed paramaters)
-  res.render('./reusable/createNewForm', locals.loansPg);
+
+  const addLeadingZero = function(num){
+    // add leading zero if num less then 10
+    // from stackoverflow
+    // MDN days string#padStart not supported on Edge browser yet
+    return (num < 10) ? ("0" + num) : num;
+  };
+
+  //getting loaned_on date
+  var d = new Date();
+  var day = d.getDate();
+  day = addLeadingZero(day);
+  var month = d.getMonth();
+  month = addLeadingZero(month);
+  var year = d.getFullYear();
+  res.locals.dateLoanedOn = `${year}-${month}-${day}`;
+
+  // getting the return_by date
+  var rd = new Date();
+  rd.setDate(rd.getDate() + 7);
+  var plus7Days = rd.getDate()
+  returnDay = addLeadingZero(plus7Days);
+  var month = rd.getMonth();
+  returnMonth = addLeadingZero(month);
+  var returnYear = rd.getFullYear();
+  res.locals.dateReturnBy = `${returnYear}-${returnMonth}-${returnDay}`;
+
+  res.render('loanViews/createNewLoan', {loan: {}, newFormTitle: 'New Loan'});
 });
 
 /* GET loans details  page */

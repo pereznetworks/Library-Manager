@@ -1,0 +1,21 @@
+extends ../layout
+//- create new Patron form template
+block content
+  h1= newFormTitle
+  form(action="/patrons", method="post")
+    p
+      label(for=first_name) First Name
+      input(name='first_name' type="text")
+    p
+      label(for=last_name) Last Name
+      input(name='last_name' type="text")
+    p
+      label(for=address) Address
+      input(name='address' type="text")
+    p
+      label(for=library_id) Library ID
+      input(name='library_id' type="text")
+    p
+      label(for=zip_code) Zip Code
+      input(name='zip_code' type="text")
+    input(type="submit" value=`Create New Patron`)

@@ -38,8 +38,7 @@ router.get('/', function(req, res, next) {
 
 /* GET book detail page */
 router.get('/books/new', function(req, res, next) {
-  res.locals.columnArray = locals.booksPg.columnArray;
-  res.render('./reusable/createNewForm', {book: {}, newFormTitle: 'New Book', title: 'Book'});
+  res.render('bookViews/createNewBook', {book: {}, newFormTitle: 'New Book'});
 });
 
 /* TODO: remove this once....
@@ -86,7 +85,7 @@ router.get('/books/book_detail/:id', function(req, res, next) {
    });
 });
 
-/* TODO : fix tbis route and handler : POST create new book */
+/* TODO : fix this route and handler : POST create new book */
 router.post('/books', function(req, res, next) {
   Books.create(req.body).then(function(book) {
     res.redirect(`/books`);
