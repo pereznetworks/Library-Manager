@@ -2,12 +2,39 @@
 var express = require('express');
 var router = express.Router();
 
+/* importing sequelize models */
+var Patrons = require("../models").Patrons;
+
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals")
 
 /* GET patrons page. */
+// router.get('/patrons', function(req, res, next) {
+//   res.render('patronViews/index', locals.patronsPg);
+// });
+
+/* GET patrons page. */
 router.get('/patrons', function(req, res, next) {
-  res.render('patronViews/index', locals.patronsPg);
+  Patrons.findAll().then(function(patrons){
+    res.locals.newFormTitle = locals.newFormTitle;
+    res.locals.title = locals.title;
+    res.locals.createNewRoute = locals.createNewRoute;
+    res.locals.patronHrefPath = locals.patronHrefPath;
+    if (patrons){
+      let patronsArray = patrons.map(function(item, index){
+        return item.dataValues
+      });
+      res.render("patronViews/index", {rowArray: patronsArray, title: "Patrons" } );
+    }
+  }).catch(function(error){
+    // set locals, only providing error in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
+   });
 });
 
 /* GET new patrons form page. */

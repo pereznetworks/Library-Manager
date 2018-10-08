@@ -15,6 +15,18 @@ table
       th Returned on
       th Action
   tbody
+  each item in rowArray
+    tr
+      td
+        a(href=`books/book_detail/${item.book_id}`)= item.book_id
+      td= item.patron_id
+      td= item.loaned_on
+      td= item.return_by
+      td= item.returned_on
+      td
+        if item.returned_on != null
+          a(href="return_book.html" class="button") Return Book
+//-
     tr
       td
         a(href="/books/book_detail.html") Emma
