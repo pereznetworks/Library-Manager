@@ -55,6 +55,21 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
   res.render('patronViews/patron_detail');
 });
 
+/* TODO : finish testing : POST create new patron */
+router.post('/patrons', function(req, res, next) {
+  Patrons.create(req.body).then(function(patron) {
+    res.redirect(`/patrons`);
+  }).catch(function(error){
+      if(error.name === "SequelizeValidationError") {
+        res.render('patronViews/createNewPatron', {patrons: Patrons.build(req.body), errors: error.errors, title: "New Patron"})
+      } else {
+        throw error;
+      }
+  }).catch(function(error){
+      res.render(error);
+   });
+});
+
 // add return_book route and hanlder here ??
 
 // exporting router so it can be used by express app

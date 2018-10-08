@@ -85,20 +85,20 @@ router.get('/books/book_detail/:id', function(req, res, next) {
    });
 });
 
-/* TODO : fix this route and handler : POST create new book */
+/* TODO : finish testing : POST create new book */
 router.post('/books', function(req, res, next) {
   Books.create(req.body).then(function(book) {
     res.redirect(`/books`);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
-        res.render("bookViews/new", {book: Books.build(req.body), errors: error.errors, title: "New Book"})
+        res.render("bookViews/createNewBook", {book: Books.build(req.body), errors: error.errors, title: "New Book"})
       } else {
         throw error;
       }
   }).catch(function(error){
       res.render(error);
    });
-;});
+});
 
 // exporting router so it can be used by express app
 module.exports = router;

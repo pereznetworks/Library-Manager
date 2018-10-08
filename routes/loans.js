@@ -80,8 +80,21 @@ router.get('/loans/loan_detail/:id', function(req, res, next) {
 
 // add return_book route and hanlder here ??
 
-// add POST route and handler here
-  // add Loans.create async promise .then().catch() method here
+/* TODO : finish testing : POST create new loan */
+router.post('/loans', function(req, res, next) {
+  Books.create(req.body).then(function(loan) {
+    res.redirect(`/loans`);
+  }).catch(function(error){
+      if(error.name === "SequelizeValidationError") {
+        res.render("loanViews/createNewLoan", {loan: Loans.build(req.body), errors: error.errors, title: "New Loan"})
+      } else {
+        throw error;
+      }
+  }).catch(function(error){
+      res.render(error);
+   });
+});
+
 
 // exporting router so it can be used by express app
 module.exports = router;
