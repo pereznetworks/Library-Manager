@@ -16,10 +16,10 @@ var locals = require("../views/locals")
 /* GET patrons page. */
 router.get('/patrons', function(req, res, next) {
   Patrons.findAll().then(function(patrons){
-    res.locals.newFormTitle = locals.newFormTitle;
-    res.locals.title = locals.title;
-    res.locals.createNewRoute = locals.createNewRoute;
-    res.locals.patronHrefPath = locals.patronHrefPath;
+    res.locals.newFormTitle = locals.patronsPg.newFormTitle;
+    res.locals.title = locals.patronsPg.title;
+    res.locals.createNewRoute = locals.patronsPg.createNewRoute;
+    res.locals.patronHrefPath = locals.patronsPg.patronHrefPath;
     if (patrons){
       let patronsArray = patrons.map(function(item, index){
         return item.dataValues
