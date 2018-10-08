@@ -7,6 +7,7 @@ var locals = require("../views/locals");
 
 /* GET return books form page */
 router.get('/return/return_book/:id', function(req, res, next) {
+  // implement findOne query here...
   res.locals.id = req.params.id;
   res.locals.returnBook = "Return Book";
   res.locals.title = `Patron: Return Book`;
@@ -16,7 +17,7 @@ router.get('/return/return_book/:id', function(req, res, next) {
 });
 
 // Add post return books route and handler here
-  // update db with returned_on info 
+  // update db with returned_on info
   // with redirect to page orginally clicked-through from
 
 module.exports = router;
