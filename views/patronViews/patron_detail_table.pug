@@ -17,21 +17,11 @@ table
   tbody
     tr
       td
-        a(href="book_detail.html") Harry Potter and the Goblet of Fire
+        a(href=`books/book_detail/${rowArray.book_id}`)= rowArray.book_id
+      td= rowArray.patron_id
+      td= rowArray.loaned_on
+      td= rowArray.return_by
+      td= rowArray.returned_on
       td
-        a(href="patron_detail.html") Andrew Chalkley
-      td 2015-12-11
-      td 2015-12-18
-      td
-      td
-        a(href="return_book.html" class="button") Return Book
-    tr
-      td
-        a(href="book_detail.html") A Brief History of Time
-      td
-        a(href="patron_detail.html") Andrew Chalkley
-      td 2015-12-12
-      td 2015-12-19
-      td
-      td
-        a(href="return_book.html" class="button") Return Book
+        if rowArray.returned_on == null
+          a(href="return_book.html" class="button") Return Book

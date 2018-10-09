@@ -14,14 +14,14 @@ module.exports = {
         {
             first_name:'Dave M',
             last_name:'Farland',
-            address:'5252 NW 2nd St<',
+            address:'5252 NW 2nd St',
             email:'dave.mcfarland@teamtreehouse.com',
             library_id:'MCL1010',
             zip_code:'90210',
         },
         {
             first_name:'Alena ',
-            last_name:'olligan<',
+            last_name:'Holligan',
             address:'1404 SW 101st St',
             email:'alena.holligan@teamtreehouse.com',
             library_id:'MCL1100',

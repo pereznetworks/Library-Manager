@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* importing sequelize models */
 var Patrons = require("../models").Patrons;
-
+var Loans = require("../models").Loans;
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals")
 
@@ -44,15 +44,37 @@ router.get('/patrons/new', function(req, res, next) {
 
 /* GET new patrons form page */
 router.get('/patrons/patron_detail/:id', function(req, res, next) {
-  res.locals.id = req.params.id;
-  res.locals.columnArray = locals.loansPg.columnArray;
-  res.locals.rowArray = locals.loansPg.rowArray[req.params.id];
-  res.locals.title = "Patron";
-  res.locals.patronName = locals.loansPg.rowArray[req.params.id].patron;
-  res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
-  res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
-  res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
-  res.render('patronViews/patron_detail');
+  Loans.findOne({ where: { patron_id:req.params.id } }).then(function(loan){
+    // TODO: this synatax and object model works
+    // but data must be inserted into db tables (sequelize db:seed)
+    // for any data to be displayed
+    res.locals.columnArray = locals.loansPg.columnArray;
+    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+    if(!loan) {
+      res.locals.error = createError(200);
+      res.status(200);
+      res.render("error", {message: 'This patron has no loans'});
+    } else {
+      res.locals.title = 'Patron: ';
+      res.render("patronViews/patron_detail", {rowArray: loan.dataValues, patronName: `patron_${req.params.id}`});
+    }
+  }).catch(function(error){
+    // set locals, only providing error in development
+    if (error){
+     res.locals.message = error.message;
+     res.locals.error =  error
+   } else {
+     res.locals.message = "Oops, there's been a server error";
+     res.locals.error = createError(500);
+   }
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
+   });
+
 });
 
 /* TODO : finish testing : POST create new patron */
