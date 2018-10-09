@@ -15,6 +15,7 @@ table
       th Returned on
       th Action
   tbody
+  if rowArray.book_id != null
     tr
       td
         a(href=`books/book_detail/${rowArray.book_id}`)= rowArray.book_id
@@ -25,3 +26,5 @@ table
       td
         if rowArray.returned_on == null
           a(href="return_book.html" class="button") Return Book
+  else
+    tr= rowArray

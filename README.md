@@ -99,6 +99,8 @@
   now to implement associations - to replace \_id's with values referenced
     like book_id = 'Book Title'
 
+  also to handle querying for data across multiple tables
+
   simpler pug templated means having more of these but way easier to maintain
 
 ## Project Update 9:

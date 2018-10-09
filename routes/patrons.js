@@ -1,10 +1,12 @@
 // importing express and setting up a router
 var express = require('express');
 var router = express.Router();
+var createError = require('http-errors');
 
 /* importing sequelize models */
 var Patrons = require("../models").Patrons;
 var Loans = require("../models").Loans;
+
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals")
 
@@ -48,6 +50,7 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
     // TODO: this synatax and object model works
     // but data must be inserted into db tables (sequelize db:seed)
     // for any data to be displayed
+    res.locals.title = 'Patron: ';
     res.locals.columnArray = locals.loansPg.columnArray;
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
@@ -55,9 +58,8 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
     if(!loan) {
       res.locals.error = createError(200);
       res.status(200);
-      res.render("error", {message: 'This patron has no loans'});
+      res.render("patronViews/patron_detail", {rowArray: 'This patron has no loans'});
     } else {
-      res.locals.title = 'Patron: ';
       res.render("patronViews/patron_detail", {rowArray: loan.dataValues, patronName: `patron_${req.params.id}`});
     }
   }).catch(function(error){
