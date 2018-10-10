@@ -1,10 +1,12 @@
 // importing express and setting up a router
 var express = require('express');
 var router = express.Router();
+var Sequelize = require('../models').sequelize;
 
 /* importing sequelize models */
 var Books = require("../models").Books;
 var Loans = require("../models").Loans;
+var Patrons = require("../models").Patrons;
 
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals")

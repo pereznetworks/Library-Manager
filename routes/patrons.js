@@ -49,6 +49,8 @@ router.get('/patrons/new', function(req, res, next) {
 /* GET new patrons form page */
 router.get('/patrons/patron_detail/:id', function(req, res, next) {
 
+  var idInt = parseInt(req.params.id);
+
   res.locals.title = 'Patron: ';
   res.locals.patronsColumnArray = locals.patronsPg.columnArray;
   res.locals.loansColumnArray = locals.loansPg.columnArray;
@@ -56,16 +58,16 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
   res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
   res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  Patrons.findOne({
-      where: { id:req.params.id },
+  Loans.findAll({
+      where: { patron_id: idInt},
       include: [{
-        model: Loans,
-        where: {PatronId: Sequelize.col("patrons.id")},
-        include: [{
-          model: Books,
-          where: {id: Sequelize.col("Loans.BookId")}
-          }]
-      }]
+        model: Patrons,
+        where: {id: Sequelize.col("Loans.patron_id")},
+      }],
+      include: [{
+        model: Books,
+        where: {id: Sequelize.col("Loans.book_id")}
+        }]
   }).then(function(patron){
     // TODO: this synatax and object model works
     // but data must be inserted into db tables (sequelize db:seed)

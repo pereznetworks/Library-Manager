@@ -38,9 +38,7 @@ module.exports = {
                 return_by:'2015-12-20',
                 returned_on:'2015-12-17',
             },
-        ], {
-               timestamps: false
-      });
+        ]);
 
   },
   down: (queryInterface, Sequelize) => {

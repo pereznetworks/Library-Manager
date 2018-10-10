@@ -35,9 +35,7 @@ module.exports = {
             library_id:'MCL1011',
             zip_code:'91310',
         }
-      ], {
-             timestamps: false
-    });
+      ]);
   },
 
   down: (queryInterface, Sequelize) => {
