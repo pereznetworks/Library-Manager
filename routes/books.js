@@ -19,6 +19,7 @@ router.get('/', function(req, res, next) {
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
     res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
     if (books){
+            // this maps an array of the book details, which can read as rows in the book detail table 
       let booksArray = books.map(function(item, index){
         return item.dataValues
       });

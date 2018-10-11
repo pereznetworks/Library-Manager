@@ -49,23 +49,27 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
 
   var idInt = parseInt(req.params.id);
 
-  res.locals.title = 'Patron: ';
-  res.locals.patronsColumnArray = locals.patronsPg.columnArray;
+  res.locals.title = 'Patron';
+  res.locals.columnArray = locals.patronsPg.columnArray;
   res.locals.loansColumnArray = locals.loansPg.columnArray;
   res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
   res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
   res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  db.Loans.findOne({
+  db.Loans.findAll({
       where: { patron_id: idInt},
       include: [{
         model: db.Patrons,
         where: {id: Sequelize.col('Loans.patron_id')}
       }]
-    }).then(function(loan){
-
-    res.locals.columnArray = locals.loansPg.columnArray;
-    res.render("patronViews/patron_detail", {rowArray: loan.dataValues, });
+    }).then(function(loans){
+      // this maps an array of the loan details, which can read as rows in the loan detail table
+      if (loans){
+        let loansArray = loans.map(function(item, index){
+          return item.dataValues
+        });
+        res.render("patronViews/patron_detail", {loansRowArray: loansArray, rowArray: loans[0].Patron.dataValues });
+      } // TODO: what to do if patron has no loaned books ???
 
   }).catch(function(error){
     // set locals, only providing error in development

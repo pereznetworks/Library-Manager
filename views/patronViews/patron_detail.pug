@@ -1,6 +1,6 @@
 extends ../layout
 //- template for patron_detail pg
 block content
-  h1= title
+  h1= `${title}: ${rowArray.first_name} ${rowArray.last_name}`
+  include ../reusable/updateForm.pug
   include ../loanViews/loan_detail_table.pug
-//- include ../reusable/updateForm.pug

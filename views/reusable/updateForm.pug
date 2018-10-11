@@ -1,49 +1,63 @@
-if title == "Book"
+form
+  if title == "Book"
     - var columnNo = 0;
-    form
-      - console.log(columnArray, rowArray)
-      each value in columnArray
-        - console.log(`columnNo: ${columnNo}\n value: ${value}`)
-        if columnNo == 0
-           p(class="id")
-        else if columnNo == 1
-            p
-              label(for=`${value.toLowerCase()}`)= value
-              input(id=`${value.toLowerCase()}` type="text" value=rowArray.book)
-        else if columnNo == 2
-            p
-              label(for=`${value.toLowerCase()}`)= value
-              input(id=`${value.toLowerCase()}` type="text" value=rowArray.patron)
-        else if columnNo == 3
-            p
-              label(for=`${value.toLowerCase()}`)= value
-              input(id=`${value.toLowerCase()}` type="text" value=rowArray.loanedon)
-        else if columnNo == 4
-            p
-              label(for=`${value.toLowerCase()}`)= value
-              input(id=`${value.toLowerCase()}` type="text" value=rowArray.returnby)
-        else if columnNo == 5
-            p
-              label(for=`${value.toLowerCase()}`)= value
-              input(id=`${value.toLowerCase()}` type="text" value=rowArray.returnedon)
-        else if columnNo == 6
-            p
-              label(for=`${value.toLowerCase()}`)= value
-              input(id=`${value.toLowerCase()}` type="text" value=rowArray.action)
-        //- console.log(columnNo, columnArray[columnNo])
-        - columnNo += 1
-      input(type="submit" value=`Update`)
-else if title === "Patrons"
-    - var columnNo = 0;
-    form
-      - console.log(columnArray, rowArray)
-      each value in columnArray
-        if columnNo == 0
-           p(class="id")
-        else if columnNo > 0
+    - console.log(columnArray, rowArray)
+    each value in columnArray
+      - console.log(`columnNo: ${columnNo}\n value: ${value}`)
+      if columnNo == 0
+         p(class="id")
+      else if columnNo == 1
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value='')
-        //- console.log(columnNo, columnArray[columnNo])
-        - columnNo += 1
-      input(type="submit" value=`Create New ${title}`)
+            input(id=`${value.toLowerCase()}` type="text" value=rowArray.book)
+      else if columnNo == 2
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` type="text" value=rowArray.patron)
+      else if columnNo == 3
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` type="text" value=rowArray.loanedon)
+      else if columnNo == 4
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` type="text" value=rowArray.returnby)
+      else if columnNo == 5
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` type="text" value=rowArray.returnedon)
+      else if columnNo == 6
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` type="text" value=rowArray.action)
+      //- console.log(columnNo, columnArray[columnNo])
+      - columnNo += 1
+    input(type="submit" value=`Update`)
+  else if title == "Patron"
+    - var columnNo = 0;
+    - console.log(columnArray, rowArray)
+    each value in columnArray
+      if columnNo == 0
+         p(class="id")
+      else if columnNo == 1
+        p
+          label(for=`${value.toLowerCase()}`)= value
+          input(id=`${value.toLowerCase()}` type="text" value=`${rowArray.first_name} ${rowArray.last_name}`)
+      else if columnNo == 2
+        p
+          label(for=`${value.toLowerCase()}`)= value
+          input(id=`${value.toLowerCase()}` type="text" value=rowArray.address)
+      else if columnNo == 3
+        p
+          label(for=`${value.toLowerCase()}`)= value
+          input(id=`${value.toLowerCase()}` type="text" value=rowArray.email)
+      else if columnNo == 4
+        p
+          label(for=`${value.toLowerCase()}`)= value
+          input(id=`${value.toLowerCase()}` type="text" value=rowArray.library_id)
+      else if columnNo == 5
+        p
+          label(for=`${value.toLowerCase()}`)= value
+          input(id=`${value.toLowerCase()}` type="text" value=rowArray.zip_code)
+      - columnNo += 1
+    input(type="submit" value=`Update ${title}`)
