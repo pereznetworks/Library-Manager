@@ -58,17 +58,9 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
   res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
   res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  Loans.findAll({
-      where: { patron_id: idInt},
-      include: [{
-        model: Patrons,
-        where: {id: Sequelize.col("Loans.patron_id")},
-      }],
-      include: [{
-        model: Books,
-        where: {id: Sequelize.col("Loans.book_id")}
-        }]
-  }).then(function(patron){
+  Loans.findOne({
+      where: { patron_id: idInt}
+    }).then(function(patron){
     // TODO: this synatax and object model works
     // but data must be inserted into db tables (sequelize db:seed)
     // for any data to be displayed

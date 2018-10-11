@@ -28,7 +28,7 @@ module.exports = {
             zip_code:'91210',
         },
         {
-            first_name:'Michae',
+            first_name:'Michael',
             last_name:' Poley',
             address:'7070 NE 10th Ave',
             email:'michael.poley@teamtreehouse.com',
