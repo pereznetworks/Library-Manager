@@ -5,7 +5,7 @@ var createError = require('http-errors');
 var Sequelize = require('../models').sequelize;
 
 /* importing sequelize db */
-var models = require("../models");
+var db = require('../models/index.js');
 
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals")
@@ -17,7 +17,7 @@ var locals = require("../views/locals")
 
 /* GET patrons page. */
 router.get('/patrons', function(req, res, next) {
-  models.Patrons.findAll().then(function(patrons){
+  db.Patrons.findAll().then(function(patrons){
     res.locals.newFormTitle = locals.patronsPg.newFormTitle;
     res.locals.title = locals.patronsPg.title;
     res.locals.createNewRoute = locals.patronsPg.createNewRoute;
@@ -55,17 +55,13 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
   res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
   res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
   res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
-  /* TODO: get asscoations to work
-    need to return associted table data
-    to list actual name of patron and book 
-    putting this code snippet in, causes no results to return
+
+  db.Loans.findOne({
+      where: { patron_id: idInt},
       include: [{
-        model: models.Patrons,
+        model: db.Patrons,
         where: {id: Sequelize.col('Loans.patron_id')}
       }]
-  */
-  models.Loans.findOne({
-      where: { patron_id: idInt},
     }).then(function(loan){
 
     res.locals.columnArray = locals.loansPg.columnArray;
@@ -89,11 +85,11 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
 
 /* TODO : finish testing : POST create new patron */
 router.post('/patrons', function(req, res, next) {
-  models.Patrons.create(req.body).then(function(patron) {
+  db.Patrons.create(req.body).then(function(patron) {
     res.redirect(`/patrons`);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
-        res.render('patronViews/createNewPatron', {patrons: models.Patrons.build(req.body), errors: error.errors, title: "New Patron"})
+        res.render('patronViews/createNewPatron', {patrons: db.Patrons.build(req.body), errors: error.errors, title: "New Patron"})
       } else {
         throw error;
       }

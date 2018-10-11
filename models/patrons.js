@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     library_id: DataTypes.STRING,
     zip_code: DataTypes.INTEGER
   }, {
-      timestamps:false
+      timestamps: false,
+      underscored: true
   });
   Patrons.associate = function(models) {
     // associations can be defined here

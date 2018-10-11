@@ -3,8 +3,8 @@ var express = require('express');
 var router = express.Router();
 var Sequelize = require('../models').sequelize;
 
-/* importing sequelize db and models */
-var models = require("../models");
+/* importing sequelize db */
+var db = require('../models/index.js');
 
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals")
@@ -17,7 +17,7 @@ var locals = require("../views/locals")
 /* GET books page. */
 router.get('/loans', function(req, res, next) {
 
-  models.Loans.findAll().then(function(loans){
+  db.Loans.findAll().then(function(loans){
 
     res.locals.createNewRoute = locals.loansPg.createNewRoute;
     res.locals.columnArray = locals.loansPg.columnArray;
@@ -87,11 +87,11 @@ router.get('/loans/new', function(req, res, next) {
 
 /* TODO : need to test this : POST create new loan */
 router.post('/loans', function(req, res, next) {
-  models.Books.create(req.body).then(function(loan) {
+  db.Books.create(req.body).then(function(loan) {
     res.redirect(`/loans`);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
-        res.render("loanViews/createNewLoan", {loan: models.Loans.build(req.body), errors: error.errors, title: "New Loan"})
+        res.render("loanViews/createNewLoan", {loan: db.Loans.build(req.body), errors: error.errors, title: "New Loan"})
       } else {
         throw error;
       }
