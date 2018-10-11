@@ -55,13 +55,17 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
   res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
   res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
   res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
-
-  models.Loans.findOne({
-      where: { patron_id: idInt},
+  /* TODO: get asscoations to work
+    need to return associted table data
+    to list actual name of patron and book 
+    putting this code snippet in, causes no results to return
       include: [{
         model: models.Patrons,
         where: {id: Sequelize.col('Loans.patron_id')}
       }]
+  */
+  models.Loans.findOne({
+      where: { patron_id: idInt},
     }).then(function(loan){
 
     res.locals.columnArray = locals.loansPg.columnArray;
