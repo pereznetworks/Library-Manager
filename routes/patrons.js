@@ -4,10 +4,8 @@ var router = express.Router();
 var createError = require('http-errors');
 var Sequelize = require('../models').sequelize;
 
-/* importing sequelize models */
-var Patrons = require("../models").Patrons;
-var Loans = require("../models").Loans;
-var Books = require("../models").Books;
+/* importing sequelize db */
+var models = require("../models");
 
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals")
@@ -19,7 +17,7 @@ var locals = require("../views/locals")
 
 /* GET patrons page. */
 router.get('/patrons', function(req, res, next) {
-  Patrons.findAll().then(function(patrons){
+  models.Patrons.findAll().then(function(patrons){
     res.locals.newFormTitle = locals.patronsPg.newFormTitle;
     res.locals.title = locals.patronsPg.title;
     res.locals.createNewRoute = locals.patronsPg.createNewRoute;
@@ -58,15 +56,16 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
   res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
   res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  Loans.findOne({
-      where: { patron_id: idInt}
-    }).then(function(patron){
-    // TODO: this synatax and object model works
-    // but data must be inserted into db tables (sequelize db:seed)
-    // for any data to be displayed
-    res.locals.patronName = `${patron.dataValues.first_name} ${patron.dataValues.first_name}`;
-    res.locals.patronRowArray = patron.dataValues;
-    res.render("patronViews/patron_detail", {rowArray: patron.dataValues, });
+  models.Loans.findOne({
+      where: { patron_id: idInt},
+      include: [{
+        model: models.Patrons,
+        where: {id: Sequelize.col('Loans.patron_id')}
+      }]
+    }).then(function(loan){
+
+    res.locals.columnArray = locals.loansPg.columnArray;
+    res.render("patronViews/patron_detail", {rowArray: loan.dataValues, });
 
   }).catch(function(error){
     // set locals, only providing error in development
@@ -86,11 +85,11 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
 
 /* TODO : finish testing : POST create new patron */
 router.post('/patrons', function(req, res, next) {
-  Patrons.create(req.body).then(function(patron) {
+  models.Patrons.create(req.body).then(function(patron) {
     res.redirect(`/patrons`);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
-        res.render('patronViews/createNewPatron', {patrons: Patrons.build(req.body), errors: error.errors, title: "New Patron"})
+        res.render('patronViews/createNewPatron', {patrons: models.Patrons.build(req.body), errors: error.errors, title: "New Patron"})
       } else {
         throw error;
       }

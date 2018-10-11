@@ -18,8 +18,9 @@ table
   each item in rowArray
     tr
       td
-        a(href=`books/book_detail/${item.book_id}`)= item.book_id
-      td= item.patron_id
+        a(href=`${bookHrefPath}/${item.book_id}`)= item.book_id
+      td
+        a(href=`${patronHrefPath}/${item.patron_id}`)= item.patron_id
       td= item.loaned_on
       td= item.return_by
       td= item.returned_on

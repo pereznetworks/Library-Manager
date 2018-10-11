@@ -3,9 +3,8 @@ var express = require('express');
 var router = express.Router();
 var createError = require('http-errors');
 
-/* importing sequelize models */
-var Books = require("../models").Books;
-var Loans = require("../models").Loans;
+/* importing sequelize db */
+var models = require("../models");
 
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals");
@@ -13,7 +12,7 @@ var locals = require("../views/locals");
 
 /* GET books page. */
 router.get('/', function(req, res, next) {
-  Books.findAll().then(function(books){
+  models.Books.findAll().then(function(books){
     res.locals.createNewRoute = locals.booksPg.createNewRoute;
     res.locals.columnArray = locals.loansPg.columnArray;
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
@@ -53,7 +52,7 @@ router.get('/books/book_detail', function(req, res, next) {
 
 /* GET book detail page */
 router.get('/books/book_detail/:id', function(req, res, next) {
-  Loans.findOne({ where: { book_id:req.params.id } }).then(function(loan){
+  models.Loans.findOne({ where: { book_id:req.params.id } }).then(function(loan){
     // TODO: this synatax and object model works
     // but data must be inserted into db tables (sequelize db:seed)
     // for any data to be displayed
@@ -87,11 +86,11 @@ router.get('/books/book_detail/:id', function(req, res, next) {
 
 /* TODO : finish testing : POST create new book */
 router.post('/books', function(req, res, next) {
-  Books.create(req.body).then(function(book) {
+  models.Books.create(req.body).then(function(book) {
     res.redirect(`/books`);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
-        res.render("bookViews/createNewBook", {book: Books.build(req.body), errors: error.errors, title: "New Book"})
+        res.render("bookViews/createNewBook", {book: models.Books.build(req.body), errors: error.errors, title: "New Book"})
       } else {
         throw error;
       }

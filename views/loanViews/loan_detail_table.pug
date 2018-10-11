@@ -5,6 +5,7 @@
 //- TODO: for each item in object, td + value
 //- TODO: insert route path/#{book_id} for each a(href="book_detail")
 //- TODO: insert route path/#{patron_id} for each a(href="patron_detail")
+table
   thead
     tr
       th Book
@@ -16,11 +17,12 @@
   tbody
     tr
       td
-        a(href="book_detail.html") A Brief History of Time<
+        a(href=`/books/book_detail/${rowArray.book_id}`)= rowArray.book_id
       td
-        a(href="patron_detail.htm") Andrew Chalkley<
-      td 2015-12-12
-      td 2015-12-19
+        a(href=`/patrons/patron_detail/${patron_id}`)=  rowArray.patron_id
+      td= rowArray.loaned_on
+      td= rowArray.return_by
+      td= rowArray.returned_on
       td
-      td
-        a(href="return_book.html" class="button") Return Book
+        if rowArray.returned_on == null
+          a(href=`/return/return_book/${book_id}` class="button") Return Book

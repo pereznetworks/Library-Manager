@@ -3,10 +3,8 @@ var express = require('express');
 var router = express.Router();
 var Sequelize = require('../models').sequelize;
 
-/* importing sequelize models */
-var Books = require("../models").Books;
-var Loans = require("../models").Loans;
-var Patrons = require("../models").Patrons;
+/* importing sequelize db and models */
+var models = require("../models");
 
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals")
@@ -18,19 +16,24 @@ var locals = require("../views/locals")
 
 /* GET books page. */
 router.get('/loans', function(req, res, next) {
-  Loans.findAll().then(function(loans){
+
+  models.Loans.findAll().then(function(loans){
+
     res.locals.createNewRoute = locals.loansPg.createNewRoute;
     res.locals.columnArray = locals.loansPg.columnArray;
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
     res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+
     if (loans){
       let loansArray = loans.map(function(item, index){
         return item.dataValues
       });
       res.render("loanViews/index", {rowArray: loansArray, title: "Loans" } );
     }
+
   }).catch(function(error){
+
     // set locals, only providing error in development
     res.locals.message = error.message;
     res.locals.error = req.app.get('env') === 'development' ? error : {};
@@ -38,6 +41,7 @@ router.get('/loans', function(req, res, next) {
     // render the error page
     res.status(error.status || 500);
     res.render('error');
+
    });
 });
 
@@ -51,7 +55,10 @@ router.get('/loans/new', function(req, res, next) {
     return (num < 10) ? ("0" + num) : num;
   };
 
-  //getting loaned_on date
+  /* for loaned_on date
+     get current date, formatted date yyyy/mm/dd
+     may turn this into a modular function
+  */
   var d = new Date();
   var day = d.getDate();
   day = addLeadingZero(day);
@@ -60,7 +67,10 @@ router.get('/loans/new', function(req, res, next) {
   var year = d.getFullYear();
   res.locals.dateLoanedOn = `${year}-${month}-${day}`;
 
-  // getting the return_by date
+  /* for return_by date
+     get current date, formatted date yyyy/mm/dd + 7 days
+     may turn this into a modular function
+  */
   var rd = new Date();
   rd.setDate(rd.getDate() + 7);
   var plus7Days = rd.getDate()
@@ -73,22 +83,15 @@ router.get('/loans/new', function(req, res, next) {
   res.render('loanViews/createNewLoan', {loan: {}, newFormTitle: 'New Loan'});
 });
 
-/* GET loans details  page */
-router.get('/loans/loan_detail/:id', function(req, res, next) {
-  res.locals.id = req.params.id;
-  // add findById sequelize query here
-  res.render('loanViews/loan_detail', locals.loansPg);
-});
-
 // add return_book route and hanlder here ??
 
-/* TODO : finish testing : POST create new loan */
+/* TODO : need to test this : POST create new loan */
 router.post('/loans', function(req, res, next) {
-  Books.create(req.body).then(function(loan) {
+  models.Books.create(req.body).then(function(loan) {
     res.redirect(`/loans`);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
-        res.render("loanViews/createNewLoan", {loan: Loans.build(req.body), errors: error.errors, title: "New Loan"})
+        res.render("loanViews/createNewLoan", {loan: models.Loans.build(req.body), errors: error.errors, title: "New Loan"})
       } else {
         throw error;
       }
