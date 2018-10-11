@@ -42,6 +42,9 @@
           and updateForm as well
 
   DOING:
+
+        workin on getting table/model associations to work 
+
         using Sequelize models to create, read, update, delete the data
 
   NEXT:
