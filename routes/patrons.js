@@ -61,6 +61,10 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
       include: [{
         model: db.Patrons,
         where: {id: Sequelize.col('Loans.patron_id')}
+      }],
+      include: [{
+        model: db.Books,
+        where: {id: Sequelize.col('Loans.book_id')}
       }]
     }).then(function(loans){
       // this maps an array of the loan details, which can read as rows in the loan detail table
