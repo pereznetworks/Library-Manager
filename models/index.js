@@ -42,5 +42,6 @@ db.Patrons = require('./patrons.js')(sequelize, Sequelize);
 //Relations
 db.Loans.belongsTo(db.Patrons);
 db.Loans.belongsTo(db.Books);
+db.Patrons.hasMany(db.Loans);
 
 module.exports = db;

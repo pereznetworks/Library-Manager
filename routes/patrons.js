@@ -56,21 +56,21 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
   res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
   res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  db.Loans.findAll({
-      where: { patron_id: idInt},
+  db.Patrons.findAll({
+      where: { id: idInt },
       include: [{
-        model: db.Patrons,
-        where: {id: Sequelize.col('Loans.patron_id')}
-      }],
-      include: [{
-        model: db.Books,
-        where: {id: Sequelize.col('Loans.book_id')}
-      }]
-    }).then(function(loans){
-      // this maps an array of the loan details, which can read as rows in the loan detail table
-      if (loans){
-        let loansArray = loans.map(function(item, index){
-          return item.dataValues
+              model: db.Loans,
+              where: { patron_id: Sequelize.col('Patrons.id') },
+              include: [{
+                      model: db.Books,
+                      where: { id: Sequelize.col('Loans.book_id')}
+              }]
+       }]
+    }).then(function(Patron){
+      // this maps an array of the patron's loan details, which can read as rows in the patron detail table
+      if (Patron){
+        let patronArray = Patron[0].Loans.map(function(item, index){
+          return item;
         });
         res.render("patronViews/patron_detail", {loansRowArray: loansArray, rowArray: loans[0].Patron.dataValues });
       } // TODO: what to do if patron has no loaned books ???
