@@ -41,24 +41,37 @@
           return book form page from Books, Patrons and Loans page
           and updateForm as well
 
+        table/model associations to work
+          loans belongsTo books
+          loans belongsTo patrons
+          patron hasMany loan
+
+        patrons/patron_detail/:id view
+          now returning and display loans and book data for that patron
+            can be is accessed from home book, loan and patron pg
+
   DOING:
 
-        workin on getting table/model associations to work 
+        using Sequelize models to create, read, update, delete (CRUD) the data
 
-        using Sequelize models to create, read, update, delete the data
+          currently working on R in CRUD
+
+            finishing books/book_detail/:id view
+
+            will fix the 'invalid dates' when working on input validation
 
   NEXT:
 
-         queries and/or associations for filtering loans and books table
+         queries/views and/or associations for filtering loans and books table
 
          submit actions for create, update and return books page
 
          input validation for each form and implementing error pages
 
-         modify forms as queries and/or associations tested and working
+         modify forms as queries and/or associations are tested and working
 
   TODO:
-         verify each view, table and form perform to speqs
+         verify each view, table and form perform to project speqs
 
          verify project speqs across project
 
@@ -94,6 +107,19 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 11:
+
+  table associations (joins) now working
+
+  table/model associations to work
+    loans belongsTo books
+    loans belongsTo patrons
+    patron hasMany loan
+
+  patrons/patron_detail/:id view
+    now returning and display loans and book data for that patron
+      can be is accessed from home book, loan and patron pg
 
 ## Project Update 10:
 
