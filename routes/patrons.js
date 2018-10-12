@@ -67,17 +67,18 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
               }]
        }]
     }).then(function(Patron){
-      // this maps an array of the patron's loan details, which can read as rows in the patron detail table
+      // breaking down the array of object in tthe patron details
+      // to be read as rows in the patron update and details table
       if (Patron){
         let loansArray = Patron[0].Loans.map(function(item, index){
-          return item;
+          return item.dataValues;
+        });
+        let booksArray = loansArray.map(function(item, index){
+          return item.Book.dataValues;
         });
         let patronObject = Patron[0].dataValues;
-        /* yes, yes!! In this next line the 'rowArray' is actually an object
-           several router routes send a 'rowArray' to the same detail_table pug template
-           will have to fix this after other routers and the pug template are re-factored
-        */
-        res.render("patronViews/patron_detail", {loansRowArray: loansArray, rowArray: patronObject });
+
+        res.render("patronViews/patron_detail", {booksArray: booksArray, loansRowArray: loansArray, patronObject: patronObject });
       } // TODO: what to do if patron has no loaned books ???
 
   }).catch(function(error){

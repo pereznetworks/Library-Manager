@@ -9,27 +9,27 @@ form
       else if columnNo == 1
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=rowArray.book)
+            input(id=`${value.toLowerCase()}` type="text" value=patronObject.book)
       else if columnNo == 2
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=rowArray.patron)
+            input(id=`${value.toLowerCase()}` type="text" value=patronObject.patron)
       else if columnNo == 3
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=rowArray.loanedon)
+            input(id=`${value.toLowerCase()}` type="text" value=patronObject.loanedon)
       else if columnNo == 4
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=rowArray.returnby)
+            input(id=`${value.toLowerCase()}` type="text" value=patronObject.returnby)
       else if columnNo == 5
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=rowArray.returnedon)
+            input(id=`${value.toLowerCase()}` type="text" value=patronObject.returnedon)
       else if columnNo == 6
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=rowArray.action)
+            input(id=`${value.toLowerCase()}` type="text" value=patronObject.action)
       //- console.log(columnNo, columnArray[columnNo])
       - columnNo += 1
     input(type="submit" value=`Update`)
@@ -42,22 +42,22 @@ form
       else if columnNo == 1
         p
           label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` type="text" value=`${rowArray.first_name} ${rowArray.last_name}`)
+          input(id=`${value.toLowerCase()}` type="text" value=`${patronObject.first_name} ${patronObject.last_name}`)
       else if columnNo == 2
         p
           label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` type="text" value=rowArray.address)
+          input(id=`${value.toLowerCase()}` type="text" value=patronObject.address)
       else if columnNo == 3
         p
           label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` type="text" value=rowArray.email)
+          input(id=`${value.toLowerCase()}` type="text" value=patronObject.email)
       else if columnNo == 4
         p
           label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` type="text" value=rowArray.library_id)
+          input(id=`${value.toLowerCase()}` type="text" value=patronObject.library_id)
       else if columnNo == 5
         p
           label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` type="text" value=rowArray.zip_code)
+          input(id=`${value.toLowerCase()}` type="text" value=patronObject.zip_code)
       - columnNo += 1
     input(type="submit" value=`Update ${title}`)

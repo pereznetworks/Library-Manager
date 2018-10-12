@@ -18,9 +18,9 @@ table
     each item in loansRowArray
       tr
         td
-          a(href=`/books/book_detail/${item.book_id}`)= item.book_id
+          a(href=`/books/book_detail/${item.book_id}`)= item.Book.dataValues.title
         td
-          a(href=`/patrons/patron_detail/${item.patron_id}`)=  item.patron_id
+          a(href=`/patrons/patron_detail/${item.patron_id}`)= `${patronObject.first_name} ${patronObject.last_name}`
         td= item.loaned_on
         td= item.return_by
         td= item.returned_on
