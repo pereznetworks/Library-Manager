@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var createError = require('http-errors');
+var Sequelize = require('../models').sequelize;
 
 /* importing sequelize db */
 var db = require('../models/index.js');
@@ -19,7 +20,7 @@ router.get('/', function(req, res, next) {
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
     res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
     if (books){
-            // this maps an array of the book details, which can read as rows in the book detail table 
+            // this maps an array of the book details, which can read as rows in the book detail table
       let booksArray = books.map(function(item, index){
         return item.dataValues
       });
@@ -53,37 +54,47 @@ router.get('/books/book_detail', function(req, res, next) {
 
 /* GET book detail page */
 router.get('/books/book_detail/:id', function(req, res, next) {
-  db.Loans.findOne({ where: { book_id:req.params.id } }).then(function(loan){
-    // TODO: this synatax and object model works
-    // but data must be inserted into db tables (sequelize db:seed)
-    // for any data to be displayed
-    res.locals.columnArray = locals.loansPg.columnArray;
-    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
-    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
-    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
-    if(!loan) {
-      res.locals.error = createError(200);
-      res.status(200);
-      res.render("error", {message: 'No loan exists for that book'});
-    } else {
-      res.locals.title = 'Book';
-      res.render("bookViews/book_detail", {rowArray: loan.dataValues, bookTitle: `insert book title here`});
-    }
+    var idInt = parseInt(req.params.id);
+    db.Loans.findOne({
+      where: { id: idInt },
+      include: [{
+                model: db.Books,
+                where: { book_id: Sequelize.col('Loans.books_id')},
+                include: [{
+                          model: db.Patrons,
+                          where: { id: Sequelize.col('Loans.patron_id')}
+                        }]
+              }]
+    }).then(function(Book){
+      // breaking down the array of object in tthe patron details
+      // to be read as rows in the patron update and details table
+      if (Book){
+        // let loansArray = Book[0].Loans.map(function(item, index){
+        //   return item.dataValues;
+        // });
+        // let booksArray = loansArray.map(function(item, index){
+        //   return item.Book.dataValues;
+        // });
+        // let patronObject = Patron[0].dataValues;
+        //
+        // res.render("patronViews/patron_detail", {booksArray: booksArray, loansRowArray: loansArray, patronObject: patronObject });
+      } // TODO: what to do if patron has no loaned books ???
+
   }).catch(function(error){
     // set locals, only providing error in development
-    if (error){
-     res.locals.message = error.message;
-     res.locals.error =  error
-   } else {
-     res.locals.message = "Oops, there's been a server error";
-     res.locals.error = createError(500);
-   }
-
-    // render the error page
-    res.status(error.status || 500);
-    res.render('error');
+      if (error){
+        res.locals.message = error.message;
+        res.locals.error =  error
+      } else {
+        res.locals.message = "Oops, there's been a server error";
+        res.locals.error = createError(500);
+      }
+      // render the error page
+      res.status(error.status || 500);
+      res.render('error');
    });
-});
+
+  });
 
 /* TODO : finish testing : POST create new book */
 router.post('/books', function(req, res, next) {

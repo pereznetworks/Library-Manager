@@ -9,16 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     book_id: DataTypes.INTEGER,
     patron_id: DataTypes.INTEGER,
-    loaned_on: DataTypes.DATE,
-    return_by: DataTypes.DATE,
-    returned_on: DataTypes.DATE
+    loaned_on: DataTypes.STRING,
+    return_by: DataTypes.STRING,
+    returned_on: DataTypes.STRING
   }, {
         timestamps: false,
         underscored: true
   });
   Loans.associate = function(models) {
-    Loans.belongsTo(models.Books);
-    Loans.belongsTo(models.Patrons);
+    // setting up association in ./index.js
   };
   return Loans;
 };

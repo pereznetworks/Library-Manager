@@ -94,9 +94,7 @@ module.exports = {
             genre:'Classic',
             first_published:1815
         }
-      ], {
-             timestamps: false
-    });
+      ]);
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('Books', null, {});

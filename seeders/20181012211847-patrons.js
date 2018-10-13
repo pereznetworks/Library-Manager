@@ -12,8 +12,8 @@ module.exports = {
             zip_code:'90210',
         },
         {
-            first_name:'Dave M',
-            last_name:'Farland',
+            first_name:'Dave',
+            last_name:'McFarland',
             address:'5252 NW 2nd St',
             email:'dave.mcfarland@teamtreehouse.com',
             library_id:'MCL1010',
