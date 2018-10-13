@@ -52,6 +52,14 @@
 
   DOING:
 
+        stuck on table join/ model associations for book_detail query, view
+
+        cannot associate/join books back to loans or patrons
+
+          will try use a one to many - through
+          to create a table with Loan, Book and Patron columns
+           with info all in one row  
+
         using Sequelize models to create, read, update, delete (CRUD) the data
 
           currently working on R in CRUD

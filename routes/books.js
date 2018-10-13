@@ -55,12 +55,12 @@ router.get('/books/book_detail', function(req, res, next) {
 /* GET book detail page */
 router.get('/books/book_detail/:id', function(req, res, next) {
     var idInt = parseInt(req.params.id);
-    db.Books.findOne({
+    db.Loans.findOne({
       where: { id: idInt },
       include: [{
-                model: db.Loans,
-                where: { book_id: Sequelize.col('Books.id')}
-                /* cannot assoc. Loans back to Book or Patrons back to Books 
+                model: db.Books,
+                where: { id: Sequelize.col('Loans.book_id')}
+                /* cannot assoc. Loans back to Book or Patrons back to Books
                 include: [{
                           model: db.Patrons,
                           where: { id: Sequelize.col('Loans.patron_id')}

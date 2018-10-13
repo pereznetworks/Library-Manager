@@ -44,5 +44,4 @@ db.Loans.belongsTo(db.Books);
 db.Loans.belongsTo(db.Patrons);
 db.Patrons.hasMany(db.Loans);
 
-
 module.exports = db;
