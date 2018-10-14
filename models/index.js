@@ -35,7 +35,7 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 // importing models
-// assigning these as part of database object 
+// assigning these as part of database object
 db.Books = require('./books.js')(sequelize, Sequelize);
 db.Loans = require('./loans.js')(sequelize, Sequelize);
 db.Patrons = require('./patrons.js')(sequelize, Sequelize);

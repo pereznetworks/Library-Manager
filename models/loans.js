@@ -9,9 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     book_id: DataTypes.INTEGER,
     patron_id: DataTypes.INTEGER,
-    loaned_on: DataTypes.STRING,
-    return_by: DataTypes.STRING,
-    returned_on: DataTypes.STRING
+    loaned_on: DataTypes.DATEONLY,
+    return_by: DataTypes.DATEONLY,
+    returned_on: DataTypes.DATEONLY
   }, {
         timestamps: false,
         underscored: true

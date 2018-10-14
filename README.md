@@ -288,27 +288,66 @@ Overall UI flow the same
 
   ## Developer Notes:
 
-    Lots pages and subpages in the html-mockup, lots of components and sub-components
+    Lots pages and subpages in the html-mockup:
 
-    Will need to make sure I don't make the routing over-complicated
+        lots of components and sub-components
+        Will need to make sure I don't make the routing over-complicated
+        UI and UI-controls will need change based on context of data presented
 
-    UI and UI-controls will need change based on context of data presented
+    This is an Express.js app:
 
-    This is an Express.js app: Sequelize for data, Pug for html rendering, with http server npm modules
+        Sequelize for data,
+        Pug for html rendering,
+        with Express for roputing http req/res
+        and a whole bunch of npm modules
 
-    Sequelize v4 is different from the v3 demo'ed in the Sequelize/Node.js workshop
+    Sequelize v4 is different from the v3 demo'ed in the Sequelize/Node.js workshop:
 
-    I completed the Sequelize/Node.js workshop using both v3 and v4
+        I completed the Sequelize/Node.js workshop using both v3 and v4
+        I will use these as model to make sure Sequelize v4 syntax and methods used in this app
 
-    I will use these as model to make sure Sequelize v4 syntax and methods used in this app
-
-    Not Using sample library.db that came with project files, seems to work only with seqeulize v3
+    Not Using sample library.db that came with project files, seems to work only with seqeulize v3:
 
         Solution is simple: Express app runs sequelize bootstrapped code
         which uses config file and creates a new libary.db in none exists
         along with seeders... can then refresh library.db when I need to
 
-    Model associatons, finally got the right mix
-      may need more as I get into filtering queries for overdue and checked-out
+    Model associatons, finally got the right mix:
+
+        see [Project Status](#project-status) for details..
+        may need more as I get into filtering queries for overdue and checked-out
+
+    For whatever reason, after adding ANY-KIND of model assoications...
+
+        I could NOT get the seeders past this one error:
+
+        ERROR: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
+
+          to get around this I did a HARD DB RESET.
+
+    a HARD DB RESET:
+
+      I used this to get model associations to work with seed data:
+      (also nice to try, if odd behavior occurs if/when making changes to your model associations)
+
+      1: delete library.db ( in my app, model/index.js creates it if there is none )
+      2: remove model associations (in my app, all in one place, models/index.js)
+      3: remove seeders history from seedData.json, leaving just the []
+      4: sequelize seed:generate -name <name of model>
+      5: add your code and seed data - mine were in /seeders
+      6: restart the server app ( for my app, npm start)
+      7: stop the server
+      8: run sequelize db:seed:all
+      9: add the desired model associations back in
+      10: restart the server app
+      11: when your db start up, it will check the model associations...
+      12: if no error, your good to go, otherwise back to drawing board
+      13: with good associations...
+      14: now can access a page that runs code that runs query
+          and see if the associations work as expected with seed data in the tables
+
+    Date Formatting:
+
+        use DATATYPES. or Sequelize.DATEONLY for yyyy-mm-dd dates ie... 2018-10-11
 
     [back to Content Menu](#contents)
