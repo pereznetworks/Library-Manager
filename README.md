@@ -311,6 +311,7 @@ Overall UI flow the same
         Solution is simple: Express app runs sequelize bootstrapped code
         which uses config file and creates a new libary.db in none exists
         along with seeders... can then refresh library.db when I need to
+        see HARD DB RESET below
 
     Model associatons, finally got the right mix:
 
