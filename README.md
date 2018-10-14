@@ -111,8 +111,8 @@
 
 ## Project Update 12:
 
-  had do a HARD DB reset, but..see [Developer Notes](#developer-notes)
-    but got Date Formatting of seed data in loans table fixed
+  had do a HARD DB reset, ..see [Developer Notes](#developer-notes)
+    but did get Date Formatting of seed data in loans table fixed
     use DATATYPES. or Sequelize.DATEONLY for yyyy-mm-dd dates ie... 2018-10-11
 
 ## Project Update 11:
