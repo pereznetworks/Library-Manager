@@ -334,17 +334,17 @@ Overall UI flow the same
       1: delete library.db ( in my app, model/index.js creates it if there is none )
       2: remove model associations (in my app, all in one place, models/index.js)
       3: remove seeders history from seedData.json, leaving just the []
-      4: sequelize seed:generate -name <name of model>
-      5: add your code and seed data - mine were in /seeders
-      6: restart the server app ( for my app, npm start)
+      4: RUN sequelize seed:generate -name <name of model> FOR EACH MODEL/TABLE
+      5: add your code and data for each model/table to each seed file - mine were in /seeders
+      6: restart the server app ( for my app, npm start), this create a new db
       7: stop the server
       8: run sequelize db:seed:all
       9: add the desired model associations back in
       10: restart the server app
-      11: when your db start up, it will check the model associations...
-      12: if no error, your good to go, otherwise back to drawing board
+      11: when your db starts up, it will check the model associations...
+      12: if no errors, your good to go, otherwise back to drawing board
       13: with good associations...
-      14: now can access a page that runs code that runs query
+          now can access a page that runs code that runs query
           and see if the associations work as expected with seed data in the tables
 
     Date Formatting:
