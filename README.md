@@ -32,6 +32,7 @@
 ## Project Status
 
   DONE:
+
         basic express app, routing and Sequelize environment setup
         library db and table models
 
