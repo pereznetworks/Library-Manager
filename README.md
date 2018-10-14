@@ -3,7 +3,6 @@
 ## Contents:
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Progress](#project-progress)
-  - [Issues and Challenges](#issues-and-challenges)
   - [Project Status](#project-status)
   - [Project Updates](#project-updates)
     - [Project Update 11](#project-update-11)
@@ -18,6 +17,7 @@
     - [Project Update 2](#project-update-2)
     - [Project Update 1](#project-update-1)
   - [For the original project files and a project instruction, follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
+  - [Developer Notes](#developer-notes)
 
 # For the Project Reviewer
 
@@ -82,34 +82,6 @@
          verify each view, table and form perform to project speqs
 
          verify project speqs across project
-
-  [back to Content Menu](#contents)
-
-## Issues and Challenges:
-
-  Lots pages and subpages in the html-mockup
-    meaning lots of components and sub-components
-
-  Will need to make sure I don't make the routing over-complicated
-
-  UI and UI-controls will need change based on context of data presented
-
-  This is an Express.js app
-    Sequelize for data
-      Pug for html rendering
-        with http server npm module  
-
-  Sequelize v4 is different from the v3 demo'ed in the Sequelize/Node.js workshop
-    compelted the workshop using both
-      will use as model to make sure Sequelize v4 syntax and methods used in this app
-
-  Not Using sample library.db the came with project files
-    seems to work only with seqeulize v3
-    simply: Express app runs sequelize bootstrapped code
-      which uses config file and creates a new libary.db in none exists
-
-  Model associatons, finally got the right mix
-    may need more as I get into filtering queries for overdue and checked-out
 
   [back to Content Menu](#contents)
 
@@ -314,3 +286,30 @@ Overall UI flow the same
   who want to clone, download and work on their version of this project.
 
   [back to Content Menu](#contents)
+
+  ## Developer Notes:
+
+    Lots pages and subpages in the html-mockup, lots of components and sub-components
+
+    Will need to make sure I don't make the routing over-complicated
+
+    UI and UI-controls will need change based on context of data presented
+
+    This is an Express.js app: Sequelize for data, Pug for html rendering, with http server npm modules
+
+    Sequelize v4 is different from the v3 demo'ed in the Sequelize/Node.js workshop
+
+    I completed the Sequelize/Node.js workshop using both v3 and v4
+
+    I will use these as model to make sure Sequelize v4 syntax and methods used in this app
+
+    Not Using sample library.db that came with project files, seems to work only with seqeulize v3
+
+        Solution is simple: Express app runs sequelize bootstrapped code
+        which uses config file and creates a new libary.db in none exists
+        along with seeders... can then refresh library.db when I need to
+
+    Model associatons, finally got the right mix
+      may need more as I get into filtering queries for overdue and checked-out
+
+    [back to Content Menu](#contents)
