@@ -34,12 +34,13 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-//Models/tables
+// importing models
+// assigning these as part of database object 
 db.Books = require('./books.js')(sequelize, Sequelize);
 db.Loans = require('./loans.js')(sequelize, Sequelize);
 db.Patrons = require('./patrons.js')(sequelize, Sequelize);
 
-//Relations
+// model associatons - table joins
 db.Books.hasOne(db.Loans);
 db.Loans.belongsTo(db.Books);
 db.Loans.belongsTo(db.Patrons);

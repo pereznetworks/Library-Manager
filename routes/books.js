@@ -65,18 +65,15 @@ router.get('/books/book_detail/:id', function(req, res, next) {
                         }]
               }]
     }).then(function(Book){
-      // breaking down the array of object in tthe patron details
-      // to be read as rows in the patron update and details table
+      // breaking down the array of objects in the Book array into objects...
+      // that can be read as rows in the book's update and book's loan details table
+      // TODO: if the returned data is uniform enough - refactor this into modular function
       if (Book){
-        // let loansArray = Book[0].Loans.map(function(item, index){
-        //   return item.dataValues;
-        // });
-        // let booksArray = loansArray.map(function(item, index){
-        //   return item.Book.dataValues;
-        // });
-        // let patronObject = Patron[0].dataValues;
-        //
-        // res.render("patronViews/patron_detail", {booksArray: booksArray, loansRowArray: loansArray, patronObject: patronObject });
+        let loanDetailObject = book.Loan.dataValues;
+        let bookDetailObject = Book.dataValues;
+        let patronDetailObject = book.Loan.Patron.dataValues;
+
+        res.render("patronViews/patron_detail", {book: bookDetailObject, loan: loanDetailObject, patron: patronDetailObject });
       } // TODO: what to do if patron has no loaned books ???
 
   }).catch(function(error){

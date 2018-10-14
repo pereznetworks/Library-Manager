@@ -41,24 +41,21 @@
           return book form page from Books, Patrons and Loans page
           and updateForm as well
 
-        table/model associations to work
-          loans belongsTo books
-          loans belongsTo patrons
-          patron hasMany loan
+        table/model associations working
+          db.Books.hasOne(db.Loans);
+          db.Loans.belongsTo(db.Books);
+          db.Loans.belongsTo(db.Patrons);
+          db.Patrons.hasMany(db.Loans);
 
         patrons/patron_detail/:id view
           now returning and display loans and book data for that patron
             can be is accessed from home book, loan and patron pg
+            displaying book title, patron name and actual dates
+             plus links for each are the routes needs to get detail on each
 
   DOING:
 
-        stuck on table join/ model associations for book_detail query, view
-
-        cannot associate/join books back to loans or patrons
-
-          will try use a one to many - through
-          to create a table with Loan, Book and Patron columns
-           with info all in one row  
+        book_detail and patron_detail table joins, model associations
 
         using Sequelize models to create, read, update, delete (CRUD) the data
 
@@ -118,16 +115,11 @@
 
 ## Project Update 11:
 
-  table associations (joins) now working
+  book and patron table associations (joins) now working
 
-  table/model associations to work
-    loans belongsTo books
-    loans belongsTo patrons
-    patron hasMany loan
+  got table/model associations to work
 
-  patrons/patron_detail/:id view
-    now returning and display loans and book data for that patron
-      can be is accessed from home book, loan and patron pg
+  patrons/patron_detail/:id view complete
 
 ## Project Update 10:
 
