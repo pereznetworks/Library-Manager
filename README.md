@@ -96,11 +96,16 @@
 
 ## Project Update 14:
 
-  all loan table view working
+  all loans table view working:
+
   used a patrons.FindAll
+
     include loans
+
         include Books
+
   which yeilds an array, each item a book, it's loan detail and patron  
+
   then used a filter array iteration to return only books item.Loan != null
 
 ## Project Update 13:
