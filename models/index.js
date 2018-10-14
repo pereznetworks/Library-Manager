@@ -40,6 +40,7 @@ db.Loans = require('./loans.js')(sequelize, Sequelize);
 db.Patrons = require('./patrons.js')(sequelize, Sequelize);
 
 //Relations
+db.Books.hasOne(db.Loans);
 db.Loans.belongsTo(db.Books);
 db.Loans.belongsTo(db.Patrons);
 db.Patrons.hasMany(db.Loans);
