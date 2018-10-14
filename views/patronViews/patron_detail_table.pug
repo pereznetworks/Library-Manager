@@ -24,7 +24,7 @@ table
       td= rowArray.return_by
       td= rowArray.returned_on
       td
-        if rowArray.returned_on == null
+        if rowArray.returned_on.length != 0
           a(href="return_book.html" class="button") Return Book
   else
     tr= rowArray

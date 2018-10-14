@@ -50,10 +50,14 @@
 
         patrons/patron_detail/:id view
         book/book_detail/:id view
-          now returning and display loans and book data for that patron
-            can be is accessed from home book, loan and patron pg
-            displaying book title, patron names
-             plus links for each are the routes needs to get detail on each
+        all loans view
+          now returning and displaying
+            all loans detial, book title and name of patron
+            patron, their books and loan detail for each
+            books, the loan detail and patron loaned to
+            detail for each can be is accessed from home book, loan and patron pg
+              book titles, patron names
+                have links for each are the routes needs to get detail on each
 
   DOING:
 
@@ -61,21 +65,18 @@
 
           currently working on R in CRUD
 
-          loans table on main loan page
-          - is actually an 'all' loans detail table
-
-            will fix the 'invalid dates' when working on input validation
+          queries/views and/or associations for filtering loans and books table
 
   NEXT:
-
-         queries/views and/or associations for filtering loans and books table
 
          submit actions for create, update and return books page
 
          input validation for each form and implementing error pages
             will fix invalid dates in seed data
 
-         modify forms as queries and/or associations are tested and working
+         modify forms as create, update queries and/or associations are tested and working
+
+         not sure if will need a Delete op for this app
 
   TODO:
          verify each view, table and form perform to project speqs
@@ -90,10 +91,24 @@
 
   [back to Content Menu](#contents)
 
+## Project Update 14:
+
+  all loan table view working
+  used a patrons.FindAll
+    include loans
+        include Books
+  which yeilds an array, each item a book, it's loan detail and patron  
+  then used a filter array iteration to return only books item.Loan != null
+
+## Project Update 13:
+
+  correct when Return Book action button appears
+    if returned_on.length != 0
+
 ## Project Update 12:
 
-  I had do a HARD DB reset, but..see [Developer Notes](#developer-notes)
-    but fot Date Formatting of seed data in loans table fixed
+  had do a HARD DB reset, but..see [Developer Notes](#developer-notes)
+    but got Date Formatting of seed data in loans table fixed
     use DATATYPES. or Sequelize.DATEONLY for yyyy-mm-dd dates ie... 2018-10-11
 
 ## Project Update 11:

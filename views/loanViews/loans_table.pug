@@ -15,18 +15,18 @@ table
       th Returned on
       th Action
   tbody
-  each item in rowArray
-    tr
-      td
-        a(href=`${bookHrefPath}/${item.book_id}`)= item.book_id
-      td
-        a(href=`${patronHrefPath}/${item.patron_id}`)= item.patron_id
-      td= item.loaned_on
-      td= item.return_by
-      td= item.returned_on
-      td
-        if item.returned_on != null
-          a(href="/return/return_book/book_id" class="button") Return Book
+    each item in rowArray
+      tr
+        td
+          a(href=`${bookHrefPath}/${item.id}`)= item.title
+        td
+          a(href=`${patronHrefPath}/${item.Loan.Patron.id}`)= `${item.Loan.Patron.first_name} ${item.Loan.Patron.last_name}`
+        td= item.Loan.loaned_on
+        td= item.Loan.return_by
+        td= item.Loan.returned_on
+        td
+          if item.Loan.returned_on.length != 0
+            a(href="/return/return_book/book_id" class="button") Return Book
 //-
     tr
       td

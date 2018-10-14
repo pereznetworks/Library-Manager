@@ -17,7 +17,16 @@ var locals = require("../views/locals")
 /* GET books page. */
 router.get('/loans', function(req, res, next) {
 
-  db.Loans.findAll().then(function(loans){
+  var idInt = parseInt(req.params.id);
+
+  db.Books.findAll({
+      include: [{
+              model: db.Loans,
+              include: [{
+                      model: db.Patrons,
+              }]
+       }]
+   }).then(function(books){
 
     res.locals.createNewRoute = locals.loansPg.createNewRoute;
     res.locals.columnArray = locals.loansPg.columnArray;
@@ -25,9 +34,11 @@ router.get('/loans', function(req, res, next) {
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
     res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-    if (loans){
-      let loansArray = loans.map(function(item, index){
-        return item.dataValues
+    if (books){
+      let loansArray = books.filter(function(item, index){
+        if (item.Loan !== null ){
+          return item
+        }
       });
       res.render("loanViews/index", {rowArray: loansArray, title: "Loans" } );
     }
