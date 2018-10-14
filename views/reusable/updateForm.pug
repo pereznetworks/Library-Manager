@@ -1,37 +1,17 @@
 form
   if title == "Book"
-    - var columnNo = 0;
-    - console.log(columnArray, rowArray)
-    each value in columnArray
-      - console.log(`columnNo: ${columnNo}\n value: ${value}`)
-      if columnNo == 0
-         p(class="id")
-      else if columnNo == 1
-          p
-            label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=patronObject.book)
-      else if columnNo == 2
-          p
-            label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=patronObject.patron)
-      else if columnNo == 3
-          p
-            label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=patronObject.loanedon)
-      else if columnNo == 4
-          p
-            label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=patronObject.returnby)
-      else if columnNo == 5
-          p
-            label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=patronObject.returnedon)
-      else if columnNo == 6
-          p
-            label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` type="text" value=patronObject.action)
-      //- console.log(columnNo, columnArray[columnNo])
-      - columnNo += 1
+    p
+      label(for=`${book.title.toLowerCase()}`) Title
+      input(id=`${book.title.toLowerCase()}` type="text" value=book.title)
+    p
+      label(for=`${book.author.toLowerCase()}`) Author
+      input(id=`${book.author.toLowerCase()}` type="text" value=book.author)
+    p
+      label(for=`${book.genre.toLowerCase()}`) Genre
+      input(id=`${book.genre.toLowerCase()}` type="text" value=book.genre)
+    p
+      label(for=`${book.first_published}`) First Published
+      input(id=`${book.first_published}` type="text" value=book.first_published)
     input(type="submit" value=`Update`)
   else if title == "Patron"
     - var columnNo = 0;

@@ -42,16 +42,6 @@ router.get('/books/new', function(req, res, next) {
   res.render('bookViews/createNewBook', {book: {}, newFormTitle: 'New Book'});
 });
 
-/* TODO: remove this once....
-   route and handler once sequelize data is fully integrated
-   GET book detail page */
-router.get('/books/book_detail', function(req, res, next) {
-  res.locals.columnArray = locals.booksPg.columnArray;
-  res.locals.title = 'Book';
-  res.locals.bookTitle = locals.booksPg.rowArray[0].bookTitle;
-  res.render("bookViews/book_detail", {rowArray: locals.booksPg.rowArray[0]});
-});
-
 /* GET book detail page */
 router.get('/books/book_detail/:id', function(req, res, next) {
     var idInt = parseInt(req.params.id);
@@ -59,21 +49,27 @@ router.get('/books/book_detail/:id', function(req, res, next) {
       where: { id: idInt },
       include: [{
                 model: db.Loans,
-                where: { book_id: Sequelize.col('Books.id')}
+                where: { book_id: Sequelize.col('Books.id')},
                 include: [{
                           model: db.Patrons,
                         }]
               }]
-    }).then(function(Book){
+    }).then(function(book){
       // breaking down the array of objects in the Book array into objects...
       // that can be read as rows in the book's update and book's loan details table
       // TODO: if the returned data is uniform enough - refactor this into modular function
-      if (Book){
+      if (book){
         let loanDetailObject = book.Loan.dataValues;
-        let bookDetailObject = Book.dataValues;
+        let bookDetailObject = book.dataValues;
         let patronDetailObject = book.Loan.Patron.dataValues;
 
-        res.render("patronViews/patron_detail", {book: bookDetailObject, loan: loanDetailObject, patron: patronDetailObject });
+        res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+        res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+        res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+        res.locals.title = 'Book';
+        res.locals.bookTitle = bookDetailObject.title;
+
+        res.render("bookViews/book_detail", {book: bookDetailObject, loan: loanDetailObject, patron: patronDetailObject});
       } // TODO: what to do if patron has no loaned books ???
 
   }).catch(function(error){

@@ -1,12 +1,5 @@
-//- TODO: this table will show 1 book's loan details
-//- TODO: pass in a bookDetials[0].dataValues object from select query
-//- TODO: iterate through bookDetials[0].detailView object
-//- TODO: only one tr
-//- TODO: for each item in rowObject, td + value
-//- TODO: insert route path/#{book_id} for each a(href="book_detail")
-//- TODO: insert route path/#{patron_id} for each a(href="patron_detail")
-//- table headings come from my custom locals.bookPg.columnArray
-//- table data comes from sequelize findById select query on library.db/books table
+// book detail, combines info on book detail, book's loan detail and the patron loaned to
+- var patronName = `${patron.first_name} ${patron.last_name}`
 table
   thead
     tr
@@ -19,11 +12,12 @@ table
   tbody
     tr
       td
-        a(href=`books/book_detail/${rowArray.book_id}`)= rowArray.book_id
-      td= rowArray.patron_id
-      td= rowArray.loaned_on
-      td= rowArray.return_by
-      td= rowArray.returned_on
+        a(href=`${bookHrefPath}/${book.id}`)= book.title
       td
-        if rowArray.returned_on == null
-          a(href="return_book.html" class="button") Return Book
+        a(href=`${patronHrefPath}/${patron.id}`)= patronName
+      td= loan.loaned_on
+      td= loan.return_by
+      td= loan.returned_on
+      td
+        if loan.returned_on == null
+          a(href=`${actionHrefPath}/${book.id}` class="button") Return Book

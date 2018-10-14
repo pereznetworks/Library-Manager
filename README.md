@@ -48,20 +48,20 @@
           db.Patrons.hasMany(db.Loans);
 
         patrons/patron_detail/:id view
+        book/book_detail/:id view
           now returning and display loans and book data for that patron
             can be is accessed from home book, loan and patron pg
-            displaying book title, patron name and actual dates
+            displaying book title, patron names
              plus links for each are the routes needs to get detail on each
 
   DOING:
-
-        book_detail and patron_detail table joins, model associations
 
         using Sequelize models to create, read, update, delete (CRUD) the data
 
           currently working on R in CRUD
 
-            finishing books/book_detail/:id view
+          loans table on main loan page
+          - is actually an 'all' loans detail table
 
             will fix the 'invalid dates' when working on input validation
 
@@ -105,6 +105,9 @@
     simply: Express app runs sequelize bootstrapped code
       which uses config file and creates a new libary.db in none exists
 
+  Model associatons, finally got the right mix
+    may need more as I get into filtering queries for overdue and checked-out
+    
   [back to Content Menu](#contents)
 
 ## Project Updates:
