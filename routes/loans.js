@@ -56,6 +56,17 @@ router.get('/loans', function(req, res, next) {
    });
 });
 
+/* GET books, filter for overdue loans page */
+router.get('/loans/overdue', function(req, res, next){
+
+});
+
+/* GET books, filter for checkedout loans page */
+router.get('/loans/checkedout', function(req, res, next){
+
+});
+
+
 /* GET new loans form page. */
 router.get('/loans/new', function(req, res, next) {
 

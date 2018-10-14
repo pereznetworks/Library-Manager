@@ -1,9 +1,4 @@
-//- TODOthis table will need to display info on multiple books, one row for each book
-//- TODO: pass in a booksTable array from select or filter query
-//- TODO: iterate through booksTable
-//- TODO: for each book.dataValues in booksTable, tr
-//- TODO: for each element in book.dataValues, td
-//- TODO: insert #{book_id} at end of each a(href="books/book_detail")
+// displays values of each book in array of books
 table
   thead
     tr
@@ -13,10 +8,10 @@ table
       th Year Released
   tbody
     each item in rowArray
-      tr
-        td(class="id")
-        td
-          a(href=`books/book_detail/${item.id}`)= item.title
-        td= item.author
-        td= item.genre
-        td= item.first_published
+      if item != null
+        tr
+          td
+            a(href=`books/book_detail/${item.id}`)= item.title
+          td= item.author
+          td= item.genre
+          td= item.first_published

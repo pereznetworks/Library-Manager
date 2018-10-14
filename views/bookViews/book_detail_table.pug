@@ -1,5 +1,4 @@
 // book detail, combines info on book detail, book's loan detail and the patron loaned to
-- var patronName = `${patron.first_name} ${patron.last_name}`
 table
   thead
     tr
@@ -10,14 +9,20 @@ table
       th Returned on
       th Action
   tbody
+  if (loan)
+    - var patronName = `${patron.first_name} ${patron.last_name}`
+      tr
+        td
+          a(href=`${bookHrefPath}/${book.id}`)= book.title
+        td
+          a(href=`${patronHrefPath}/${patron.id}`)= patronName
+        td= loan.loaned_on
+        td= loan.return_by
+        td= loan.returned_on
+        td
+          if loan.returned_on.length != 0
+            a(href=`${actionHrefPath}/${book.id}` class="button") Return Book
+
+  else
     tr
-      td
-        a(href=`${bookHrefPath}/${book.id}`)= book.title
-      td
-        a(href=`${patronHrefPath}/${patron.id}`)= patronName
-      td= loan.loaned_on
-      td= loan.return_by
-      td= loan.returned_on
-      td
-        if loan.returned_on.length != 0
-          a(href=`${actionHrefPath}/${book.id}` class="button") Return Book
+      td This book is not checked out

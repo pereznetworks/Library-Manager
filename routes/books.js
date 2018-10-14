@@ -12,19 +12,108 @@ var locals = require("../views/locals");
 
 
 /* GET books page. */
-router.get('/', function(req, res, next) {
+router.get('/books', function(req, res, next) {
   db.Books.findAll().then(function(books){
+
+    res.locals.queryForAll = locals.booksPg.queryForAll;
+    res.locals.queryForOverdue = locals.booksPg.queryForOverdue;
+    res.locals.queryForCheckedOut = locals.booksPg.queryForCheckedOut;
     res.locals.createNewRoute = locals.booksPg.createNewRoute;
     res.locals.columnArray = locals.loansPg.columnArray;
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
     res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+
     if (books){
             // this maps an array of the book details, which can read as rows in the book detail table
       let booksArray = books.map(function(item, index){
         return item.dataValues
       });
       res.render("bookViews/index", {rowArray: booksArray, title: "Books" } );
+    }
+  }).catch(function(error){
+    // set locals, only providing error in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
+   });
+});
+
+/* GET books, filter for overdue books page */
+router.get('/books/overdue', function(req, res, next){
+  db.Books.findAll({
+      include: [{
+                model: db.Loans,
+                where: { book_id: Sequelize.col('Books.id')},
+                include: [{
+                          model: db.Patrons,
+                        }]
+              }]
+    }).then(function(books){
+
+    res.locals.queryForAll = locals.booksPg.queryForAll;
+    res.locals.queryForOverdue = locals.booksPg.queryForOverdue;
+    res.locals.queryForCheckedOut = locals.booksPg.queryForCheckedOut;
+    res.locals.createNewRoute = locals.booksPg.createNewRoute;
+    res.locals.columnArray = locals.loansPg.columnArray;
+    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+
+    if (books){
+    // this maps an array of the book details, which can read as rows in the book detail table
+    // in this case - an array of OVERDUE books
+      let booksArray = books.map(function(item, index){
+        let loanedOn = new Date(item.Loan.dataValues.loaned_on)
+        if (Date.now() > loanedOn && item.Loan.dataValues.returned_on == 0){
+          return item.dataValues
+        }
+      });
+      res.render("bookViews/index", {rowArray: booksArray, title: "Books", filterTitle: 'Overdue Books'} );
+    }
+  }).catch(function(error){
+    // set locals, only providing error in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
+   });
+});
+
+/* GET books, filter for checkedout books page */
+router.get('/books/checkedout', function(req, res, next){
+  db.Books.findAll({
+      include: [{
+                model: db.Loans,
+                where: { book_id: Sequelize.col('Books.id')},
+                include: [{
+                          model: db.Patrons,
+                        }]
+              }]
+    }).then(function(books){
+
+    res.locals.queryForAll = locals.booksPg.queryForAll;
+    res.locals.queryForOverdue = locals.booksPg.queryForOverdue;
+    res.locals.queryForCheckedOut = locals.booksPg.queryForCheckedOut;
+    res.locals.createNewRoute = locals.booksPg.createNewRoute;
+    res.locals.columnArray = locals.loansPg.columnArray;
+    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+
+    if (books){
+      // this maps an array of the book details, which can read as rows in the book detail table
+      // in this case an array CHECKED OUT Books
+      let booksArray = books.map(function(item, index){
+        if (item.Loan.dataValues.loaned_on.length !== 0 && item.Loan.dataValues.returned_on == 0)
+        return item.dataValues
+      });
+      res.render("bookViews/index", {rowArray: booksArray, title: "Books", filterTitle: 'Checked Out Books'} );
     }
   }).catch(function(error){
     // set locals, only providing error in development
@@ -48,29 +137,28 @@ router.get('/books/book_detail/:id', function(req, res, next) {
     db.Books.findOne({
       where: { id: idInt },
       include: [{
-                model: db.Loans,
-                where: { book_id: Sequelize.col('Books.id')},
-                include: [{
-                          model: db.Patrons,
-                        }]
+        model: db.Loans,
+        where: { book_id: Sequelize.col('Books.id')},
+              include: [{
+                  model: db.Patrons,
               }]
+      }]
     }).then(function(book){
-      // breaking down the array of objects in the Book array into objects...
-      // that can be read as rows in the book's update and book's loan details table
+      // breaking down the array of objects in the Book and Loans array
+      // into objects that can be read as rows
+      //  in the book's update and book's loan details table
       // TODO: if the returned data is uniform enough - refactor this into modular function
-      if (book){
-        let loanDetailObject = book.Loan.dataValues;
-        let bookDetailObject = book.dataValues;
-        let patronDetailObject = book.Loan.Patron.dataValues;
 
+      if (book){
         res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
         res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
         res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
         res.locals.title = 'Book';
-        res.locals.bookTitle = bookDetailObject.title;
+        res.locals.bookTitle = book.dataValues.title;
+        // rendering the book detial page with above values
+        res.render("bookViews/book_detail", {book: book.dataValues, loan: book.Loan.dataValues, patron: book.Loan.Patron.dataValues});
+      }
 
-        res.render("bookViews/book_detail", {book: bookDetailObject, loan: loanDetailObject, patron: patronDetailObject});
-      } // TODO: what to do if patron has no loaned books ???
 
   }).catch(function(error){
     // set locals, only providing error in development
