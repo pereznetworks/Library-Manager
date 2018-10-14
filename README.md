@@ -4,6 +4,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Status](#project-status)
   - [Project Updates](#project-updates)
+    - [Project Update 15](#project-update-15)
     - [Project Update 14](#project-update-14)
     - [Project Update 13](#project-update-13)
     - [Project Update 12](#project-update-12)
@@ -94,6 +95,10 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 15:
+
+  Overdue and Checked Out Books filters working
 
 ## Project Update 14:
 
