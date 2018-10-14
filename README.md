@@ -4,7 +4,9 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Progress](#project-progress)
   - [Issues and Challenges](#issues-and-challenges)
+  - [Project Status](#project-status)
   - [Project Updates](#project-updates)
+    - [Project Update 11](#project-update-11)
     - [Project Update 10](#project-update-10)  
     - [Project Update 9](#project-update-9)
     - [Project Update 8](#project-update-8)
@@ -72,6 +74,7 @@
          submit actions for create, update and return books page
 
          input validation for each form and implementing error pages
+            will fix invalid dates in seed data
 
          modify forms as queries and/or associations are tested and working
 
@@ -107,7 +110,7 @@
 
   Model associatons, finally got the right mix
     may need more as I get into filtering queries for overdue and checked-out
-    
+
   [back to Content Menu](#contents)
 
 ## Project Updates:
@@ -118,11 +121,14 @@
 
 ## Project Update 11:
 
+  FINALLY!!!
+
   book and patron table associations (joins) now working
 
-  got table/model associations to work
+  see [Project Status](#project-status) for details
 
-  patrons/patron_detail/:id view complete
+  patron and book detail views complete
+
 
 ## Project Update 10:
 
