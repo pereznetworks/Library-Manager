@@ -98,13 +98,9 @@
 
   all loans table view working:
 
-  used a patrons.FindAll
+  used a patrons.FindAll, include loans, include Books
 
-    include loans
-
-        include Books
-
-  which yeilds an array, each item a book, it's loan detail and patron  
+  which yields an array, each item is a book, it's loan detail and patron  
 
   then used a filter array iteration to return only books item.Loan != null
 
