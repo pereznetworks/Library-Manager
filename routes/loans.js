@@ -59,10 +59,99 @@ router.get('/loans', function(req, res, next) {
 /* GET books, filter for overdue loans page */
 router.get('/loans/overdue', function(req, res, next){
 
+  var idInt = parseInt(req.params.id);
+
+  db.Books.findAll({
+      include: [{
+              model: db.Loans,
+              include: [{
+                      model: db.Patrons,
+              }]
+       }]
+   }).then(function(books){
+
+    res.locals.createNewRoute = locals.loansPg.createNewRoute;
+    res.locals.columnArray = locals.loansPg.columnArray;
+    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+
+    if (books){
+      // this maps an array of the loan details, which can read as rows in the loans detail table
+      // in this case - an array of OVERDUE loans
+      // yes - I am searching the books table and including the loans and patron table
+      // this is because of the way the table associations work
+      let loansArray = books.filter(function(item, index){
+        if (item.Loan !== null ){
+          let returnBy = new Date(item.Loan.dataValues.return_by)
+          if (Date.now() > returnBy && item.Loan.dataValues.returned_on.length == 0){
+            return item.dataValues
+          }
+        }
+      });
+      res.render("loanViews/index", {rowArray: loansArray, title: "Loans" } );
+    }
+
+  }).catch(function(error){
+
+    // set locals, only providing error in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
+
+   });
+
 });
 
 /* GET books, filter for checkedout loans page */
 router.get('/loans/checkedout', function(req, res, next){
+
+  var idInt = parseInt(req.params.id);
+
+  db.Books.findAll({
+      include: [{
+              model: db.Loans,
+              include: [{
+                      model: db.Patrons,
+              }]
+       }]
+   }).then(function(books){
+
+    res.locals.createNewRoute = locals.loansPg.createNewRoute;
+    res.locals.columnArray = locals.loansPg.columnArray;
+    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+
+    if (books){
+      // this maps an array of the loan details, which can read as rows in the loans detail table
+      // in this case - an array of CHECKED OUT loans
+      // yes - I am searching the books table and including the loans and patron table
+      // this is because of the way the table associations work
+      let loansArray = books.filter(function(item, index){
+        if (item.Loan !== null ){
+          if (item.Loan.dataValues.returned_on.length == 0){
+            return item.dataValues
+          }
+        }
+      });
+      res.render("loanViews/index", {rowArray: loansArray, title: "Loans" } );
+    }
+
+  }).catch(function(error){
+
+    // set locals, only providing error in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
+
+   });
 
 });
 

@@ -67,8 +67,8 @@ router.get('/books/overdue', function(req, res, next){
     // this maps an array of the book details, which can read as rows in the book detail table
     // in this case - an array of OVERDUE books
       let booksArray = books.map(function(item, index){
-        let loanedOn = new Date(item.Loan.dataValues.loaned_on)
-        if (Date.now() > loanedOn && item.Loan.dataValues.returned_on == 0){
+        let returnBy = new Date(item.Loan.dataValues.return_by)
+        if (Date.now() > returnBy && item.Loan.dataValues.returned_on.length == 0){
           return item.dataValues
         }
       });
