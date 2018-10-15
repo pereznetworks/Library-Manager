@@ -17,7 +17,7 @@
     - [Patron Listing Page](#patron-listing-page)
     - [Patron Detail Page](#patron-detail-page)
     - [New Patron Page](#new-patron-page)
-    - [Required Fields and Forms](#required-field-and-forms)
+    - [Required Fields and Forms](#required-fields-and-forms)
   - [Extra Credit](#extra-credit)
 
 # Project Summary and Context
