@@ -56,30 +56,41 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
   res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
   res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  db.Patrons.findAll({
+  db.Patrons.findOne({
       where: { id: idInt },
       include: [{
               model: db.Loans,
               where: { patron_id: Sequelize.col('Patrons.id') },
+              required: false,
               include: [{
                       model: db.Books,
-                      where: { id: Sequelize.col('Loans.book_id')}
+                      where: { id: Sequelize.col('Loans.book_id')},
+                      required: false
               }]
        }]
     }).then(function(Patron){
-      // breaking down the array of object in tthe patron details
+
+      // breaking down the array of object in the patron details
       // to be read as rows in the patron update and details table
-      if (Patron){
-        let loansArray = Patron[0].Loans.map(function(item, index){
+      let patronObject = Patron.dataValues;
+
+      if (Patron.Loans){  // in case patron has no loan history yet
+
+        let loansArray = Patron.Loans.map(function(item, index){
           return item.dataValues;
         });
+
         let booksArray = loansArray.map(function(item, index){
           return item.Book.dataValues;
         });
-        let patronObject = Patron[0].dataValues;
 
-        res.render("patronViews/patron_detail", {booksArray: booksArray, loansRowArray: loansArray, patronObject: patronObject });
-      } // TODO: what to do if patron has no loaned books ???
+        res.render("patronViews/patron_detail", {booksArray: booksArray, loansArray: loansArray, patronObject: patronObject });
+
+      } else {
+
+        res.render("patronViews/patron_detail", {patronObject: patronObject });
+
+      }
 
   }).catch(function(error){
     // set locals, only providing error in development

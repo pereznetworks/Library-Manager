@@ -1,10 +1,7 @@
-//- TODO: this table will show 1 patron's loan details
-//- TODO: pass in a patronDetials[0].detailView object from select query
-//- TODO: iterate through patronDetials[0].detailView object
-//- TODO: only one tr
-//- TODO: for each item in object, td + value
-//- TODO: insert route path/#{book_id} for each a(href="book_detail")
-//- TODO: insert route path/#{patron_id} for each a(href="patron_detail")
+//- this table shows patron's loan details
+//- patron may have more than 1 loan
+//- table shows name of book, with a link to that book's detail view
+//- repeated info: name of patron, with link to same patron's detail view
 table
   thead
     tr
@@ -15,16 +12,25 @@ table
       th Returned on
       th Action
   tbody
-  if rowArray.book_id != null
-    tr
-      td
-        a(href=`books/book_detail/${rowArray.book_id}`)= rowArray.book_id
-      td= rowArray.patron_id
-      td= rowArray.loaned_on
-      td= rowArray.return_by
-      td= rowArray.returned_on
-      td
-        if rowArray.returned_on.length != 0
-          a(href="return_book.html" class="button") Return Book
-  else
-    tr= rowArray
+    if loansArray != null
+      each item in loansArray
+        tr
+          td
+            a(href=`/books/book_detail/${item.book_id}`)= item.Book.dataValues.title
+          td
+            a(href=`/patrons/patron_detail/${item.patron_id}`)= `${patronObject.first_name} ${patronObject.last_name}`
+          td= item.loaned_on
+          td= item.return_by
+          td= item.returned_on
+          td
+            if item.returned_on == null
+              a(href=`/return/return_book/${item.book_id}` class="button") Return Book
+    else
+      tr
+        td This patron has no loan history
+        td
+          a(href=`/patrons/patron_detail/${patronObject.id}`)= `${patronObject.first_name} ${patronObject.last_name}`
+        td
+        td
+        td
+        td
