@@ -4,6 +4,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Status](#project-status)
   - [Project Updates](#project-updates)
+    - [Project Update 16](#project-update-16)
     - [Project Update 15](#project-update-15)
     - [Project Update 14](#project-update-14)
     - [Project Update 13](#project-update-13)
@@ -96,6 +97,11 @@
 
   [back to Content Menu](#contents)
 
+## Project Update 16:
+
+  Handling case where no book has no loan history
+    required: false set on include for Loan and Patron model
+    
 ## Project Update 15:
 
   Overdue and Checked Out Books filters working
