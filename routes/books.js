@@ -132,36 +132,46 @@ router.get('/books/new', function(req, res, next) {
 });
 
 /* GET book detail page */
-// TODO: handle case where book is not loaned out, so no loan detail
 router.get('/books/book_detail/:id', function(req, res, next) {
+  // parsing to int because the id field in the table is an INTEGER
     var idInt = parseInt(req.params.id);
-    Books.findOne({
-        where: {
-              [Op.or]: [
-                  {Books.id: idInt},
-                  {Loans.book_id: idInt}
-                 ]
-               },
-        include: [{
-            model: Loans,
-            required: false
-           }]})
+    // required: false on the include for Loan and Patron
+    // in case a book has no loan history
+    db.Books.findOne({
+      where: { id: idInt },
+      include: [{
+        model: db.Loans,
+        where: { book_id: Sequelize.col('Books.id')},
+        required: false,
+              include: [{
+                  model: db.Patrons,
+                  required: false
+              }]
+      }]
     }).then(function(book){
-      // breaking down the array of objects in the Book and Loans array
-      // into objects that can be read as rows
-      //  in the book's update and book's loan details table
+
+      // passing some static variables to be rendered
+      res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+      res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+      res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+      res.locals.title = 'Book';
+      res.locals.bookTitle = book.dataValues.title;
+
+      // breaking down the array of objects in the Book array ...
+      // into objects that can be more easily read as rows ...
+      // in the book's update and book's loan details table
       // TODO: if the returned data is uniform enough - refactor this into modular function
 
-      if (book){
-        res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
-        res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
-        res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
-        res.locals.title = 'Book';
-        res.locals.bookTitle = book.dataValues.title;
-        // rendering the book detial page with above values
-        res.render("bookViews/book_detail", {book: book.dataValues, loan: book.Loan.dataValues, patron: book.Loan.Patron.dataValues});
-      }
+      if (book.Loan){
 
+        // rendering the book detial page with book, loan and patron detail
+        res.render("bookViews/book_detail", {book: book.dataValues, loan: book.Loan.dataValues, patron: book.Loan.Patron.dataValues});
+
+      } else {  // if book has no loan history ...
+
+        // rendering the book detial page with book detail only
+        res.render("bookViews/book_detail", {book: book.dataValues});
+      }
 
   }).catch(function(error){
     // set locals, only providing error in development

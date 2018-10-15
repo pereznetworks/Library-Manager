@@ -1,2 +1,9 @@
-p
-  a( href=createNewRoute class="button" class="button") Create New Book
+if title == 'Books'
+  p
+    a( href=createNewRoute class="button" class="button") Create New Book
+else if title == 'Loans'
+  p
+    a( href=createNewRoute class="button" class="button") Create New Loan
+else if title == 'Patrons'
+  p
+    a( href=createNewRoute class="button" class="button") Create New Patron

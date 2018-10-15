@@ -25,4 +25,6 @@ table
 
   else
     tr
-      td This book is not checked out
+      td
+        a(href=`${bookHrefPath}/${book.id}`)= book.title
+      td This book has no loan history
