@@ -11,7 +11,7 @@
     - [Book Listings Page](#book-listings-page)
     - [Add a New Book](#add-a-new-book)
     - [Book Details Page](#book-details-page)
-    - [Loan Listings Page](#loan-listing-page)
+    - [Loan Listings Page](#loan-listings-page)
     - [New Loan Page](#new-loan-page)
     - [Return Book Page](#return-book-page)
     - [Patron Listing Page](#patron-listing-page)
