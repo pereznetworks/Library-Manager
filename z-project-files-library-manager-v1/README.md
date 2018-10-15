@@ -8,16 +8,16 @@
     - [Models](#models)
     - [Home Screen](#home-screen)
     - [Navigation](#navigation)
-    - [Book Listing Page](#book-listing-page)
+    - [Book Listings Page](#book-listings-page)
     - [Add a New Book](#add-a-new-book)
     - [Book Details Page](#book-details-page)
-    - [Load Listing Page](#load-listing-page)
+    - [Loan Listings Page](#loan-listing-page)
     - [New Loan Page](#new-loan-page)
     - [Return Book Page](#return-book-page)
     - [Patron Listing Page](#patron-listing-page)
     - [Patron Detail Page](#patron-detail-page)
     - [New Patron Page](#new-patron-page)
-    - [Required field and Forms](#required-field-and-forms)
+    - [Required Fields and Forms](#required-field-and-forms)
   - [Extra Credit](#extra-credit)
 
 # Project Summary and Context
@@ -172,7 +172,7 @@
 
   [back to Content Menu](#contents)
 
-## Books Listing Page:
+## Book Listings Page:
 
     As a librarian, I should be able to filter books...
      by ‘all’ , ‘overdue’ and ‘checked out’ status on the Books Listing Page
@@ -220,7 +220,7 @@
 
   [back to Content Menu](#contents)
 
-## Book Detail Page:
+## Book Details Page:
 
     As a librarian, I should be able to go to a book’s detail page,
      make edits and view its loan history.
@@ -266,7 +266,7 @@
 
   [back to Content Menu](#contents)
 
-## Loan Listing Page:
+## Loan Listings Page:
 
     As a librarian, I should be able to filter loans by...
        “All”, “Overdue”, and “Checked Out”,
@@ -460,7 +460,7 @@
      use Sequelize model validation for validating your from fields.
       Don't rely simply on HTML5 built in validation.
 
-    Required fields and Forms
+## Required Fields and Forms:
 
     As a librarian, I should be able to be notified if
      any of the required fields in any given form have any missing data,

@@ -132,17 +132,20 @@ router.get('/books/new', function(req, res, next) {
 });
 
 /* GET book detail page */
+// TODO: handle case where book is not loaned out, so no loan detail
 router.get('/books/book_detail/:id', function(req, res, next) {
     var idInt = parseInt(req.params.id);
-    db.Books.findOne({
-      where: { id: idInt },
-      include: [{
-        model: db.Loans,
-        where: { book_id: Sequelize.col('Books.id')},
-              include: [{
-                  model: db.Patrons,
-              }]
-      }]
+    Books.findOne({
+        where: {
+              [Op.or]: [
+                  {Books.id: idInt},
+                  {Loans.book_id: idInt}
+                 ]
+               },
+        include: [{
+            model: Loans,
+            required: false
+           }]})
     }).then(function(book){
       // breaking down the array of objects in the Book and Loans array
       // into objects that can be read as rows
