@@ -4,6 +4,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Status](#project-status)
   - [Project Updates](#project-updates)
+    - [Project Update 17](#project-update-17)
     - [Project Update 16](#project-update-16)
     - [Project Update 15](#project-update-15)
     - [Project Update 14](#project-update-14)
@@ -96,6 +97,12 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 17:
+
+  Overdue and Checked Out filter working for both Loans and Books
+    testing if Date.now() > new Date(return_by) and returned_on.length == 0
+    available from Home pg as well
 
 ## Project Update 16:
 

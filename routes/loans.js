@@ -29,6 +29,9 @@ router.get('/loans', function(req, res, next) {
    }).then(function(books){
 
     res.locals.createNewRoute = locals.loansPg.createNewRoute;
+    res.locals.queryForAll = locals.loansPg.queryForAll;
+    res.locals.queryForOverdue = locals.loansPg.queryForOverdue;
+    res.locals.queryForCheckedOut = locals.loansPg.queryForCheckedOut;
     res.locals.columnArray = locals.loansPg.columnArray;
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
@@ -71,6 +74,9 @@ router.get('/loans/overdue', function(req, res, next){
    }).then(function(books){
 
     res.locals.createNewRoute = locals.loansPg.createNewRoute;
+    res.locals.queryForAll = locals.loansPg.queryForAll;
+    res.locals.queryForOverdue = locals.loansPg.queryForOverdue;
+    res.locals.queryForCheckedOut = locals.loansPg.queryForCheckedOut;
     res.locals.columnArray = locals.loansPg.columnArray;
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
@@ -121,6 +127,9 @@ router.get('/loans/checkedout', function(req, res, next){
    }).then(function(books){
 
     res.locals.createNewRoute = locals.loansPg.createNewRoute;
+    res.locals.queryForAll = locals.loansPg.queryForAll;
+    res.locals.queryForOverdue = locals.loansPg.queryForOverdue;
+    res.locals.queryForCheckedOut = locals.loansPg.queryForCheckedOut;
     res.locals.columnArray = locals.loansPg.columnArray;
     res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
     res.locals.patronHrefPath = locals.loansPg.patronHrefPath;

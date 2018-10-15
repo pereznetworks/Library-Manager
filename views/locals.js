@@ -147,7 +147,7 @@ var loansPg = {
   createNewRoute: '/loans/new',
   queryForAll: 'loans',
   queryForOverdue: '/loans/overdue',
-  queryForCheckOut: '/loans/checkedout',
+  queryForCheckedOut: '/loans/checkedout',
   bookHrefPath:"/books/book_detail",
   patronHrefPath:"/patrons/patron_detail",
   actionHrefPath:"/return/return_book",
