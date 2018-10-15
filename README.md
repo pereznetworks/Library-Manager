@@ -59,12 +59,14 @@
         book/book_detail/:id view
         all loans view
           now returning and displaying
-            all loans detial, book title and name of patron
+            all loans detail, book title and name of patron
             patron, their books and loan detail for each
             books, the loan detail and patron loaned to
             detail for each can be is accessed from home book, loan and patron pg
               book titles, patron names
                 have links for each are the routes needs to get detail on each
+
+        queries/views and/or associations for filtering loans and books table
 
   DOING:
 
@@ -72,7 +74,10 @@
 
           currently working on R in CRUD
 
-          queries/views and/or associations for filtering loans and books table
+          create loan - book and patron drop menus
+            these are static at this time
+            need build these from books in the database
+            also need exclude books already loaned out
 
   NEXT:
 
