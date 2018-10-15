@@ -101,8 +101,8 @@
 
   Handling case where a book or a patron has no loan history
     required: false set on included model
-    
-    no need for this in loan pag
+
+    no need for this in loan page
       since loan table only displays row from loan table
       plus even href links to book and patron
        will be for those that have a loan history
