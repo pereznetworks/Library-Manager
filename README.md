@@ -55,6 +55,7 @@
          not sure if will need a Delete op for this app
 
   TODO:
+  
          verify each view, table and form perform to project speqs
 
          verify project speqs across project
