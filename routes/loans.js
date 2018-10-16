@@ -8,7 +8,7 @@ var db = require('../models/index.js'); /* importing sequelize db */
 var locals = require("../views/locals"); /* importing static vars */
 var utils = require('../utils/index.js') /* importing my own helper utils */
 
-/* GET books page. */
+/* GET loans page. */
 router.get('/loans', function(req, res, next) {
 
   var idInt = parseInt(req.params.id);
@@ -53,7 +53,7 @@ router.get('/loans', function(req, res, next) {
    });
 });
 
-/* GET books, filter for overdue loans page */
+/* GET loans, filter for overdue loans page */
 router.get('/loans/overdue', function(req, res, next){
 
   var idInt = parseInt(req.params.id);
@@ -106,7 +106,7 @@ router.get('/loans/overdue', function(req, res, next){
 
 });
 
-/* GET books, filter for checkedout loans page */
+/* GET loans, filter for checkedout loans page */
 router.get('/loans/checkedout', function(req, res, next){
 
   var idInt = parseInt(req.params.id);
@@ -161,10 +161,20 @@ router.get('/loans/checkedout', function(req, res, next){
 /* GET new loans form page. */
 router.get('/loans/new', function(req, res, next) {
 
-  Promise.all([db.Patrons.findAll(), db.Books.findAll()])
+  Promise.all([
+     db.Patrons.findAll(),
+     db.Books.findAll({
+       include: [{
+               model: db.Loans,
+               required: false
+        }]
+     })
+   ])
   .then(([patrons, books]) => {
-      res.locals.books = books.map(function(item, index){
-          return item.dataValues;
+      res.locals.books = books.filter(function(item, index){
+          if (item.Loan == null || item.Loan.dataValues.returned_on.length != 0){
+              return item.dataValues;
+          }
         });
       res.locals.patrons = patrons.map(function(item, index){
           return item.dataValues;
