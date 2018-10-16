@@ -69,16 +69,19 @@
 
         queries/views and/or associations for filtering loans and books table
 
+        create loan - book and patron drop menus
+          these are static at this time
+          need build these from books in the database
+          also need exclude books already loaned out
+
+        DONE with R in db C.R.U.D. ops 
+
   DOING:
 
         using Sequelize models to create, read, update, delete (CRUD) the data
 
-          currently working on R in CRUD
-
-          create loan - book and patron drop menus
-            these are static at this time
-            need build these from books in the database
-            also need exclude books already loaned out
+          done with R in CRUD
+          currently working on Create in CRUD
 
   NEXT:
 
