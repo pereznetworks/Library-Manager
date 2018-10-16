@@ -196,7 +196,7 @@ router.get('/loans/new', function(req, res, next) {
 
 /* TODO : need to test this : POST create new loan */
 router.post('/loans', function(req, res, next) {
-  db.Books.create(req.body).then(function(loan) {
+  db.Loans.create(req.body).then(function(loan) {
     res.redirect(`/loans`);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
