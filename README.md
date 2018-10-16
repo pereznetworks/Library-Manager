@@ -4,6 +4,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Status](#project-status)
   - [Project Updates](#project-updates)
+    - [Project Update 18](#project-update-18)
     - [Project Update 17](#project-update-17)
     - [Project Update 16](#project-update-16)
     - [Project Update 15](#project-update-15)
@@ -102,6 +103,14 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 18:
+
+  Drop down menus in 'New Loan' form now driven by ...
+    Promise.all([db.Patrons.findAll(), db.Books.findAll()])...
+
+  Which brings up some crazy options for handling other queries...
+    may go back and refactor the book/patron detail views and loans table lookups
 
 ## Project Update 17:
 
