@@ -113,7 +113,9 @@
    MILESTONE #1
 
    DONE with all Routes and Views that need Read in db C.R.U.D. ops
+
    All Views in place and working
+   
    ... just need to implement the Create, Update and Delete methods
 
 ## Project Update 18:
