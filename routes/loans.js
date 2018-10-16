@@ -3,16 +3,10 @@ var express = require('express');
 var router = express.Router();
 var Sequelize = require('../models').sequelize;
 
-/* importing sequelize db */
-var db = require('../models/index.js');
 
-/* importing locals for rendering in pub templates */
-var locals = require("../views/locals")
-
-/* GET loans page. */
-// router.get('/loans', function(req, res, next) {
-//   res.render('loanViews/index', locals.loansPg);
-// });
+var db = require('../models/index.js'); /* importing sequelize db */
+var locals = require("../views/locals"); /* importing static vars */
+var utils = require('../utils/index.js') /* importing my own helper utils */
 
 /* GET books page. */
 router.get('/loans', function(req, res, next) {
@@ -168,37 +162,16 @@ router.get('/loans/checkedout', function(req, res, next){
 /* GET new loans form page. */
 router.get('/loans/new', function(req, res, next) {
 
-  const addLeadingZero = function(num){
-    // add leading zero if num less then 10
-    // from stackoverflow
-    // MDN days string#padStart not supported on Edge browser yet
-    return (num < 10) ? ("0" + num) : num;
-  };
-
   /* for loaned_on date
      get current date, formatted date yyyy/mm/dd
-     may turn this into a modular function
   */
-  var d = new Date();
-  var day = d.getDate();
-  day = addLeadingZero(day);
-  var month = d.getMonth();
-  month = addLeadingZero(month);
-  var year = d.getFullYear();
-  res.locals.dateLoanedOn = `${year}-${month}-${day}`;
+  res.locals.dateLoanedOn = utils.getADate();
 
   /* for return_by date
      get current date, formatted date yyyy/mm/dd + 7 days
-     may turn this into a modular function
   */
-  var rd = new Date();
-  rd.setDate(rd.getDate() + 7);
-  var plus7Days = rd.getDate()
-  returnDay = addLeadingZero(plus7Days);
-  var month = rd.getMonth();
-  returnMonth = addLeadingZero(month);
-  var returnYear = rd.getFullYear();
-  res.locals.dateReturnBy = `${returnYear}-${returnMonth}-${returnDay}`;
+  const defaultDaysLoanedBookDue = 7;
+  res.locals.dateReturnBy = utils.getADate(defaultDaysLoanedBookDue);
 
   res.render('loanViews/createNewLoan', {loan: {}, newFormTitle: 'New Loan'});
 });

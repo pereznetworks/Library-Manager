@@ -74,6 +74,7 @@ th {
   padding: 5px 20px 5px 10px;
 }
 tr {
+  width: 100%;
   min-height: 50px;
 }
 tr .button {
