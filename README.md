@@ -38,7 +38,7 @@
 
   DOING:
 
-        using Sequelize models to create, read, update, delete (CRUD) the data
+          using Sequelize models to create, read, update, delete (CRUD) the data
 
           done with R in CRUD
           currently working on Create in CRUD
@@ -55,7 +55,7 @@
          not sure if will need a Delete op for this app
 
   TODO:
-  
+
          verify each view, table and form perform to project speqs
 
          verify project speqs across project
