@@ -20,7 +20,7 @@ table
         td= loan.return_by
         td= loan.returned_on
         td
-          if loan.returned_on.length == 0
+          if loan.returned_on == null
             a(href=`${actionHrefPath}/${book.id}` class="button") Return Book
 
   else

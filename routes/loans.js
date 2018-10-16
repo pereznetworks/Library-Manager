@@ -172,7 +172,7 @@ router.get('/loans/new', function(req, res, next) {
    ])
   .then(([patrons, books]) => {
       res.locals.books = books.filter(function(item, index){
-          if (item.Loan == null || item.Loan.dataValues.returned_on.length != 0){
+          if (item.Loan == null || item.Loan.dataValues.returned_on != null ){
               return item.dataValues;
           }
         });
@@ -204,7 +204,7 @@ router.get('/loans/new', function(req, res, next) {
 
 // add return_book route and hanlder here ??
 
-/* TODO : need to test this : POST create new loan */
+/* POST create new loan */
 router.post('/loans', function(req, res, next) {
   db.Loans.create(req.body).then(function(loan) {
     res.redirect(`/loans`);
