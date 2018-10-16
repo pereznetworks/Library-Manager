@@ -158,23 +158,39 @@ router.get('/loans/checkedout', function(req, res, next){
 
 });
 
-
 /* GET new loans form page. */
 router.get('/loans/new', function(req, res, next) {
 
-  /* for loaned_on date
-     get current date, formatted date yyyy/mm/dd
-  */
-  res.locals.dateLoanedOn = utils.getADate();
+  Promise.all([db.Patrons.findAll(), db.Books.findAll()])
+  .then(([patrons, books]) => {
+      res.locals.books = books.map(function(item, index){
+          return item.dataValues;
+        });
+      res.locals.patrons = patrons.map(function(item, index){
+          return item.dataValues;
+        });
 
-  /* for return_by date
-     get current date, formatted date yyyy/mm/dd + 7 days
-  */
-  const defaultDaysLoanedBookDue = 7;
-  res.locals.dateReturnBy = utils.getADate(defaultDaysLoanedBookDue);
+      /* for loaned_on date, formatted date yyyy-mm-dd */
+      res.locals.dateLoanedOn = utils.getADate();
 
-  res.render('loanViews/createNewLoan', {loan: {}, newFormTitle: 'New Loan'});
-});
+      /* for return_by date, formatted date yyyy-mm-dd */
+      const defaultDaysLoanedBookDue = 7;
+      res.locals.dateReturnBy = utils.getADate(defaultDaysLoanedBookDue);
+
+      res.render('loanViews/createNewLoan', {loan: {}, newFormTitle: 'New Loan'});
+    })
+  .catch((error) => {
+    // set locals, only providing error in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
+  });
+
+  });
+
 
 // add return_book route and hanlder here ??
 
