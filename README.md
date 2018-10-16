@@ -36,6 +36,29 @@
 
 ## Project Status
 
+  DOING:
+
+        using Sequelize models to create, read, update, delete (CRUD) the data
+
+          done with R in CRUD
+          currently working on Create in CRUD
+
+  NEXT:
+
+         submit actions for create, update and return books page
+
+         input validation for each form and implementing error pages
+            will fix invalid dates in seed data
+
+         modify forms as create, update queries and/or associations are tested and working
+
+         not sure if will need a Delete op for this app
+
+  TODO:
+         verify each view, table and form perform to project speqs
+
+         verify project speqs across project
+
   DONE:
 
         basic express app, routing and Sequelize environment setup
@@ -77,28 +100,6 @@
 
         DONE with R in db C.R.U.D. ops
 
-  DOING:
-
-        using Sequelize models to create, read, update, delete (CRUD) the data
-
-          done with R in CRUD
-          currently working on Create in CRUD
-
-  NEXT:
-
-         submit actions for create, update and return books page
-
-         input validation for each form and implementing error pages
-            will fix invalid dates in seed data
-
-         modify forms as create, update queries and/or associations are tested and working
-
-         not sure if will need a Delete op for this app
-
-  TODO:
-         verify each view, table and form perform to project speqs
-
-         verify project speqs across project
 
   [back to Content Menu](#contents)
 
@@ -115,7 +116,7 @@
    DONE with all Routes and Views that need Read in db C.R.U.D. ops
 
    All Views in place and working
-   
+
    ... just need to implement the Create, Update and Delete methods
 
 ## Project Update 18:
