@@ -4,6 +4,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Status](#project-status)
   - [Project Updates](#project-updates)
+    - [Project Update 19 Milestone #1](#project-update-19-milestone-#1)
     - [Project Update 18](#project-update-18)
     - [Project Update 17](#project-update-17)
     - [Project Update 16](#project-update-16)
@@ -74,7 +75,7 @@
           need build these from books in the database
           also need exclude books already loaned out
 
-        DONE with R in db C.R.U.D. ops 
+        DONE with R in db C.R.U.D. ops
 
   DOING:
 
@@ -106,6 +107,14 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 19 Milestone #1:
+
+   MILESTONE #1
+
+   DONE with all Routes and Views that need Read in db C.R.U.D. ops
+   All Views in place and working
+   ... just need to implement the Create, Update and Delete methods
 
 ## Project Update 18:
 
