@@ -1,4 +1,8 @@
 'use strict';
+
+/* importing my own helper utils */
+var utils = require('../utils/index.js')
+
 // dont forget to update dates in this seed data to current dates before submit...
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -6,37 +10,37 @@ module.exports = {
             {
                 book_id:15,
                 patron_id:2,
-                loaned_on:'2015-12-10',
-                return_by:'2020-10-20',
+                loaned_on:'2018-10-10',
+                return_by:'2020-10-17',
                 returned_on:'',
             },
             {
                 book_id:4,
                 patron_id:1,
-                loaned_on:'2015-12-11',
-                return_by:'2015-12-18',
+                loaned_on:'2018-10-11',
+                return_by:'2018-10-18',
                 returned_on:'',
             },
             {
                 book_id:8,
                 patron_id:1,
-                loaned_on:'2015-12-12',
-                return_by:'2015-12-19',
+                loaned_on:'2018-10-12',
+                return_by:'2018-10-19',
                 returned_on:'',
             },
             {
                 book_id:9,
                 patron_id:3,
-                loaned_on:'2015-12-13',
-                return_by:'2015-12-20',
+                loaned_on:'2018-10-13',
+                return_by:'2018-10-20',
                 returned_on:'',
             },
             {
                 book_id:11,
                 patron_id:4,
-                loaned_on:'2015-12-13',
-                return_by:'2015-12-20',
-                returned_on:'2015-12-17',
+                loaned_on:'2018-10-13',
+                return_by:'2018-10-20',
+                returned_on:'2018-10-17',
             },
         ]);
 

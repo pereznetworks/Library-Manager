@@ -41,6 +41,5 @@ const getADate = (returninSoManyDays) => {
 
 };
 
-
 module.exports.addLeadingZero = addLeadingZero;
 module.exports.getADate = getADate;
