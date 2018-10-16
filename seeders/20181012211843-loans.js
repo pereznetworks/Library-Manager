@@ -1,5 +1,5 @@
 'use strict';
-
+// dont forget to update dates in this seed data to current dates before submit...
 module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('Loans', [
