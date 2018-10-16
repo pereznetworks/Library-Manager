@@ -113,18 +113,18 @@
 
 ## Project Update 20:
 
-    first create op complete !
+  first create op complete !
 
-      can create a new loan and add to loans table
-      then can access that loan via book, patron and loan details
-      verfiied dataValues, book_id, patron_id
-        and pre-calc'ed dates saved correctly
+  can create a new loan and add to loans table
+    then can access that loan via book, patron and loan details
+    verfiied dataValues, book_id, patron_id
+      and pre-calc'ed dates saved correctly
 
-        when creating a new loan and adding to the loan table...
-         sequelize initializes the returned_on field as null when empty,
-          changed seed data to match this
-           and changed all evaluations of returned_on field
-             test for == null instead of length == 0
+  when creating a new loan and adding to the loan table...
+   sequelize initializes the returned_on field as null when empty,
+    changed seed data to match this
+     and changed all evaluations of returned_on field
+       test for == null instead of length == 0
 
 ## Project Update 19 Milestone 1:
 
