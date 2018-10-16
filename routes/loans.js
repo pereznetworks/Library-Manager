@@ -84,7 +84,7 @@ router.get('/loans/overdue', function(req, res, next){
       let loansArray = books.filter(function(item, index){
         if (item.Loan !== null ){
           let returnBy = new Date(item.Loan.dataValues.return_by)
-          if (Date.now() > returnBy && item.Loan.dataValues.returned_on.length == 0){
+          if (Date.now() > returnBy && item.Loan.dataValues.returned_on == null ){
             return item.dataValues
           }
         }
@@ -136,7 +136,7 @@ router.get('/loans/checkedout', function(req, res, next){
       // this is because of the way the table associations work
       let loansArray = books.filter(function(item, index){
         if (item.Loan !== null ){
-          if (item.Loan.dataValues.returned_on.length == 0){
+          if ( item.Loan.returned_on == null ){
             return item.dataValues
           }
         }

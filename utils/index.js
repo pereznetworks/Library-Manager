@@ -1,11 +1,16 @@
 'use strict';
 
 const addLeadingZero = (num) => {
+      // for use with date strings
+      // tercery statement from stackoverflow
       // add leading zero if num less then 10
-      // from stackoverflow
-      // MDN days string#padStart not supported on Edge browser yet
-
-      return (num < 10) ? ("0" + num) : num;
+      // only add leading zero if day is > 10
+      // return statement converts interger to a string
+      if ( num < 10 ){
+        return (num < 10) ? ("0" + num) : num;
+      } else {
+        return num.toString();
+      }
   };
 
 
@@ -17,9 +22,9 @@ const getADate = (returninSoManyDays) => {
     var d = new Date();
     var day = d.getDate();
     day = addLeadingZero(day);
-    var month = d.getMonth();
+    var month = d.getMonth() + 1;
     month = addLeadingZero(month);
-    var year = d.getFullYear();
+    var year = d.getFullYear().toString();
     return `${year}-${month}-${day}`;
 
    } else {
@@ -28,9 +33,9 @@ const getADate = (returninSoManyDays) => {
     rd.setDate(rd.getDate() + returninSoManyDays);
     var plus7Days = rd.getDate()
     var returnDay = addLeadingZero(plus7Days);
-    var month = rd.getMonth();
+    var month = rd.getMonth() + 1;
     var returnMonth = addLeadingZero(month);
-    var returnYear = rd.getFullYear();
+    var returnYear = rd.getFullYear().toString();
     return `${returnYear}-${returnMonth}-${returnDay}`;
   }
 

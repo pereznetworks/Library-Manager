@@ -22,5 +22,5 @@ table
         td= item.return_by
         td= item.returned_on
         td
-          if item.returned_on == null
+          if item.Loan.returned_on.length == 0 ||item.returned_on == null
             a(href=`/return/return_book/${item.book_id}` class="button") Return Book
