@@ -123,20 +123,25 @@
 ## Project Update 18:
 
   Drop down menus in 'New Loan' form now driven by ...
+
     Promise.all([db.Patrons.findAll(), db.Books.findAll()])...
 
   Which brings up some crazy options for handling other queries...
+
     may go back and refactor the book/patron detail views and loans table lookups
 
 ## Project Update 17:
 
   Overdue and Checked Out filter working for both Loans and Books
+
     testing if Date.now() > new Date(return_by) and returned_on.length == 0
+
     available from Home pg as well
 
 ## Project Update 16:
 
   Handling case where a book or a patron has no loan history
+
     required: false set on included model
 
     no need for this in loan page
