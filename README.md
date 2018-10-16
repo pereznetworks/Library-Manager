@@ -4,7 +4,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Status](#project-status)
   - [Project Updates](#project-updates)
-    - [Project Update 19 Milestone #1](#project-update-19-milestone-#1)
+    - [Project Update 19 Milestone 1](#project-update-19-milestone-1)
     - [Project Update 18](#project-update-18)
     - [Project Update 17](#project-update-17)
     - [Project Update 16](#project-update-16)
@@ -108,7 +108,7 @@
 
   [back to Content Menu](#contents)
 
-## Project Update 19 Milestone #1:
+## Project Update 19 Milestone 1:
 
    MILESTONE #1
 
