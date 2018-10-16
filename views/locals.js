@@ -206,7 +206,7 @@ var patronsPg = {
     title: 'Patrons',
     createNewRoute: '/patrons/new',
     patronHrefPath:"/patrons/patron_detail",
-    columnArray: ['id','Name', 'Address', 'Email', 'Library ID', 'Zip'],
+    columnArray: ['id','First Name', 'Last Name', 'Address', 'Email', 'Library ID', 'Zip'],
     rowArray: [
       {
           id:0,
