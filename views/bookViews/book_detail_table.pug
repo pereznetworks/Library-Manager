@@ -21,7 +21,8 @@ table
         td= loan.returned_on
         td
           if loan.returned_on == null
-            a(href=`${actionHrefPath}/${book.id}` class="button") Return Book
+            - var book_id = book.id
+            include ../reusable/returnBookButton
 
   else
     tr

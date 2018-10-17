@@ -26,4 +26,5 @@ table
         td= item.Loan.returned_on
         td
           if item.Loan.returned_on == null || item.Loan.returned_on.length == 0
-            a(href="/return/return_book/book_id" class="button") Return Book
+            - var book_id = item.id
+            include ../reusable/returnBookButton

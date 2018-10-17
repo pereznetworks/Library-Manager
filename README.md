@@ -115,8 +115,13 @@
 ## Project Update 21:
 
   Create and Update for Patron, Books DONE
-  need to finish Update for Loans... which is the return book/loan action button
-  can update loan or return book
+
+    need to finish Update for Loans...
+
+    which is the return book/loan action button
+
+    can update loan or return book
+
     but need to set all the return book action buttons with the id of each loan
 
 ## Project Update 20:

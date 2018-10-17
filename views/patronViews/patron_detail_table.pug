@@ -24,7 +24,8 @@ table
           td= item.returned_on
           td
             if item.returned_on == null
-              a(href=`/return/return_book/${item.book_id}` class="button") Return Book
+              - var book_id = item.book_id
+              include ../reusable/returnBookButton
     else
       tr
         td This patron has no loan history
