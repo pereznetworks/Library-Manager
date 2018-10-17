@@ -48,6 +48,8 @@ app.use('/book/book_detail/id', booksRouter);
 app.use('/patrons', patronsRouter);
 app.use('/patrons/new', patronsRouter);
 app.use('/patrons/patron_detail/id', patronsRouter);
+app.use('/return/return_book/id', returnsRouter);
+app.use('/returns', returnsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

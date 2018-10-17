@@ -6,7 +6,7 @@ block content
   p #[strong Loaned By: ] #{patronName}
   p #[strong Loaned On: ] #{loaned_on}
   p #[strong Return by: ] #{return_by}
-  form(action="/returns", method="post")
+  form(action="/return/return_book", method="post")
        p(class="id")
         input(id="loanId" name="loanId" value=loanId)
        p

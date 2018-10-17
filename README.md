@@ -4,6 +4,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Status](#project-status)
   - [Project Updates](#project-updates)
+    - [Project Update 21](#project-update-21)
     - [Project Update 20](#project-update-20)
     - [Project Update 19 Milestone 1](#project-update-19-milestone-1)
     - [Project Update 18](#project-update-18)
@@ -110,6 +111,13 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 21:
+
+  Create and Update for Patron, Books DONE
+  need to finish Update for Loans... which is the return book/loan action button
+  can update loan or return book
+    but need to set all the return book action buttons with the id of each loan
 
 ## Project Update 20:
 
