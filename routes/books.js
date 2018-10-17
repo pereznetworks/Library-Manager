@@ -10,7 +10,6 @@ var db = require('../models/index.js');
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals");
 
-
 /* GET books page. */
 router.get('/books', function(req, res, next) {
   db.Books.findAll().then(function(books){
@@ -127,11 +126,6 @@ router.get('/books/checkedout', function(req, res, next){
 });
 
 /* GET book detail page */
-router.get('/books/new', function(req, res, next) {
-  res.render('bookViews/createNewBook', {book: {}, newFormTitle: 'New Book'});
-});
-
-/* GET book detail page */
 router.get('/books/book_detail/:id', function(req, res, next) {
   // parsing to int because the id field in the table is an INTEGER
     var idInt = parseInt(req.params.id);
@@ -189,6 +183,12 @@ router.get('/books/book_detail/:id', function(req, res, next) {
 
   });
 
+
+/* GET book detail page */
+router.get('/books/new', function(req, res, next) {
+  res.render('bookViews/createNewBook', {book: {}, newFormTitle: 'New Book'});
+});
+
 /* TODO : finish testing : POST create new book */
 router.post('/books', function(req, res, next) {
   db.Books.create(req.body).then(function(book) {
@@ -205,8 +205,8 @@ router.post('/books', function(req, res, next) {
 });
 
 /* TODO: verify form submits correct data, test this route.. POST update new patron */
-router.post('/bookss/update', function(req, res, next) {
-  /*
+router.post('/books/update', function(req, res, next) {
+
   db.Books.findOne({
       where: {id: req.body.id}
     }).then(function(book) {
@@ -222,12 +222,12 @@ router.post('/bookss/update', function(req, res, next) {
       }).catch(function(error){
          res.render(error);
       });
-  */
-
+  /*
   res.locals.message = "Oops, this page is under construction";
   res.locals.error = createError(500);
   res.status(error.status || 500);
   res.render('error');
+  */
 });
 
 

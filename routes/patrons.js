@@ -11,11 +11,6 @@ var db = require('../models/index.js');
 var locals = require("../views/locals")
 
 /* GET patrons page. */
-// router.get('/patrons', function(req, res, next) {
-//   res.render('patronViews/index', locals.patronsPg);
-// });
-
-/* GET patrons page. */
 router.get('/patrons', function(req, res, next) {
   db.Patrons.findAll().then(function(patrons){
     res.locals.newFormTitle = locals.patronsPg.newFormTitle;
@@ -37,11 +32,6 @@ router.get('/patrons', function(req, res, next) {
     res.status(error.status || 500);
     res.render('error');
    });
-});
-
-/* GET new patrons form page. */
-router.get('/patrons/new', function(req, res, next) {
-  res.render('patronViews/createNewPatron', {patron: {}, newFormTitle: 'New Patron'});
 });
 
 /* GET new patrons form page */
@@ -108,6 +98,11 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
 
 });
 
+/* GET new patrons form page. */
+router.get('/patrons/new', function(req, res, next) {
+  res.render('patronViews/createNewPatron', {patron: {}, newFormTitle: 'New Patron'});
+});
+
 /* POST create new patron */
 router.post('/patrons', function(req, res, next) {
   db.Patrons.create(req.body).then(function(patron) {
@@ -145,7 +140,7 @@ router.post('/patrons/update', function(req, res, next) {
       // res.locals.message = "Oops, this page is under construction";
       // res.status(500);
       // res.render('error');
-      
+
 });
 // add return_book route and hanlder here ??
 

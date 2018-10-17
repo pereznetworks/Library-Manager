@@ -158,9 +158,12 @@ router.get('/loans/checkedout', function(req, res, next){
 
 });
 
-/* GET new loans form page. */
-router.get('/loans/new', function(req, res, next) {
 
+/* GET new loans form page
+ * okay, so this is a bit more involved than than the new Patron and New Loan forms
+*/
+router.get('/loans/new', function(req, res, next) {
+// handling multiple async calls, chaining callbacks with then and catch
   Promise.all([
      db.Patrons.findAll(),
      db.Books.findAll({
@@ -171,14 +174,24 @@ router.get('/loans/new', function(req, res, next) {
      })
    ])
   .then(([patrons, books]) => {
+
+      // first for the book and patron's drop down meny....
+      // produce a new lists of available books and current patrons
+      // since we're doing this each time this form is produced
+      // books no longer available for loan will not show up on this list
+
       res.locals.books = books.filter(function(item, index){
+        // filtering out books that are already loaned out
           if (item.Loan == null || item.Loan.dataValues.returned_on != null ){
+            // return just each book's title, author, genre and first_published
               return item.dataValues;
           }
-        });
+        });  // produces an array of book objects, that are available to be loaned
+
       res.locals.patrons = patrons.map(function(item, index){
+        // produces array of patron objects...
           return item.dataValues;
-        });
+        }); // each with name, contact info and library id
 
       /* for loaned_on date, formatted date yyyy-mm-dd */
       res.locals.dateLoanedOn = utils.getADate();
@@ -187,6 +200,7 @@ router.get('/loans/new', function(req, res, next) {
       const defaultDaysLoanedBookDue = 7;
       res.locals.dateReturnBy = utils.getADate(defaultDaysLoanedBookDue);
 
+      // finally... with all this data, render the create new form
       res.render('loanViews/createNewLoan', {loan: {}, newFormTitle: 'New Loan'});
     })
   .catch((error) => {
@@ -197,21 +211,22 @@ router.get('/loans/new', function(req, res, next) {
     // render the error page
     res.status(error.status || 500);
     res.render('error');
-  });
+  }); // end Promise.all
 
-  });
-
-
-// add return_book route and hanlder here ??
+}); // end router.get /loans/new
 
 /* POST create new loan */
 router.post('/loans', function(req, res, next) {
+  // take the data in req.body from the form and create a new row in the loans table
   db.Loans.create(req.body).then(function(loan) {
+    // then render main loans table
     res.redirect(`/loans`);
   }).catch(function(error){
+     // if validation fails, render the form again, with the input and validation msgs
       if(error.name === "SequelizeValidationError") {
         res.render("loanViews/createNewLoan", {loan: db.Loans.build(req.body), errors: error.errors, title: "New Loan"})
       } else {
+        // if not a validation error...
         throw error;
       }
   }).catch(function(error){
