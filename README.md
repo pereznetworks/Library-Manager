@@ -122,7 +122,7 @@
 
     can update loan or return book
 
-    but need to set all the return book action buttons with the id of each loan
+    return book action button now reusable
 
 ## Project Update 20:
 
