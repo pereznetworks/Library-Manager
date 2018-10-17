@@ -108,7 +108,7 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
 
 });
 
-/* TODO : finish testing : POST create new patron */
+/* POST create new patron */
 router.post('/patrons', function(req, res, next) {
   db.Patrons.create(req.body).then(function(patron) {
     res.redirect(`/patrons`);
@@ -123,6 +123,30 @@ router.post('/patrons', function(req, res, next) {
    });
 });
 
+/* POST update new patron */
+router.post('/patrons/update', function(req, res, next) {
+  db.Patrons.findOne({
+      where: {id: req.body.id}
+      }).then(function(patron) {
+        return patron.update(req.body);
+      }).then(function(){
+        res.redirect(`/patrons`);
+      }).catch(function(error){
+         if(error.name === "SequelizeValidationError") {
+           res.render('patronViews/createNewPatron', {patrons: db.Patrons.build(req.body), errors: error.errors, title: "New Patron"})
+         } else {
+           throw error;
+         }
+      }).catch(function(error){
+         res.render(error);
+      });
+
+      // res.locals.error = createError(500);
+      // res.locals.message = "Oops, this page is under construction";
+      // res.status(500);
+      // res.render('error');
+      
+});
 // add return_book route and hanlder here ??
 
 // exporting router so it can be used by express app

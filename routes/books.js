@@ -204,5 +204,32 @@ router.post('/books', function(req, res, next) {
    });
 });
 
+/* TODO: verify form submits correct data, test this route.. POST update new patron */
+router.post('/bookss/update', function(req, res, next) {
+  /*
+  db.Books.findOne({
+      where: {id: req.body.id}
+    }).then(function(book) {
+        return book.update(req.body);
+      }).then(function(){
+        res.redirect(`/books`);
+      }).catch(function(error){
+         if(error.name === "SequelizeValidationError") {
+           res.render('bookViews/createNewBook', {patrons: db.Books.build(req.body), errors: error.errors, title: "New Book"})
+         } else {
+           throw error;
+         }
+      }).catch(function(error){
+         res.render(error);
+      });
+  */
+
+  res.locals.message = "Oops, this page is under construction";
+  res.locals.error = createError(500);
+  res.status(error.status || 500);
+  res.render('error');
+});
+
+
 // exporting router so it can be used by express app
 module.exports = router;
