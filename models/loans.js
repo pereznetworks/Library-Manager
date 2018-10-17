@@ -18,14 +18,23 @@ module.exports = (sequelize, DataTypes) => {
                          },
                loaned_on: {
                               allowNull: false,
-                                   type: DataTypes.DATEONLY
+                                   type: DataTypes.DATEONLY,
+                               validate: {
+                                          isDate: true,
+                                         }
                          },
                return_by: {
                               allowNull: false,
-                                   type: DataTypes.DATEONLY
+                                   type: DataTypes.DATEONLY,
+                               validate: {
+                                          isDate: true,
+                                         }
                          },
              returned_on: {
-                                   type: DataTypes.DATEONLY
+                                   type: DataTypes.DATEONLY,
+                               validate: {
+                                          isDate: true,
+                                         }
                          }
       }, {
               timestamps: false,

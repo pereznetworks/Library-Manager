@@ -10,19 +10,31 @@ module.exports = (sequelize, DataTypes) => {
                          },
                   title: {
                               allowNull: false,
-                                   type: DataTypes.STRING
+                                   type: DataTypes.STRING,
+                               validate: { // has letters, allows numbers
+                                                   is: /([A-Z])\w+/gi
+                                         }
                          },
                  author: {
                               allowNull: false,
-                                   type: DataTypes.STRING
+                                   type: DataTypes.STRING,
+                               validate: { // has letters, allows numbers
+                                                   is: /([A-Z])\w+/gi
+                                         }
                          },
                   genre: {
                               allowNull: false,
-                                   type: DataTypes.STRING
+                                   type: DataTypes.STRING,
+                               validate: {  // has letters, allows numbers
+                                                   is: /([A-Z])\w+/gi
+                                         }
                          },
         first_published: {
                               allowNull: false,
-                                   type: DataTypes.INTEGER
+                                   type: DataTypes.INTEGER,
+                               validate: { // forces numbers only
+                                            isNumeric: true,
+                                         }
                          },
       },{
              timestamps: false,

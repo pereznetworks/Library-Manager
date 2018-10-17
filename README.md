@@ -40,10 +40,8 @@
 
   DOING:
 
-          using Sequelize models to create, read, update, delete (CRUD) the data
-
-          done with R in CRUD
-          currently working on Create in CRUD
+         adding validate rules to model attributes
+         addign validation check and msg to forms
 
   NEXT:
 
@@ -101,7 +99,8 @@
           need build these from books in the database
           also need exclude books already loaned out
 
-        DONE with R in db C.R.U.D. ops
+        DONE with C.R.U in db C.R.U.D. ops
+            no requirement in Library Manager for D ops in
 
 
   [back to Content Menu](#contents)
@@ -128,7 +127,7 @@
 
   can create a new loan and add to loans table
     then can access that loan via book, patron and loan details
-    verfiied dataValues, book_id, patron_id
+    verified dataValues, book_id, patron_id
       and pre-calc'ed dates saved correctly
 
   when creating a new loan and adding to the loan table...
