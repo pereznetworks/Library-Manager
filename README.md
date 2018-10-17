@@ -114,13 +114,11 @@
 
 ## Project Update 21:
 
-  Create and Update for Patron, Books DONE
+  Create and Update for Patron, Books and Loans DONE
 
-    need to finish Update for Loans...
+    can create new patron, new loan and new book
 
-    which is the return book/loan action button
-
-    can update loan or return book
+    can update patron and book and loan, which is return book
 
     return book action button now reusable
 
