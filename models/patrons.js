@@ -16,16 +16,18 @@ module.exports = (sequelize, DataTypes) => {
                               validate: { // must have letters, capped words, allows numbers
                                          notEmpty: {
                                                     msg: "Please enter Patron's first name"
-                                                   },
+                                                  }
                                         }
                          },
               last_name: {
                               allowNull: false,
                                    type: DataTypes.STRING,
-                               validate: // must have letters, capped words, allows numbers
+                               validate: {// must have letters, capped words, allows numbers
                                         notEmpty: {
                                                    msg: "Please enter Patron's last name"
-                                                  },                         },
+                                                  }
+                                        }
+                          },
                 address: {
                               allowNull: false,
                                    type: DataTypes.STRING,
@@ -48,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
                                     set: function() {
                                             // set library_id to MCL + 0100 + id
                                             var num = 100 + this.id;
-                                            var nextLibraryId = addLeadingZero(num);
+                                            var nextLibraryId = utils.addLeadingZero(num);
                                             this.setDataValue('title', `MCL`);
                                           }
                          },
@@ -58,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
                                validate: { // allows numbers and letters
                             // must have letters, capped words, at least 3 words and allows numbers
                                      notEmpty: {
-                                                msg: "Please a zip_code"
+                                                msg: "Please enter Patron's zip code"
                                                },
                                          }
                          }

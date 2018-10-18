@@ -2,7 +2,34 @@ extends ../layout
 //- new Book form
 block content
   h1= newFormTitle
-  if newFormTitle === "New Book"
+  if errors
+    form(action="/books", method="post")
+      p
+        label(for=`Title`) Title
+        input(type="text" name="title" value=book.title)
+        each item in errors
+          if item.path == 'title'
+            span(class="inputErrMsg")= item.message
+      p
+        label(for=`Author`) Author
+        input(type="text" name="author" value=book.author)
+        each item in errors
+          if item.path == 'author'
+            span(class="inputErrMsg")= item.message
+      p
+        label(for=`Genre`) Genre
+        input(type="text" name="genre" value=book.genre)
+        each item in errors
+          if item.path == 'genre'
+            span(class="inputErrMsg")= item.message
+      p
+        label(for=`Year First Published`) Year
+        input(type="text" name="first_published" value=book.first_published)
+        each item in errors
+          if item.path == 'first_published'
+            span(class="inputErrMsg")= item.message
+      input(type="submit" value=`Create New Book`)
+  else
     form(action="/books", method="post")
       p
         label(for=`Title`) Title

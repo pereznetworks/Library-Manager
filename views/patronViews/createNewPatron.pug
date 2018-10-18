@@ -6,19 +6,43 @@ block content
     p
       label(for=first_name) First Name
       input(name='first_name' type="text")
+      if errors
+        each item in errors
+          if item.path == 'first_name'
+            span(class="inputErrMsg")= item.message
     p
       label(for=last_name) Last Name
       input(name='last_name' type="text")
+      if errors
+        each item in errors
+          if item.path == 'last_name'
+            span(class="inputErrMsg")= item.message
     p
       label(for=address) Address
       input(name='address' type="text")
+      if errors
+        each item in errors
+          if item.path == 'address'
+            span(class="inputErrMsg")= item.message
     p
       label(for=email) Email
       input(name='email' type="text")
+      if errors
+        each item in errors
+          if item.path == 'email'
+            span(class="inputErrMsg") There is something wrong with this email address
     p
       label(for=library_id) Library ID
       input(name='library_id' type="text")
+      if errors
+        each item in errors
+          if item.path == 'library_id'
+            span(class="inputErrMsg") Please enter a library id number
     p
       label(for=zip_code) Zip Code
       input(name='zip_code' type="text")
+      if errors
+        each item in errors
+          if item.path == 'zip_code'
+            span(class="inputErrMsg")= item.message
     input(type="submit" value=`Create New Patron`)

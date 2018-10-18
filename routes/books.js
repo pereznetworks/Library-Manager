@@ -195,7 +195,11 @@ router.post('/books', function(req, res, next) {
     res.redirect(`/books`);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
+
+        // input validation msgs will be at different indexes based on which fields had invalid input
+
         res.render("bookViews/createNewBook", {book: db.Books.build(req.body), errors: error.errors, newFormTitle: "New Book"})
+
       } else {
         throw error;
       }
