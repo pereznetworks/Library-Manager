@@ -17,8 +17,6 @@ module.exports = (sequelize, DataTypes) => {
                                          notEmpty: {
                                                     msg: "Please enter Patron's first name"
                                                    },
-                                  checkIfNumsOnly: utils.checkIfNumbersOnly(this.title)
-                                      wordsCapped: utils.checkifCappedWords(this.title);
                                         }
                          },
               last_name: {
@@ -27,10 +25,7 @@ module.exports = (sequelize, DataTypes) => {
                                validate: // must have letters, capped words, allows numbers
                                         notEmpty: {
                                                    msg: "Please enter Patron's last name"
-                                                  },
-                                 checkIfNumsOnly: utils.checkIfNumbersOnly(this.title)
-                                     wordsCapped: utils.checkifCappedWords(this.title);
-                         },
+                                                  },                         },
                 address: {
                               allowNull: false,
                                    type: DataTypes.STRING,
@@ -38,9 +33,6 @@ module.exports = (sequelize, DataTypes) => {
                                         notEmpty: {
                                                    msg: "Please enter Patron's address"
                                                   },
-                                 checkIfNumsOnly: utils.checkIfNumbersOnly(this.address),
-                                     wordsCapped: utils.checkifCappedWords(this.address),
-                              checkAddressLength: utils.checkAddressLength(this.address)
                                          }
                          },
                   email: {
@@ -55,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
                                    type: DataTypes.STRING,
                                     set: function() {
                                             // set library_id to MCL + 0100 + id
-                                            var num = 100 + this.id
+                                            var num = 100 + this.id;
                                             var nextLibraryId = addLeadingZero(num);
                                             this.setDataValue('title', `MCL`);
                                           }
@@ -68,7 +60,6 @@ module.exports = (sequelize, DataTypes) => {
                                      notEmpty: {
                                                 msg: "Please a zip_code"
                                                },
-                           checkZipCodeLength: checkZipCodeLength(this.zip_code)
                                          }
                          }
       }, {

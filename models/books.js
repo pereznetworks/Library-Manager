@@ -17,8 +17,6 @@ module.exports = (sequelize, DataTypes) => {
                                               notEmpty: {
                                                          msg: "Please enter a book title"
                                                         },
-                                       checkIfNumsOnly: utils.checkIfNumbersOnly(this.title)
-                                           wordsCapped: utils.checkifCappedWords(this.title);
                                    }
                    },
            author: {
@@ -28,8 +26,6 @@ module.exports = (sequelize, DataTypes) => {
                                              notEmpty: {
                                                         msg: "Please enter the author of the book"
                                                        },
-                                      checkIfNumsOnly: utils.checkIfNumbersOnly(this.author)
-                                          wordsCapped: utils.checkifCappedWords(this.author);
                                    }
                    },
             genre: {
@@ -39,8 +35,6 @@ module.exports = (sequelize, DataTypes) => {
                                              notEmpty: {
                                                         msg: "Please enter the genre of the book"
                                                        },
-                                      checkIfNumsOnly: utils.checkIfNumbersOnly(this.genre)
-                                          wordsCapped: utils.checkifCappedWords(this.genre);
                                    }
                    },
   first_published: {
