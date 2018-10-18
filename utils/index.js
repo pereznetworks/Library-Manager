@@ -41,5 +41,37 @@ const getADate = (returninSoManyDays) => {
 
 };
 
+/* method used to validate input fields for model attributes */
+
+const checkIfNumbersOnly = function(inputField){
+      const hasOnlyNums = /^[0-9]+$/;
+      if (inputField.match(hasOnlyNums)) {
+        throw new Error(`Oops, this ${inputField} has only numbers`);
+      }
+    };
+
+const checkifCappedWords = function(inputField){
+      const firstLetterOfWordNotCaped = /\b([a-z])/g
+      if (inputField.match(wordsNotCapped)){
+        throw new Error(`Oops, Please capitilze first letter of each word.`);
+      }
+    };
+
+const checkAddressLength = function(inputField){
+   if (inputField.match(/\s+/g).length < 3){
+     throw new Error(`Oops, This doesn't seem to be full address.`);
+   }
+}
+
+const checkZipCodeLength = function(inputField){
+   if (inputField.match(/^(\d){5}$/g).length < 3){
+     throw new Error(`Oops, ${inputField} are 5 digits long`);
+   }
+}
+
 module.exports.addLeadingZero = addLeadingZero;
 module.exports.getADate = getADate;
+module.exports.checkIfNumbersOnly = checkIfNumbersOnly;
+module.exports.checkifCappedWords = checkifCappedWords;
+module.exports.checkAddressLength = checkAddressLength;
+module.exports.checkZipCodeLength = checkZipCodeLength;

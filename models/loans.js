@@ -1,4 +1,6 @@
 'use strict';
+const utils = require('../utils/index.js');
+
 module.exports = (sequelize, DataTypes) => {
   const Loans = sequelize.define('Loans',
       {

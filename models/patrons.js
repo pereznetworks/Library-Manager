@@ -1,5 +1,5 @@
 'use strict';
-const addLeadingZero = require('../utils/index.js').addLeadingZero;
+const utils = require('../utils/index.js');
 
 module.exports = (sequelize, DataTypes) => {
   const Patrons = sequelize.define('Patrons',
@@ -13,25 +13,34 @@ module.exports = (sequelize, DataTypes) => {
              first_name: {
                               allowNull: false,
                                    type: DataTypes.STRING,
-                              validate: { // is letters only, capitalized and no numbers
-                                                         is: /^[a-z]+$/i,
-                                                         is: /([A-Z])\w+/g,
-                                                         not: /[0-9]\+/g
+                              validate: { // must have letters, capped words, allows numbers
+                                         notEmpty: {
+                                                    msg: "Please enter Patron's first name"
+                                                   },
+                                  checkIfNumsOnly: utils.checkIfNumbersOnly(this.title)
+                                      wordsCapped: utils.checkifCappedWords(this.title);
                                         }
                          },
               last_name: {
                               allowNull: false,
                                    type: DataTypes.STRING,
-                               validate: { // letters only, no numbers
-                                                      is: /^[a-z]+$/i,
-                                                     not: /[0-9]\+/g
-                                         }
+                               validate: // must have letters, capped words, allows numbers
+                                        notEmpty: {
+                                                   msg: "Please enter Patron's last name"
+                                                  },
+                                 checkIfNumsOnly: utils.checkIfNumbersOnly(this.title)
+                                     wordsCapped: utils.checkifCappedWords(this.title);
                          },
                 address: {
                               allowNull: false,
                                    type: DataTypes.STRING,
-                               validate: { // allows numbers and letters
-                                                      is: /([A-Z])\w+/gi
+                               validate: { // must have letters, capped words, at least 3 words and allows numbers
+                                        notEmpty: {
+                                                   msg: "Please enter Patron's address"
+                                                  },
+                                 checkIfNumsOnly: utils.checkIfNumbersOnly(this.address),
+                                     wordsCapped: utils.checkifCappedWords(this.address),
+                              checkAddressLength: utils.checkAddressLength(this.address)
                                          }
                          },
                   email: {
@@ -39,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
                                    type: DataTypes.STRING,
                                validate: { // must be a properly formated email address
                                                   isEmail: true
-                                }
+                                         }
                          },
              library_id: {
                               allowNull: false,
@@ -55,7 +64,11 @@ module.exports = (sequelize, DataTypes) => {
                               allowNull: false,
                                    type: DataTypes.INTEGER,
                                validate: { // allows numbers and letters
-                                                      is: /([A-Z])\w+/gi
+                            // must have letters, capped words, at least 3 words and allows numbers
+                                     notEmpty: {
+                                                msg: "Please a zip_code"
+                                               },
+                           checkZipCodeLength: checkZipCodeLength(this.zip_code)
                                          }
                          }
       }, {
