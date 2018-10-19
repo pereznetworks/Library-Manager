@@ -100,7 +100,20 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
 
 /* GET new patrons form page. */
 router.get('/patrons/new', function(req, res, next) {
-  res.render('patronViews/createNewPatron', {patron: {}, newFormTitle: 'New Patron'});
+
+  db.Patrons.create({first_name:'.', last_name:'.', address:'.', zip_code:'0000', email:'sample@domain.com'}).then(function(patron){
+
+    res.render('patronViews/createNewPatron', {patron: {}, patron: patron, newFormTitle: 'New Patron'});
+
+  });
+
+  // db.Patrons.count().then(function(numOfPatrons){
+  //
+  //   let newPatron = db.Patrons.build();
+  //   let nextLibraryId = newPatron.library_id ;
+  //
+  //   res.render('patronViews/createNewPatron', {patron: {}, newPatron: newPatron, newFormTitle: 'New Patron'});
+  // });
 });
 
 /* POST create new patron */
@@ -109,6 +122,9 @@ router.post('/patrons', function(req, res, next) {
     res.redirect(`/patrons`);
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
+        db.Patrons.destory({
+          where: {id: req.body.id}
+        }).then 
         res.render('patronViews/createNewPatron', {patrons: db.Patrons.build(req.body), errors: error.errors, title: "New Patron"})
       } else {
         throw error;

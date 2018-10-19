@@ -8,11 +8,7 @@ const addLeadingZero = function(num){
    // only add leading zero if day is > 10
    // return statement converts interger to a string
 
-   if ( num < 10 ){
-     return (num < 10) ? ("0" + num) : num;
-   } else {
-     return num.toString();
-   }
+   return (num < 1000) ? ("0" + num) : num.toString();
 
 };
 
