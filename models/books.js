@@ -14,27 +14,27 @@ module.exports = (sequelize, DataTypes) => {
                         allowNull: false,
                              type: DataTypes.STRING,
                          validate: { // must have letters, allows numbers
-                                              notEmpty: {
-                                                         msg: "Please enter a book title"
-                                                        },
+                                        notEmpty: {
+                                                   msg: "Please enter a book title"
+                                                  },
                                    }
                    },
            author: {
                         allowNull: false,
                              type: DataTypes.STRING,
                          validate: { // must have letters, allow numbers, words capped
-                                             notEmpty: {
-                                                        msg: "Please enter the author of the book"
-                                                       },
+                                       notEmpty: {
+                                                  msg: "Please enter the author of the book"
+                                                 },
                                    }
                    },
             genre: {
                         allowNull: false,
                              type: DataTypes.STRING,
                          validate: {  // has letters, allows numbers
-                                             notEmpty: {
-                                                        msg: "Please enter the genre of the book"
-                                                       },
+                                       notEmpty: {
+                                                  msg: "Please enter the genre of the book"
+                                                 },
                                    }
                    },
   first_published: {
@@ -43,8 +43,8 @@ module.exports = (sequelize, DataTypes) => {
                          validate: { // force numbers only
                                       isNumeric: {
                                                  msg: "Please enter the year the book first published"
-                                                 },
-                                   }
+                                                 }
+                                      }
                    },
       },{
              timestamps: false,

@@ -38,11 +38,13 @@ block content
       p
         label(for="book_id") Book
         select( name="book_id" id="book_id")
+          option(value='') Please choose a Book title
           each book in books
             option(value=`${book.id}` )= book.title
       p
         label(for="patron_id") Patron
         select(name="patron_id" id="patron_id")
+          option(value='') Please choose a Patron's name
           each patron in patrons
             option(value=`${patron.id}`)= `${patron.first_name} ${patron.last_name}`
       p

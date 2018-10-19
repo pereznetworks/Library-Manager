@@ -31,10 +31,18 @@ module.exports = (sequelize, DataTypes) => {
                 address: {
                               allowNull: false,
                                    type: DataTypes.STRING,
-                               validate: { // must have letters, capped words, at least 3 words and allows numbers
+                               validate: { // not empty at least 3 words (5 word breaks)
                                         notEmpty: {
                                                    msg: "Please enter Patron's address"
                                                   },
+                                         enoughWordBreaks: function(str){
+                                                              if (str){
+                                                                  var wordBrks = /.\b/g
+                                                                  if (5 > str.match(wordBrks).length){
+                                                                    throw new Error("This doesn't seem to be a complete address");
+                                                                  }
+                                                              }
+                                                            }
                                          }
                          },
                   email: {
@@ -60,8 +68,16 @@ module.exports = (sequelize, DataTypes) => {
                                validate: { // allows numbers and letters
                             // must have letters, capped words, at least 3 words and allows numbers
                                      notEmpty: {
-                                                msg: "Please enter Patron's zip code"
+                                                msg: "Please enter Patron's zip code or postal code"
                                                },
+                                     moreThan5: function(str){
+                                                          if (str){
+                                                              var alphaNumeric = /[(A-Z0-9)]/g
+                                                              if (5 > str.match(alphaNumeric).length){
+                                                                throw new Error("This doesn't seem to be a complete zip code");
+                                                              }
+                                                          }
+                                                }
                                          }
                          }
       }, {
