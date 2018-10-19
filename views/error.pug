@@ -1,8 +1,8 @@
 extends layout
 //- css id's for styling,
-//- tag textContent with some interpolation to make error page friendlier 
+//- tag textContent with some interpolation to make error page friendlier
 block content
-  h1(id="errorTitle") Sorry, did not that page or path
+  h1(id="errorTitle") Sorry, did not find that page or path
   p(id="errorMsg") HTTP Error: #{message}
   p(id="errorStatusCode") HTTP Status code: #{error.status}
   p(id="errorStackTitle") Error stack:

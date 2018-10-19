@@ -204,7 +204,7 @@ router.post('/books', function(req, res, next) {
         throw error;
       }
   }).catch(function(error){
-      res.render(error);
+      res.render('error');
    });
 });
 
@@ -224,7 +224,7 @@ router.post('/books/update', function(req, res, next) {
            throw error;
          }
       }).catch(function(error){
-         res.render(error);
+         res.render('error');
       });
   /*
   res.locals.message = "Oops, this page is under construction";

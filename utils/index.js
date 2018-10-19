@@ -1,4 +1,6 @@
 'use strict';
+/* importing sequelize db */
+var db = require('../models/index.js');
 
 const addLeadingZero = function(num){
 
@@ -8,9 +10,24 @@ const addLeadingZero = function(num){
    // only add leading zero if day is > 10
    // return statement converts interger to a string
 
-   return (num < 1000) ? ("0" + num) : num.toString();
-
+   return (num < 10) ? ("0" + num) : num.toString();
 };
+
+const ldgZeroForLibraryId = function(num){
+
+   // for use with date strings
+   // tercery statement from stackoverflow
+   // add leading zero if num less then 10
+   // only add leading zero if day is > 10
+   // return statement converts interger to a string
+
+   return (num < 1000) ? ("0" + num) : num.toString();
+};
+
+const getNextLibraryID = function(numOfPatrons){
+    var num = ldgZeroForLibraryId(101 + numOfPatrons);
+    return `MCL${num}`;
+}
 
 const getADate = function(returninSoManyDays){
 
@@ -77,6 +94,8 @@ const checkZipCodeLength = function(inputField){
 };
 
 module.exports.addLeadingZero = addLeadingZero;
+module.exports.ldgZeroForLibraryId = ldgZeroForLibraryId;
+module.exports.getNextLibraryID = getNextLibraryID;
 module.exports.getADate = getADate;
 module.exports.checkIfNumbersOnly = checkIfNumbersOnly;
 module.exports.checkifCappedWords = checkifCappedWords;

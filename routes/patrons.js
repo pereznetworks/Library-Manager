@@ -4,6 +4,8 @@ var router = express.Router();
 var createError = require('http-errors');
 var Sequelize = require('../models').sequelize;
 
+var utils = require('../utils/index.js');
+
 /* importing sequelize db */
 var db = require('../models/index.js');
 
@@ -101,36 +103,42 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
 /* GET new patrons form page. */
 router.get('/patrons/new', function(req, res, next) {
 
-  db.Patrons.create({first_name:'.', last_name:'.', address:'.', zip_code:'0000', email:'sample@domain.com'}).then(function(patron){
+  db.Patrons.count().then(function(numOfPatrons){
 
-    res.render('patronViews/createNewPatron', {patron: {}, patron: patron, newFormTitle: 'New Patron'});
+    let newEmptyPatron = db.Patrons.build({first_name: '',last_name: '',address: '', email:'', zip_code:''})
+    let nextLibraryId = utils.getNextLibraryID(numOfPatrons);
+    newEmptyPatron.dataValues.library_id = nextLibraryId;
 
+    res.render('patronViews/createNewPatron', {patrons: newEmptyPatron, nextLibraryId: nextLibraryId, newFormTitle: 'New Patron'});
   });
-
-  // db.Patrons.count().then(function(numOfPatrons){
-  //
-  //   let newPatron = db.Patrons.build();
-  //   let nextLibraryId = newPatron.library_id ;
-  //
-  //   res.render('patronViews/createNewPatron', {patron: {}, newPatron: newPatron, newFormTitle: 'New Patron'});
-  // });
 });
 
 /* POST create new patron */
 router.post('/patrons', function(req, res, next) {
-  db.Patrons.create(req.body).then(function(patron) {
+
+  db.Patrons.create(req.body).then(function(){
     res.redirect(`/patrons`);
+
   }).catch(function(error){
+
       if(error.name === "SequelizeValidationError") {
-        db.Patrons.destory({
-          where: {id: req.body.id}
-        }).then 
-        res.render('patronViews/createNewPatron', {patrons: db.Patrons.build(req.body), errors: error.errors, title: "New Patron"})
+
+          db.Patrons.count().then(function(numOfPatrons){
+
+           let patronInfoSubmitted = db.Patrons.build(req.body)
+           let nextLibraryId = utils.getNextLibraryID(numOfPatrons);
+           patronInfoSubmitted.dataValues.library_id = nextLibraryId;
+
+           res.render('patronViews/createNewPatron', {patrons: patronInfoSubmitted , errors: error.errors, title: "New Patron"})
+        });
+
       } else {
         throw error;
       }
   }).catch(function(error){
-      res.render(error);
+    res.locals.message = "Oops, there's been some error";
+    res.status(error.status || 500);
+    res.render('error');
    });
 });
 
@@ -144,18 +152,16 @@ router.post('/patrons/update', function(req, res, next) {
         res.redirect(`/patrons`);
       }).catch(function(error){
          if(error.name === "SequelizeValidationError") {
-           res.render('patronViews/createNewPatron', {patrons: db.Patrons.build(req.body), errors: error.errors, title: "New Patron"})
+           res.render('patronViews/update', {patrons: db.Patrons.build(req.body), errors: error.errors, title: "New Patron"})
          } else {
            throw error;
          }
       }).catch(function(error){
-         res.render(error);
+        res.locals.error = createError(500);
+        res.locals.message = "Oops, there's been some error";
+        res.status(500);
+        res.render('error');
       });
-
-      // res.locals.error = createError(500);
-      // res.locals.message = "Oops, this page is under construction";
-      // res.status(500);
-      // res.render('error');
 
 });
 // add return_book route and hanlder here ??

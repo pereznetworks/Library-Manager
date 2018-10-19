@@ -150,6 +150,10 @@ input[type=text], select {
   font-style: italic;
   color: red;
 }
+.autosetLabel {
+  margin-left: 50px;
+}
 .autoSetField {
   background-color: #aaa;
+  display: none;
 }
