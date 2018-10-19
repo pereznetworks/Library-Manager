@@ -12,11 +12,21 @@ module.exports = (sequelize, DataTypes) => {
                          },
                  book_id: {
                               allowNull: false,
-                                   type: DataTypes.INTEGER
+                                   type: DataTypes.INTEGER,
+                               validate: {  // not empty must be a number
+                                             isNumeric: {
+                                                        msg: "Please choose a book title"
+                                                       },
+                                         }
                          },
                patron_id: {
                               allowNull: false,
-                                   type: DataTypes.INTEGER
+                                   type: DataTypes.INTEGER,
+                               validate: {  // not empty must be a number
+                                             isNumeric: {
+                                                        msg: "Please choose a patron"
+                                                       },
+                                         }
                          },
                loaned_on: {
                               allowNull: false,

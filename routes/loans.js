@@ -181,7 +181,7 @@ router.get('/loans/new', function(req, res, next) {
 
       res.locals.books = books.filter(function(item, index){
         // filtering out books that are already loaned out
-          if (item.Loan == null || item.Loan.dataValues.returned_on != null ){
+          if (item.Loan == null || item.Loan.dataValues.returned_on !== null ){
             // return just each book's title, author, genre and first_published
               return item.dataValues;
           }
@@ -223,7 +223,55 @@ router.post('/loans', function(req, res, next) {
   }).catch(function(error){
      // if validation fails, render the form again, with the input and validation msgs
       if(error.name === "SequelizeValidationError") {
-        res.render("loanViews/createNewLoan", {loan: db.Loans.build(req.body), errors: error.errors, title: "New Loan"})
+        Promise.all([
+           db.Patrons.findAll(),
+           db.Books.findAll({
+             include: [{
+                     model: db.Loans,
+                     required: false
+              }]
+           })
+         ])
+        .then(([patrons, books]) => {
+
+            // first for the book and patron's drop down meny....
+            // produce a new lists of available books and current patrons
+            // since we're doing this each time this form is produced
+            // books no longer available for loan will not show up on this list
+
+            res.locals.books = books.filter(function(item, index){
+              // filtering out books that are already loaned out
+                if (item.Loan == null || item.Loan.dataValues.returned_on != null ){
+                  // return just each book's title, author, genre and first_published
+                    return item.dataValues;
+                }
+              });  // produces an array of book objects, that are available to be loaned
+
+            res.locals.patrons = patrons.map(function(item, index){
+              // produces array of patron objects...
+                return item.dataValues;
+              }); // each with name, contact info and library id
+
+            /* for loaned_on date, formatted date yyyy-mm-dd */
+            res.locals.dateLoanedOn = utils.getADate();
+
+            /* for return_by date, formatted date yyyy-mm-dd */
+            const defaultDaysLoanedBookDue = 7;
+            res.locals.dateReturnBy = utils.getADate(defaultDaysLoanedBookDue);
+
+            // finally... with all this data, render the create new form
+            res.render('loanViews/createNewLoan', {loan: db.Loans.build(req.body), errors: error.errors, newFormTitle: "New Loan"});
+          })
+          .catch((error) => {
+              // set locals, only providing error in development
+            res.locals.message = error.message;
+            res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+            // render the error page
+            res.status(error.status || 500);
+            res.render('error');
+        }); // end Promise.all
+
       } else {
         // if not a validation error...
         throw error;

@@ -7,28 +7,32 @@ block content
       p
         label(for="book_id") Book
         select( name="book_id" id="book_id")
-          each book in books
-            option(value=`${book.id}` )= book.title
+          option(value='') Please choose a book
+          each item in books
+            option(value=`${item.id}`)= item.title
         each item in errors
           if item.path == 'book_id'
             span(class="inputErrMsg")= item.message
       p
         label(for="patron_id") Patron
         select(name="patron_id" id="patron_id")
-          each patron in patrons
-            option(value=`${patron.id}`)= `${patron.first_name} ${patron.last_name}`
+          option(value='') Please choose a patron
+          each item in patrons
+            option(value=`${item.id}`)= `${item.first_name} ${item.last_name}`
         each item in errors
           if item.path == 'patron_id'
             span(class="inputErrMsg")= item.message
       p
         label(for="loaned_on") Loaned on:
-        input(type="text" name="loaned_on" id="loaned_on" value=dateLoanedOn)
+          span(class='autosetLabel')= `${value=dateLoanedOn}`
+        input(class='autoSetField' type="text" name="loaned_on" id="loaned_on" value=dateLoanedOn)
         each item in errors
           if item.path == 'loaned_id'
             span(class="inputErrMsg")= item.message
       p
         label(for="return_by") Return By:
-        input(type="text" name="return_by" id="return_by" value=dateReturnBy)
+          span(class='autosetLabel')= `${value=dateReturnBy}`
+        input(class='autoSetField' type="text" name="return_by" id="return_by" value=dateReturnBy)
         each item in errors
           if item.path == 'return_by'
             span(class="inputErrMsg")= item.message
@@ -38,21 +42,21 @@ block content
       p
         label(for="book_id") Book
         select( name="book_id" id="book_id")
-          option(value='') Please choose a Book title
-          each book in books
-            option(value=`${book.id}` )= book.title
+          option(value='') Please choose a book
+          each item in books
+            option(value=`${item.id}`)= item.title
       p
         label(for="patron_id") Patron
         select(name="patron_id" id="patron_id")
-          option(value='') Please choose a Patron's name
-          each patron in patrons
-            option(value=`${patron.id}`)= `${patron.first_name} ${patron.last_name}`
+          option(value='') Please choose a patron
+          each item in patrons
+            option(value=`${item.id}`)= `${item.first_name} ${item.last_name}`
       p
         label(for="loaned_on") Loaned on:
-          span(class='autosetLabel')= `${dateLoanedOn}`
-        input(class="autoSetField" type="text" name="loaned_on" id="loaned_on" value=dateLoanedOn)
+          span(class='autosetLabel')= `${value=dateLoanedOn}`
+        input(class='autoSetField' type="text" name="loaned_on" id="loaned_on" value=dateLoanedOn)
       p
         label(for="return_by") Return By:
-          span(class='autosetLabel')= `${dateReturnBy}`
-        input(class="autoSetField" type="text" name="return_by" id="return_by" value=dateReturnBy )
+          span(class='autosetLabel')= `${value=dateReturnBy}`
+        input(class='autoSetField' type="text" name="return_by" id="return_by" value=dateReturnBy)
       input(type="submit" value=`Create New Loans`)
