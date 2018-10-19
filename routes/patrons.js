@@ -116,7 +116,7 @@ router.get('/patrons/new', function(req, res, next) {
 /* POST create new patron */
 router.post('/patrons', function(req, res, next) {
 
-  db.Patrons.create(req.body).then(function(){
+  db.Patrons.create(req.body).then(function(patron){
     res.redirect(`/patrons`);
 
   }).catch(function(error){

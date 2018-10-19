@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
                                    type: DataTypes.STRING,
                                     set: function() {
                                             // set library_id to MCL + 0100 + id
-                                            var num = 100 + this.id;
+                                            var num = 100 + this.getDataValue('id');
                                             var nextLibraryId = utils.ldgZeroForLibraryId(num);
                                             this.setDataValue('library_id', `MCL${nextLibraryId}`);
                                           }
@@ -81,26 +81,6 @@ module.exports = (sequelize, DataTypes) => {
                                          }
                          }
       }, {
-          getterMethods: {
-                            library_id: function() {
-                                    // this getter method only works for existing patrons
-                                    // get library_id to MCL + (add leading zero (100 + id))
-                                    var num = 100 + this.id;
-                                    var nextLibraryId = utils.ldgZeroForLibraryId(num);
-                                    return `MCL${nextLibraryId}`;
-                                  },
-
-          },
-          setterMethod: {
-                            library_id: function() {
-                                    // this setter only runs when actually creating a new patron
-                                    // set library_id to MCL + (add leading zero (100 + id))
-                                    var num = 100 + this.id;
-                                    var nextLibraryId = utils.ldgZeroForLibraryId(num);
-                                    this.setDataValue('library_id', `MCL${nextLibraryId}`);
-                                  },
-
-          },
           timestamps: false,
           underscored: true
       }
