@@ -24,7 +24,7 @@ table
           td= item.returned_on
           td
             if item.returned_on == null
-              - var book_id = item.book_id
+              - var loanId = item.id
               include ../reusable/returnBookButton
     else
       tr

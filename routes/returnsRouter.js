@@ -14,19 +14,17 @@ router.get('/return/return_book/:id', function(req, res, next) {
     var idInt = parseInt(req.params.id);
 
     db.Loans.findOne({
-         where: { id: idInt },
+         where: { id: req.params.id },
          include: [{
            model: db.Books,
            where: { id: Sequelize.col('Loans.book_id')},
          }]
-    })
-    .then((loan) => {
+    }).then((loan) => {
       return db.Patrons.findById(loan.patron_id).then(patron => {
         loan.Patron = patron;
         return loan;
        });
-    })
-    .then((loan) => {
+    }).then((loan) => {
 
         /* break down book array of objects..
            to just what is needed to return the book..
