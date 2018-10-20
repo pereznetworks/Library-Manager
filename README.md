@@ -4,9 +4,10 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [Project Status](#project-status)
   - [Project Updates](#project-updates)
+    - [Project Update 22](#project-update-22)
     - [Project Update 21](#project-update-21)
     - [Project Update 20](#project-update-20)
-    - [Project Update 19 Milestone 1](#project-update-19-milestone-1)
+    - [Project Update 19](#project-update-19)
     - [Project Update 18](#project-update-18)
     - [Project Update 17](#project-update-17)
     - [Project Update 16](#project-update-16)
@@ -40,25 +41,15 @@
 
   DOING:
 
-         adding validate rules to model attributes
-         addign validation check and msg to forms
+        not sure if will need a Delete op for this app
 
   NEXT:
 
-         submit actions for create, update and return books page
-
-         input validation for each form and implementing error pages
-            will fix invalid dates in seed data
-
-         modify forms as create, update queries and/or associations are tested and working
-
-         not sure if will need a Delete op for this app
+        verify each view, table and form perform to project speqs
 
   TODO:
 
-         verify each view, table and form perform to project speqs
-
-         verify project speqs across project
+        verify project speqs across project
 
   DONE:
 
@@ -100,7 +91,17 @@
           also need exclude books already loaned out
 
         DONE with C.R.U in db C.R.U.D. ops
+
             no requirement in Library Manager for D ops in
+
+        All FORMS and VALIDATION working
+
+          submit actions for create, update and return books page
+
+          input validation for each form and implementing error pages
+             will fix invalid dates in seed data
+
+          modify forms as create, update queries and/or associations are tested and working
 
 
   [back to Content Menu](#contents)
@@ -110,6 +111,55 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+## Project Update 22:
+
+  all forms and validation working
+
+    no client side validation used
+    all data is server side model-based validation
+
+    forms submit data
+    all fields validated
+    records created in table correctly
+    can update records
+
+    in new loan form
+        books and patrons menu work properly
+        default option is the "please choose an option" field
+          default options submits a null string
+        date are auto-populated
+          date input fields are actually hidden
+          dates displayed in span elements that look like input fields
+
+    in return book/loan form
+        return date are auto-populated
+          date input field is hidden
+          date displayed in span elements that look like input fields
+
+    new patron and update patron
+        address and email get additional validation
+          in addition to notEmpty, format checking also
+        libraryId gets same treatment as date field
+          autopopulated, hidden input, displaying span tag
+        zip code get is isNumberic validation
+
+    book patron
+        this works also
+        all fields get notEmpty validation
+        year published get isNumberic validation
+
+    cannot set a derived-attribute when a record is being created
+
+      the real attribute it's based on does'nt exist yet
+       so cannot set library_id, using a setter based on id of the new record
+          cause there is no id yet.... !?@#$%
+
+      also there does not seem to a method for ...
+        custom alphanumeric auto-incremented primary key
+
+      did some input field custom styling
+
+
 
 ## Project Update 21:
 
@@ -136,7 +186,7 @@
      and changed all evaluations of returned_on field
        test for == null instead of length == 0
 
-## Project Update 19 Milestone 1:
+## Project Update 19:
 
    MILESTONE #1
 
