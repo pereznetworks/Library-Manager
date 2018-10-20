@@ -164,3 +164,17 @@ input[type=text], select {
   background-color: #aaa;
   display: none;
 }
+.updateautosetLabel {
+  width: 100px;
+  margin-left: 54px;
+  padding: 10px 118px 10px 12px;;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  border-radius: 2px;
+  border: 2px inset #E7E7E7;
+  background-color: #aaa;
+}
+.updateautoSetField {
+  background-color: #aaa;
+  display: none;
+}
