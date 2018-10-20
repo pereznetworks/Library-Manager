@@ -45,7 +45,8 @@ else if title == "Patron"
       else if columnNo == 5
         p
           label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` name='library_id' type="text" value=patronObject.library_id)
+              span(class='autosetLabel')= patronObject.dataValues.library_id
+          input(class='autoSetField' id=`${value.toLowerCase()}` name='library_id' type="text" value=patronObject.dataValues.library_id)
       else if columnNo == 6
         p
           label(for=`${value.toLowerCase()}`)= value

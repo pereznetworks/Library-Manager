@@ -34,7 +34,7 @@ block content
     p
       label(for=library_id) Library ID:
         span(class='autosetLabel')= `${value=patrons.dataValues.library_id}`
-      input(class="autoSetField" name='library_id' type="text" disabled value=patrons.dataValues.library_id)
+      input(class="autoSetField" name='library_id' type="text" value=patrons.dataValues.library_id)
     p
       label(for=zip_code) Zip Code
       input(name='zip_code' type="text" value=patrons.dataValues.zip_code)

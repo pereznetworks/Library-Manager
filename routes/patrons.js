@@ -62,7 +62,7 @@ router.get('/patrons/patron_detail/:id', function(req, res, next) {
        }]
     }).then(function(Patron){
 
-      // breaking down the array of object in the patron details
+      // breaking down the array of objects in the patron details
       // to be read as rows in the patron update and details table
       let patronObject = Patron.dataValues;
 
@@ -110,6 +110,7 @@ router.get('/patrons/new', function(req, res, next) {
     newEmptyPatron.dataValues.library_id = nextLibraryId;
 
     res.render('patronViews/createNewPatron', {patrons: newEmptyPatron, nextLibraryId: nextLibraryId, newFormTitle: 'New Patron'});
+
   });
 });
 

@@ -55,12 +55,11 @@ module.exports = (sequelize, DataTypes) => {
              library_id: {
                               allowNull: false,
                                    type: DataTypes.STRING,
-                                    set: function() {
-                                            // set library_id to MCL + 0100 + id
-                                            var num = 100 + this.getDataValue('id');
-                                            var nextLibraryId = utils.ldgZeroForLibraryId(num);
-                                            this.setDataValue('library_id', `MCL${nextLibraryId}`);
-                                          }
+                               validate: { // auto set MCL0100 + patron count + 1
+                                        notEmpty: {
+                                                   msg: "library_id is auto set, so this error should never happen"
+                                                  }
+                                        }
                          },
                zip_code: {
                               allowNull: false,
