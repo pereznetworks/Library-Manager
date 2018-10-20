@@ -36,7 +36,7 @@ block content
         each item in errors
           if item.path == 'return_by'
             span(class="inputErrMsg")= item.message
-      input(type="submit" value=`Create New Loans`)
+      input(type="submit" value=`Create New Loan`)
   else
     form(action="/loans", method="post")
       p
@@ -59,4 +59,4 @@ block content
         label(for="return_by") Return By:
           span(class='autosetLabel')= `${value=dateReturnBy}`
         input(class='autoSetField' type="text" name="return_by" id="return_by" value=dateReturnBy)
-      input(type="submit" value=`Create New Loans`)
+      input(type="submit" value=`Create New Loan`)

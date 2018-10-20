@@ -13,26 +13,29 @@ router.get('/return/return_book/:id', function(req, res, next) {
   // parsing to int because the id field in the table is an INTEGER
     var idInt = parseInt(req.params.id);
 
-    db.Books.findOne({
+    db.Loans.findOne({
          where: { id: idInt },
          include: [{
-           model: db.Loans,
-           where: { book_id: Sequelize.col('Books.id')},
-           include: [{
-                     model: db.Patrons
-              }]
+           model: db.Books,
+           where: { id: Sequelize.col('Loans.book_id')},
          }]
     })
-    .then((book) => {
+    .then((loan) => {
+      return db.Patrons.findById(loan.patron_id).then(patron => {
+        loan.Patron = patron;
+        return loan;
+       });
+    })
+    .then((loan) => {
 
         /* break down book array of objects..
            to just what is needed to return the book..
          */
-        res.locals.loanId = book.Loan.dataValues.id;
-        res.locals.bookTitle = book.dataValues.title;
-        res.locals.patronName = `${book.Loan.Patron.first_name} ${book.Loan.Patron.last_name}`;
-        res.locals.loaned_on = book.Loan.dataValues.loaned_on;
-        res.locals.return_by = book.Loan.dataValues.return_by;
+        res.locals.loanId = loan.dataValues.id;
+        res.locals.bookTitle = loan.Book.dataValues.title;
+        res.locals.patronName = `${loan.Patron.first_name} ${loan.Patron.last_name}`;
+        res.locals.loaned_on = loan.dataValues.loaned_on;
+        res.locals.return_by = loan.dataValues.return_by;
 
         /* get returned_on date, formatted date yyyy-mm-dd */
         res.locals.returnedOn = utils.getADate();
