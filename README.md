@@ -41,11 +41,19 @@
 
   DOING:
 
-        not sure if will need a Delete op for this app
+        clean up code...
+
+            clean up duplicated and unneeded templates
+            get code as DRY as possible
+            comment code or make code self-explanatory
+
+        not sure if will implement a Delete, optional, op for this app
+
+        plan out extra credit features
 
   NEXT:
 
-        verify each view, table and form perform to project speqs
+        verify each model, route, view, table and form perform to project speqs
 
   TODO:
 
