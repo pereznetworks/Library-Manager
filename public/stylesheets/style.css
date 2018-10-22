@@ -42,8 +42,10 @@ ul {
   line-height: 1.3em;
 }
 nav {
+  margin: auto 0;
   color: #fff;
   background-color: #019875;
+  width: 95%;
   /*border-bottom: 2px solid #D8B493;*/
 }
 nav ul li a {
