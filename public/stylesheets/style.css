@@ -47,10 +47,9 @@ p {
 ul {
   margin: auto 0;
   width: 90%;
-  padding: 0;
   list-style-type: none;
-  margin-bottom: 10px;
-  line-height: 1.3em;
+  margin: 0 10px;
+  line-height: 1.6em;
 }
 nav {
   margin: auto 0;
@@ -199,4 +198,75 @@ input[type=text], select {
 }
 .pagedTable:active {
   display:block;
+}
+
+#search {
+  margin-left: 0%;
+  margin-right: 0%
+}
+#searchForm {
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 8px;
+  border-radius: 2px;
+  border-color: #E7E7E7;
+}
+
+.searchLi {
+  padding-left: 0;
+}
+#searchForm input{
+  margin: 0;
+  padding: 0;
+}
+
+#searchForm #searchInput {
+  margin-left: 10px;
+}
+
+#searchForm input[type=submit] {
+  background: #019875;
+  font-family: "Garamond", serif;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#searchForm input[type=submit]:hover {
+  color: #000;
+}
+
+@media only screen and (min-width: 1080px){
+  .searchLi {
+    padding-left: 30%;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .searchLi {
+    padding-left: 0;
+  }
+  ul {
+    margin: auto 0;
+    width: 90%;
+    list-style-type: none;
+    margin: 0 1px;
+    line-height: 1.6em;
+  }
+  nav ul li {
+    color: #fff;
+    background-color: #019875;
+    display: inline-block;
+    list-style: none;
+    padding-left: 0;
+  }
+  nav ul li a {
+    color:#fff;
+    background-color: #019875;
+    margin: 0 2px;
+  }
+  #searchForm #searchInput {
+    margin-left: 2px;
+  }
 }

@@ -16,6 +16,12 @@ html
           a(href="/patrons") Patrons
         li
           a(href="/loans") Loans
+        li(class='searchLi')
+          if title != 'Welcome to Library Manager'
+            //- (action="/search", method="post")
+            form(id='searchForm')
+                input(id='searchInput' name="searchInput" type="text" placeholder='')
+                input(id='searchSubmit' type="submit" value="Search")
     section(id="section1")
       block content
     footer

@@ -41,6 +41,8 @@
 
   DOING:
 
+        implement search feature across all pages
+
         clean up code...
 
             clean up duplicated and unneeded templates
@@ -60,6 +62,12 @@
         verify project speqs across project
 
   DONE:
+
+    Project Extra Credit:
+
+       Pagination for Books, Loans and Patrons page
+
+    Project Expectations:
 
         basic express app, routing and Sequelize environment setup
         library db and table models
@@ -119,6 +127,41 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 23:
+
+  Extra Credit Feature: Pagination
+
+  Using jquery and front-end css/javascript to due actual pagination links
+
+  On server-side:
+
+  wrote and added a paginate method to my utils library
+
+  made changes to book, loan and patron table template to....
+
+    implement pagination in the way the table on each page is displayed
+
+    array of book, loans or patron data is processed into a pagesArray
+
+      only if more than 10 rows will appear in a table
+
+    otherwise normal process for 'tabling' of book, loans or patron data
+
+  But nav bar for pagination links in footer of each page,
+
+    displays at bottom of page at all times
+
+    is blank, no pagination links, if no pagination needed
+
+  also fixed overdue and checked out books and loans
+
+    using the same rules for both
+
+     so both now display correct data
+
+
+
 ## Project Update 22:
 
   all forms and validation working
