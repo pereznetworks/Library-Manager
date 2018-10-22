@@ -18,10 +18,21 @@ html
           a(href="/loans") Loans
         li(class='searchLi')
           if title != 'Welcome to Library Manager'
-            //- (action="/search", method="post")
-            form(id='searchForm')
-                input(id='searchInput' name="searchInput" type="text" placeholder='')
-                input(id='searchSubmit' type="submit" value="Search")
+            if title == 'Books'
+              //- (action="/books/search", method="get")
+              form(id='searchForm' action="/books/search", method="get")
+                  input(id='searchInput' name="searchInput" type="text" placeholder='')
+                  input(id='searchSubmit' type="submit" value="Search")
+            else if title == 'Loans'
+              //- (action="/loans/search", method="get")
+              form(id='searchForm')
+                  input(id='searchInput' name="searchInput" type="text" placeholder='')
+                  input(id='searchSubmit' type="submit" value="Search")
+            else if title == 'Patrons'
+              //- (action="/patrons/search", method="get")
+              form(id='searchForm')
+                  input(id='searchInput' name="searchInput" type="text" placeholder='')
+                  input(id='searchSubmit' type="submit" value="Search")
     section(id="section1")
       block content
     footer

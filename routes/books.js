@@ -250,6 +250,54 @@ router.post('/books/update', function(req, res, next) {
   */
 });
 
+/* search route for Books page. */
+router.get('/books/search/', function(req, res, next) {
+  db.Books.findAll({
+                author: {
+                   $contains: `${req.query.searchInput}`
+                  },
+                genre: {
+                   $contains: `${req.query.searchInput}`
+                  },
+                title: {
+                   $contains: `${req.query.searchInput}`
+                  },
+                first_published: {
+                   $contains: `${req.query.searchInput}`
+                 }
+  }).then(function(books){
+
+    res.locals.queryForAll = locals.booksPg.queryForAll;
+    res.locals.queryForOverdue = locals.booksPg.queryForOverdue;
+    res.locals.queryForCheckedOut = locals.booksPg.queryForCheckedOut;
+    res.locals.createNewRoute = locals.booksPg.createNewRoute;
+    res.locals.columnArray = locals.loansPg.columnArray;
+    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+
+    if (books){
+            // this maps an array of the book details, which can read as rows in the book detail table
+      let booksArray = books.map(function(item, index){
+        return item.dataValues
+      });
+      if (booksArray.length < 9) {
+        res.render("bookViews/index", {rowArray: booksArray, title: "Books" } );
+      } else {
+        let pagesArray = utils.paginate(booksArray);
+        res.render("bookViews/index", {pagesArray: pagesArray, title: "Books" } );
+      }
+    }
+  }).catch(function(error){
+    // set locals, only providing error in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
+   });
+});
 
 // exporting router so it can be used by express app
 module.exports = router;
