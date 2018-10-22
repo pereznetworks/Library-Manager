@@ -3,6 +3,8 @@ html
   head
     title Library Manager
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="https://code.jquery.com/jquery-3.3.1.min.js")
+    script(src="/javascripts/paginate.js")
   body
     nav
       ul
@@ -14,4 +16,17 @@ html
           a(href="/patrons") Patrons
         li
           a(href="/loans") Loans
-    block content
+    section(id="section1")
+      block content
+    footer
+      nav(id='paginateNav')
+       if pagesArray
+         ul Pages:
+          - var navPageIndex = 1
+          each page in pagesArray
+            li
+             a(id=`nav${navPageIndex}` href=`#page${navPageIndex}`)= navPageIndex
+             - navPageIndex += 1
+       else
+         ul
+            li

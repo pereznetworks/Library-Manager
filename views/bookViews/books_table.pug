@@ -1,17 +1,36 @@
 // displays values of each book in array of books
-table
-  thead
-    tr
-      th Title
-      th Author
-      th Genre
-      th Year Released
-  tbody
+
+if !pagesArray
+  table
+    thead
+      tr
+        th Title
+        th Author
+        th Genre
+        th Year Released
+    tbody
     each item in rowArray
-      if item != null
+      tr
+        td
+          a(href=`books/book_detail/${item.id}`)= item.title
+        td= item.author
+        td= item.genre
+        td= item.first_published
+else
+  - var tablePageIndex = 1
+  each page in pagesArray
+    table(class='pagedTable' id=`page${tablePageIndex}`)
+      thead
+        tr
+          th Title
+          th Author
+          th Genre
+          th Year Released
+      each item in page
         tr
           td
             a(href=`books/book_detail/${item.id}`)= item.title
           td= item.author
           td= item.genre
           td= item.first_published
+    - tablePageIndex += 1

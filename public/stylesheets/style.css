@@ -2,6 +2,17 @@ body {
   margin: .5% auto;
   width: 90%;
   font: 18px "Garamond", serif;
+  align-content: center;
+}
+#section1 {
+  margin: 0;
+  width:auto;
+  height: 550px;
+}
+footer {
+  margin: 0;
+  width:auto;
+  height: 50px;
 }
 h1{}
 a {
@@ -139,7 +150,9 @@ input[type=text], select {
   background-color: #01b189;
 }
 
-#errorTitle{}
+#errorTitle {
+}
+
 #errorMsg, #errorStatusCode, #errorStackTitle{
   font-size: 1em;
 }
@@ -179,4 +192,11 @@ input[type=text], select {
 .updateautoSetField {
   background-color: #aaa;
   display: none;
+}
+
+.pagedTable {
+  display:none;
+}
+.pagedTable:active {
+  display:block;
 }

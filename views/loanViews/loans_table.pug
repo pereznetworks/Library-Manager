@@ -1,30 +1,52 @@
-//- TODO: this table will need to display info on multiple loans, one row for each loan
-//- TODO: pass in a loansTable from select or filter query
-//- TODO: iterate through loansTable
-//- TODO: for each loan.detailView in loansTable, tr
-//- TODO: for each item in loan.detailView, td + value
-//- TODO: insert route path/#{book_id} for each a(href="book_detail")
-//- TODO: insert route path/#{patron_id} for each a(href="patron_detail")
-table
-  thead
-    tr
-      th Book
-      th Patron
-      th Loaned on
-      th Return by
-      th Returned on
-      th Action
-  tbody
-    each item in rowArray
+//- template for Loans table on Loans page
+if !pagesArray
+  table
+    thead
       tr
-        td
-          a(href=`${bookHrefPath}/${item.id}`)= item.title
-        td
-          a(href=`${patronHrefPath}/${item.Loan.Patron.id}`)= `${item.Loan.Patron.first_name} ${item.Loan.Patron.last_name}`
-        td= item.Loan.loaned_on
-        td= item.Loan.return_by
-        td= item.Loan.returned_on
-        td
-          if item.Loan.returned_on == null || item.Loan.returned_on.length == 0
-            - var loanId = item.Loan.id
-            include ../reusable/returnBookButton
+        th Book
+        th Patron
+        th Loaned on
+        th Return by
+        th Returned on
+        th Action
+    tbody
+      each item in rowArray
+        tr
+          td
+            a(href=`${bookHrefPath}/${item.id}`)= item.title
+          td
+            a(href=`${patronHrefPath}/${item.Loan.Patron.id}`)= `${item.Loan.Patron.first_name} ${item.Loan.Patron.last_name}`
+          td= item.Loan.loaned_on
+          td= item.Loan.return_by
+          td= item.Loan.returned_on
+          td
+            if item.Loan.returned_on == null || item.Loan.returned_on.length == 0
+              - var loanId = item.Loan.id
+              include ../reusable/returnBookButton
+else
+  - var tablePageIndex = 1
+  each page in pagesArray
+    table(class='pagedTable' id=`page${tablePageIndex}`)
+      thead
+        tr
+          th Book
+          th Patron
+          th Loaned on
+          th Return by
+          th Returned on
+          th Action
+      tbody
+        each item in page
+          tr
+            td
+              a(href=`${bookHrefPath}/${item.id}`)= item.title
+            td
+              a(href=`${patronHrefPath}/${item.Loan.Patron.id}`)= `${item.Loan.Patron.first_name} ${item.Loan.Patron.last_name}`
+            td= item.Loan.loaned_on
+            td= item.Loan.return_by
+            td= item.Loan.returned_on
+            td
+              if item.Loan.returned_on == null || item.Loan.returned_on.length == 0
+                - var loanId = item.Loan.id
+                include ../reusable/returnBookButton
+    - tablePageIndex += 1

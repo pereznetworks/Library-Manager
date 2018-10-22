@@ -36,7 +36,14 @@ router.get('/loans', function(req, res, next) {
           return item
         }
       });
-      res.render("loanViews/index", {rowArray: loansArray, title: "Loans" } );
+
+      if (loansArray.length < 9) {
+        res.render("loanViews/index", {rowArray: loansArray, title: "Loans"} );
+      } else {
+        let pagesArray = utils.paginate(loansArray);
+        res.render("loanViews/index", {pagesArray: pagesArray, title: "Loans"} );
+      }
+
     }
 
   }).catch(function(error){
@@ -88,7 +95,14 @@ router.get('/loans/overdue', function(req, res, next){
           }
         }
       });
-      res.render("loanViews/index", {rowArray: loansArray, title: "Loans" } );
+
+      if (loansArray.length < 9) {
+        res.render("loanViews/index", {rowArray: loansArray, title: "Loans", filterTitle: 'Overdue Loans' } );
+      } else {
+        let pagesArray = utils.paginate(loansArray);
+        res.render("loanViews/index", {pagesArray: pagesArray, title: "Loans", filterTitle: 'Overdue Loans' } );
+      }
+
     }
 
   }).catch(function(error){
@@ -140,7 +154,14 @@ router.get('/loans/checkedout', function(req, res, next){
           }
         }
       });
-      res.render("loanViews/index", {rowArray: loansArray, title: "Loans" } );
+
+      if (loansArray.length < 9) {
+        res.render("loanViews/index", {rowArray: loansArray, title: "Loans", filterTitle: 'Checked Out Loans' } );
+      } else {
+        let pagesArray = utils.paginate(loansArray);
+        res.render("loanViews/index", {pagesArray: pagesArray, title: "Loans", filterTitle: 'Checked Out Loans' } );
+      }
+
     }
 
   }).catch(function(error){
@@ -157,12 +178,11 @@ router.get('/loans/checkedout', function(req, res, next){
 
 });
 
-
 /* GET new loans form page
- * okay, so this is a bit more involved than than the new Patron and New Loan forms
+ * okay, so this is a bit more involved than than the new Patron and New Book forms
 */
 router.get('/loans/new', function(req, res, next) {
-// handling multiple async calls, chaining callbacks with then and catch
+ // handling multiple async calls, chaining callbacks with then and catch
   Promise.all([
      db.Patrons.findAll(),
      db.Books.findAll({

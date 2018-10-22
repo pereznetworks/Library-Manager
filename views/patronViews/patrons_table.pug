@@ -1,24 +1,40 @@
-//- TODO: this table will need to display info on all patron, one row for each loan
-//- TODO: pass in a patronsTable from findALL select query
-//- TODO: iterate through patronsTable
-//- TODO: for each patron.detailView in patronsTable, tr
-//- TODO: for each item in patron.detailView, td + value
-//- TODO: insert route path/#{book_id} for each a(href="book_detail")
-//- TODO: insert route path/#{patron_id} for each a(href="patron_detail")
-table
-  thead
-    tr
-      th Name
-      th Address
-      th Email
-      th Library ID
-      th Zip
-  tbody
-    each item in rowArray
+//- template for patrons table on patrons page
+if !pagesArray
+  table
+    thead
       tr
-        td
-          a(href=`${patronHrefPath}/${item.id}`)= item.first_name + ' ' + item.last_name
-        td= item.address
-        td= item.email
-        td= item.library_id
-        td= item.zip_code
+        th Name
+        th Address
+        th Email
+        th Library ID
+        th Zip
+    tbody
+      each item in rowArray
+        tr
+          td
+            a(href=`${patronHrefPath}/${item.id}`)= item.first_name + ' ' + item.last_name
+          td= item.address
+          td= item.email
+          td= item.library_id
+          td= item.zip_code
+else
+  - var tablePageIndex = 1
+  each page in pagesArray
+    table(class='pagedTable' id=`page${tablePageIndex}`)
+      thead
+        tr
+          th Name
+          th Address
+          th Email
+          th Library ID
+          th Zip
+      tbody
+        each item in page
+          tr
+            td
+              a(href=`${patronHrefPath}/${item.id}`)= item.first_name + ' ' + item.last_name
+            td= item.address
+            td= item.email
+            td= item.library_id
+            td= item.zip_code
+    - tablePageIndex += 1

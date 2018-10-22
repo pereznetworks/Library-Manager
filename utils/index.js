@@ -93,6 +93,18 @@ const checkZipCodeLength = function(inputField){
 
 };
 
+const paginate = function(anArray){
+    let pagesArray = []
+    let noPages = Math.floor(anArray.length/10)
+    for (let pageIndex = 0; pageIndex <= noPages; pageIndex++)
+        pagesArray[pageIndex] = anArray.filter(
+            function(item, index){
+              if (pageIndex == Math.floor(index/10))
+               return item
+              });
+    return pagesArray;
+    };
+
 module.exports.addLeadingZero = addLeadingZero;
 module.exports.ldgZeroForLibraryId = ldgZeroForLibraryId;
 module.exports.getNextLibraryID = getNextLibraryID;
@@ -101,3 +113,4 @@ module.exports.checkIfNumbersOnly = checkIfNumbersOnly;
 module.exports.checkifCappedWords = checkifCappedWords;
 module.exports.checkAddressLength = checkAddressLength;
 module.exports.checkZipCodeLength = checkZipCodeLength;
+module.exports.paginate = paginate;

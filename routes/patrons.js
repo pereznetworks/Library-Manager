@@ -4,13 +4,9 @@ var router = express.Router();
 var createError = require('http-errors');
 var Sequelize = require('../models').sequelize;
 
-var utils = require('../utils/index.js');
-
-/* importing sequelize db */
-var db = require('../models/index.js');
-
-/* importing locals for rendering in pub templates */
-var locals = require("../views/locals")
+var db = require('../models/index.js'); /* importing sequelize db */
+var locals = require("../views/locals"); /* importing static vars */
+var utils = require('../utils/index.js') /* importing my own helper utils */
 
 /* GET patrons page. */
 router.get('/patrons', function(req, res, next) {
@@ -20,10 +16,18 @@ router.get('/patrons', function(req, res, next) {
     res.locals.createNewRoute = locals.patronsPg.createNewRoute;
     res.locals.patronHrefPath = locals.patronsPg.patronHrefPath;
     if (patrons){
+
       let patronsArray = patrons.map(function(item, index){
         return item.dataValues
       });
-      res.render("patronViews/index", {rowArray: patronsArray, title: "Patrons" } );
+
+      if (patronsArray.length < 9) {
+        res.render("patronViews/index", {rowArray: patronsArray, title: "Patrons" });
+      } else {
+        let pagesArray = utils.paginate(bpatronsArray);
+        res.render("patronViews/index", {pagesArray: pagesArray, title: "Patrons" });
+      }
+
     }
   }).catch(function(error){
     // set locals, only providing error in development

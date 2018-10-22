@@ -4,11 +4,9 @@ var router = express.Router();
 var createError = require('http-errors');
 var Sequelize = require('../models').sequelize;
 
-/* importing sequelize db */
-var db = require('../models/index.js');
-
-/* importing locals for rendering in pub templates */
-var locals = require("../views/locals");
+var db = require('../models/index.js'); /* importing sequelize db */
+var locals = require("../views/locals"); /* importing static vars */
+var utils = require('../utils/index.js') /* importing my own helper utils */
 
 /* GET books page. */
 router.get('/books', function(req, res, next) {
@@ -28,7 +26,12 @@ router.get('/books', function(req, res, next) {
       let booksArray = books.map(function(item, index){
         return item.dataValues
       });
-      res.render("bookViews/index", {rowArray: booksArray, title: "Books" } );
+      if (booksArray.length < 9) {
+        res.render("bookViews/index", {rowArray: booksArray, title: "Books" } );
+      } else {
+        let pagesArray = utils.paginate(booksArray);
+        res.render("bookViews/index", {pagesArray: pagesArray, title: "Books" } );
+      }
     }
   }).catch(function(error){
     // set locals, only providing error in development
@@ -47,6 +50,7 @@ router.get('/books/overdue', function(req, res, next){
       include: [{
                 model: db.Loans,
                 where: { book_id: Sequelize.col('Books.id')},
+                required: true,
                 include: [{
                           model: db.Patrons,
                         }]
@@ -65,13 +69,18 @@ router.get('/books/overdue', function(req, res, next){
     if (books){
     // this maps an array of the book details, which can read as rows in the book detail table
     // in this case - an array of OVERDUE books
-      let booksArray = books.map(function(item, index){
+      let booksArray = books.filter(function(item, index){
         let returnBy = new Date(item.Loan.dataValues.return_by)
-        if (Date.now() > returnBy && item.Loan.dataValues.returned_on.length == 0){
-          return item.dataValues
-        }
+          if (Date.now() > returnBy && item.Loan.dataValues.returned_on == null ){
+            return item.dataValues
+          }
       });
-      res.render("bookViews/index", {rowArray: booksArray, title: "Books", filterTitle: 'Overdue Books'} );
+      if (booksArray.length < 9) {
+        res.render("bookViews/index", {rowArray: booksArray, title: "Books", filterTitle: 'Overdue Books' } );
+      } else {
+        let pagesArray = utils.paginate(booksArray);
+        res.render("bookViews/index", {pagesArray: pagesArray, title: "Books", filterTitle: 'Overdue Books' } );
+      }
     }
   }).catch(function(error){
     // set locals, only providing error in development
@@ -90,6 +99,7 @@ router.get('/books/checkedout', function(req, res, next){
       include: [{
                 model: db.Loans,
                 where: { book_id: Sequelize.col('Books.id')},
+                required: true,
                 include: [{
                           model: db.Patrons,
                         }]
@@ -108,11 +118,18 @@ router.get('/books/checkedout', function(req, res, next){
     if (books){
       // this maps an array of the book details, which can read as rows in the book detail table
       // in this case an array CHECKED OUT Books
-      let booksArray = books.map(function(item, index){
-        if (item.Loan.dataValues.loaned_on.length !== 0 && item.Loan.dataValues.returned_on == 0)
+      let booksArray = books.filter(function(item, index){
+        if ( item.Loan.dataValues.returned_on == null)
         return item.dataValues
       });
-      res.render("bookViews/index", {rowArray: booksArray, title: "Books", filterTitle: 'Checked Out Books'} );
+
+      if (booksArray.length < 9) {
+        res.render("bookViews/index", {rowArray: booksArray, title: "Books", filterTitle: 'Checked Out Books' } );
+      } else {
+        let pagesArray = utils.paginate(booksArray);
+        res.render("bookViews/index", {pagesArray: pagesArray, title: "Books", filterTitle: 'Checked Out Books' } );
+      }
+
     }
   }).catch(function(error){
     // set locals, only providing error in development
@@ -183,13 +200,12 @@ router.get('/books/book_detail/:id', function(req, res, next) {
 
   });
 
-
-/* GET book detail page */
+/* GET new book form */
 router.get('/books/new', function(req, res, next) {
   res.render('bookViews/createNewBook', {book: {}, newFormTitle: 'New Book'});
 });
 
-/* TODO : finish testing : POST create new book */
+/* POST create new book */
 router.post('/books', function(req, res, next) {
   db.Books.create(req.body).then(function(book) {
     res.redirect(`/books`);
@@ -208,7 +224,7 @@ router.post('/books', function(req, res, next) {
    });
 });
 
-/* TODO: verify form submits correct data, test this route.. POST update new patron */
+/* POST update new patron */
 router.post('/books/update', function(req, res, next) {
 
   db.Books.findOne({
