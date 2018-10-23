@@ -28,12 +28,57 @@
     - [Project Update 1](#project-update-1)
   - [For the original project files and a project instruction, follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
   - [Developer Notes](#developer-notes)
+  - [Hard DB Reset](#hard-db-reset)
 
-# For the Project Reviewer
+# For the Project Reviewer (or anyone cloning this project's GitHub rep.)
 
-  This section will eventually contain any instructions and comments...
-   the project reviewer will need to
-      make it easier to review and grade the project.
+    Basics steps:
+
+      to run this version of Team TreeHouse, Library Manager...
+
+        download or clone of project from my Github rep
+
+        npm install
+
+        npm start
+
+          since this for development release...
+
+            if testing with Chrome browser
+
+             npm start, runs the app with the --inspect flag
+
+                "node --inspect ./bin/www"
+
+      to modify and test your own changes to the code
+
+        read the following first
+
+        - [For the original project files and a project instruction, follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
+        - [Developer Notes](#developer-notes)
+        - [Hard DB Reset](#hard-db-reset)
+
+        then just make changes to
+
+          /bin
+          /config
+          /migrations - did'nt use migrations
+          /models
+          /public
+          /routes
+          /seeders
+          /views
+          /utils
+          seedData.json
+          app.js
+
+          library.db - can't be modified or viewed directly 
+
+      if you want to leave the safety of Express Generator's environment
+
+          make changes to package.json
+
+
 
   [back to Content Menu](#contents)
 
@@ -41,84 +86,58 @@
 
   DOING:
 
-        implement search feature across all pages
-
-        clean up code...
-
-            clean up duplicated and unneeded templates
-            get code as DRY as possible
-            comment code or make code self-explanatory
-
-        not sure if will implement a Delete, optional, op for this app
-
-        plan out extra credit features
+        final walk-through for project
 
   NEXT:
 
-        verify each model, route, view, table and form perform to project speqs
+        a remove Book, Patron feature will added in a future release
 
   TODO:
 
-        verify project speqs across project
+        submit project
 
   DONE:
 
-    Project Extra Credit:
+    Project Extra Credit Features:
 
        Pagination for Books, Loans and Patrons page
 
+       Search for Books and Patrons
+
     Project Expectations:
 
-        basic express app, routing and Sequelize environment setup
-        library db and table models
+        Models
+          Books, Loans and Patrons
+          Model Associations
 
-        re-factored templates for home, books, patrons and loans page views
-            along with 'show all' for books, patrons and loans
+        Home Screen
+          All links load appropriate route and viewe
 
-        re-factored templates for Loan, Book, Patron details
+        Navigation
+          Nav bar available from every part of app
 
-        re-factor templates for
-          createNewForm page for new books, patrons and loans
-          return book form page from Books, Patrons and Loans page
-          and updateForm as well
+        Books Page
+          The following pages work as required
+            Book Listings Page
+            Add a New Book
+            Book Details Page
 
-        table/model associations working
-          db.Books.hasOne(db.Loans);
-          db.Loans.belongsTo(db.Books);
-          db.Loans.belongsTo(db.Patrons);
-          db.Patrons.hasMany(db.Loans);
+        Loans Page
+          The following pages work as required
+            Loan Listings Page
+            New Loan Page
 
-        patrons/patron_detail/:id view
-        book/book_detail/:id view
-        all loans view
-          now returning and displaying
-            all loans detail, book title and name of patron
-            patron, their books and loan detail for each
-            books, the loan detail and patron loaned to
-            detail for each can be is accessed from home book, loan and patron pg
-              book titles, patron names
-                have links for each are the routes needs to get detail on each
+        Return Book Page
+          Is launched using the 'Return Book' button,
+            from Patron detail, Loan detail and Book detail
 
-        queries/views and/or associations for filtering loans and books table
+        Patron Listing Page
+          The following pages work as required
+            Patron Detail Page
+            New Patron Page
 
-        create loan - book and patron drop menus
-          these are static at this time
-          need build these from books in the database
-          also need exclude books already loaned out
-
-        DONE with C.R.U in db C.R.U.D. ops
-
-            no requirement in Library Manager for D ops in
-
-        All FORMS and VALIDATION working
-
-          submit actions for create, update and return books page
-
-          input validation for each form and implementing error pages
-             will fix invalid dates in seed data
-
-          modify forms as create, update queries and/or associations are tested and working
-
+        Validaton and Messages for Required Fields and Forms
+          work as required
 
   [back to Content Menu](#contents)
 
@@ -130,7 +149,7 @@
 
 ## Project Update 24:
 
-  Extra Credit Feature: Search
+  Extra Credit Feature: Search - for Books and Patrons
 
     Search input form integrated into layout template
 
@@ -146,10 +165,9 @@
 
       added a search title so it's clear when viewing search results
 
-
 ## Project Update 23:
 
-  Extra Credit Feature: Pagination
+  Extra Credit Feature: Pagination - for Books, Patrons and Loans
 
     Using jquery and front-end css/javascript to due actual pagination links
 
@@ -516,7 +534,7 @@ Overall UI flow the same
 
   [back to Content Menu](#contents)
 
-  ## Developer Notes:
+## Developer Notes:
 
     Lots pages and subpages in the html-mockup:
 
@@ -556,7 +574,7 @@ Overall UI flow the same
 
           to get around this I did a HARD DB RESET.
 
-    a HARD DB RESET:
+## HARD DB RESET:
 
       I used this to get model associations to work with seed data:
       (also nice to try, if odd behavior occurs if/when making changes to your model associations)
