@@ -22,13 +22,8 @@ html
               form(id='searchForm' action="/books/search", method="get")
                   input(id='searchInput' name="searchInput" type="text" placeholder='')
                   input(id='searchSubmit' type="submit" value="Search")
-            else if title == 'Loans'
-              form(id='searchForm' action="/loans/search", method="get")
-                  input(id='searchInput' name="searchInput" type="text" placeholder='')
-                  input(id='searchSubmit' type="submit" value="Search")
             else if title == 'Patrons'
-              //- (action="/patrons/search", method="get")
-              form(id='searchForm')
+              form(id='searchForm' action="/patrons/search", method="get")
                   input(id='searchInput' name="searchInput" type="text" placeholder='')
                   input(id='searchSubmit' type="submit" value="Search")
     section(id="section1")

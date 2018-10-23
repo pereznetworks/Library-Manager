@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var createError = require('http-errors');
 var Sequelize = require('../models').sequelize;
+var Op = Sequelize.Op;
 
 var db = require('../models/index.js'); /* importing sequelize db */
 var locals = require("../views/locals"); /* importing static vars */
@@ -169,7 +170,77 @@ router.post('/patrons/update', function(req, res, next) {
       });
 
 });
-// add return_book route and hanlder here ??
+
+/* Search patrons route */
+router.get('/patrons/search', function(req, res, next) {
+
+  // getting searchInput from req.query
+  var searchInput = req.query.searchInput;
+
+  // static variables, routes paths, page and form titles
+  res.locals.newFormTitle = locals.patronsPg.newFormTitle;
+  res.locals.title = locals.patronsPg.title;
+  res.locals.createNewRoute = locals.patronsPg.createNewRoute;
+  res.locals.patronHrefPath = locals.patronsPg.patronHrefPath;
+
+  db.Patrons.findAll({
+          where: {
+            [Op.or]:[
+                  {
+                    first_name: { [Op.like]: `%${searchInput}%`}
+                  },
+                  {
+                    last_name: { [Op.like]: `%${searchInput}%`}
+                  },
+                  {
+                    address: { [Op.like]: `%${searchInput}%`}
+                  },
+                  {
+                    zip_code: { [Op.like]: `%${searchInput}%`}
+                  },
+                  {
+                    email: { [Op.like]: `%${searchInput}%`}
+                  },
+                  {
+                    library_id: { [Op.like]: `%${searchInput}%`}
+                  }
+            ]
+         }
+    }).then(function(patrons){
+
+      if (patrons){
+        // mapping patrons into an array that be read as rows in patron table
+        let patronsArray = patrons.map(function(item, index){
+          return item.dataValues
+        });
+
+        // paginate if more than 10 results
+        if (patronsArray.length < 9) {
+          res.render("patronViews/index", {rowArray: patronsArray, title: "Patrons" });
+        } else {
+          let pagesArray = utils.paginate(bpatronsArray);
+          res.render("patronViews/index", {pagesArray: pagesArray, title: "Patrons" });
+        }
+
+      }
+
+  }).catch(function(error){
+    // set locals, only providing error in development
+      if (error){
+        res.locals.message = error.message;
+        res.locals.error =  error
+      } else {
+        res.locals.message = "Oops, there's been a server error";
+        res.locals.error = createError(500);
+      }
+      // render the error page
+      res.status(error.status || 500);
+      res.render('error');
+   });
+
+});
+
+
 
 // exporting router so it can be used by express app
 module.exports = router;
