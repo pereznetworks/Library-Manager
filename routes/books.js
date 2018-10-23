@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var createError = require('http-errors');
 var Sequelize = require('../models').sequelize;
+var Op = Sequelize.Op;
 
 var db = require('../models/index.js'); /* importing sequelize db */
 var locals = require("../views/locals"); /* importing static vars */
@@ -253,18 +254,22 @@ router.post('/books/update', function(req, res, next) {
 /* search route for Books page. */
 router.get('/books/search/', function(req, res, next) {
   db.Books.findAll({
-                author: {
-                   $contains: `${req.query.searchInput}`
-                  },
-                genre: {
-                   $contains: `${req.query.searchInput}`
-                  },
-                title: {
-                   $contains: `${req.query.searchInput}`
-                  },
-                first_published: {
-                   $contains: `${req.query.searchInput}`
-                 }
+            where: {
+                  [Op.or]: [
+                      {
+                        author: {[Op.like]: `%${req.query.searchInput}%`}
+                      },
+                      {
+                        genre: {[Op.like]: `%${req.query.searchInput}%`}
+                      },
+                      {
+                        title: {[Op.like]: `%${req.query.searchInput}%`}
+                      },
+                      {
+                        first_published: {[Op.like]: `%${req.query.searchInput}%`}
+                      }
+                   ]
+               }
   }).then(function(books){
 
     res.locals.queryForAll = locals.booksPg.queryForAll;
