@@ -4,7 +4,10 @@ block content
   if filterTitle
     h1= filterTitle
   else
-    h1= title
+    if search
+      h1= `${title}${search}`
+    else
+      h1= title
   include ../reusable/createNewButton.pug
   include ../reusable/filterOptions.pug
   include ./books_table.pug

@@ -287,10 +287,10 @@ router.get('/books/search/', function(req, res, next) {
         return item.dataValues
       });
       if (booksArray.length < 9) {
-        res.render("bookViews/index", {rowArray: booksArray, title: "Books" } );
+        res.render("bookViews/index", {rowArray: booksArray, title: "Books", search: " - Search results:" } );
       } else {
         let pagesArray = utils.paginate(booksArray);
-        res.render("bookViews/index", {pagesArray: pagesArray, title: "Books" } );
+        res.render("bookViews/index", {pagesArray: pagesArray, title: "Books", search: " - Search results:" } );
       }
     }
   }).catch(function(error){

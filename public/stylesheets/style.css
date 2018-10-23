@@ -55,7 +55,7 @@ nav {
   margin: auto 0;
   color: #fff;
   background-color: #019875;
-  width: 95%;
+  width: auto;
   /*border-bottom: 2px solid #D8B493;*/
 }
 nav ul li a {

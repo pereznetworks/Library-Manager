@@ -134,7 +134,15 @@
 
     Search input form integrated into layout template
 
-    Books search route working, using same booksViews as all/overdue/checkout
+      Books search route working, using same view as books all/overdue/checkout
+
+      Patrons search route working, using same vieww as patrons main page
+
+      Search is not case-sensitive,
+
+      good for partial matches on patrons and books main table
+
+      no Loans search for now
 
 ## Project Update 23:
 

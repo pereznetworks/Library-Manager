@@ -216,10 +216,10 @@ router.get('/patrons/search', function(req, res, next) {
 
         // paginate if more than 10 results
         if (patronsArray.length < 9) {
-          res.render("patronViews/index", {rowArray: patronsArray, title: "Patrons" });
+          res.render("patronViews/index", {rowArray: patronsArray, title: "Patrons", search: " - Search results:"});
         } else {
           let pagesArray = utils.paginate(bpatronsArray);
-          res.render("patronViews/index", {pagesArray: pagesArray, title: "Patrons" });
+          res.render("patronViews/index", {pagesArray: pagesArray, title: "Patrons", search: " - Search results:" });
         }
 
       }
