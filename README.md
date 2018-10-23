@@ -128,39 +128,45 @@
 
   [back to Content Menu](#contents)
 
+## Project Update 24:
+
+  Extra Credit Feature: Search
+
+    Search input form integrated into layout template
+
+    Books search route working, using same booksViews as all/overdue/checkout
+
 ## Project Update 23:
 
   Extra Credit Feature: Pagination
 
-  Using jquery and front-end css/javascript to due actual pagination links
+    Using jquery and front-end css/javascript to due actual pagination links
 
-  On server-side:
+    On server-side:
 
-  wrote and added a paginate method to my utils library
+    wrote and added a paginate method to my utils library
 
-  made changes to book, loan and patron table template to....
+    made changes to book, loan and patron table template to....
 
-    implement pagination in the way the table on each page is displayed
+      implement pagination in the way the table on each page is displayed
 
-    array of book, loans or patron data is processed into a pagesArray
+      array of book, loans or patron data is processed into a pagesArray
 
-      only if more than 10 rows will appear in a table
+        only if more than 10 rows will appear in a table
 
-    otherwise normal process for 'tabling' of book, loans or patron data
+      otherwise normal process for 'tabling' of book, loans or patron data
 
-  But nav bar for pagination links in footer of each page,
+    But nav bar for pagination links in footer of each page,
 
-    displays at bottom of page at all times
+      displays at bottom of page at all times
 
-    is blank, no pagination links, if no pagination needed
+      is blank, no pagination links, if no pagination needed
 
-  also fixed overdue and checked out books and loans
+    also fixed overdue and checked out books and loans
 
-    using the same rules for both
+      using the same rules for both
 
-     so both now display correct data
-
-
+       so both now display correct data
 
 ## Project Update 22:
 
