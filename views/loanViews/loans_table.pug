@@ -13,15 +13,15 @@ if !pagesArray
       each item in rowArray
         tr
           td
-            a(href=`${bookHrefPath}/${item.id}`)= item.title
+            a(href=`${bookHrefPath}/${item.book_id}`)= item.Book.title
           td
-            a(href=`${patronHrefPath}/${item.Loan.Patron.id}`)= `${item.Loan.Patron.first_name} ${item.Loan.Patron.last_name}`
-          td= item.Loan.loaned_on
-          td= item.Loan.return_by
-          td= item.Loan.returned_on
+            a(href=`${patronHrefPath}/${item.patron_id}`)= `${item.Patron.first_name} ${item.Patron.last_name}`
+          td= item.loaned_on
+          td= item.return_by
+          td= item.returned_on
           td
-            if item.Loan.returned_on == null || item.Loan.returned_on.length == 0
-              - var loanId = item.Loan.id
+            if item.returned_on == null || item.returned_on.length == 0
+              - var loanId = item.id
               include ../reusable/returnBookButton
 else
   - var tablePageIndex = 1
@@ -39,14 +39,14 @@ else
         each item in page
           tr
             td
-              a(href=`${bookHrefPath}/${item.id}`)= item.title
+              a(href=`${bookHrefPath}/${item.book_id}`)= item.Book.title
             td
-              a(href=`${patronHrefPath}/${item.Loan.Patron.id}`)= `${item.Loan.Patron.first_name} ${item.Loan.Patron.last_name}`
-            td= item.Loan.loaned_on
-            td= item.Loan.return_by
-            td= item.Loan.returned_on
+              a(href=`${patronHrefPath}/${item.patron_id}`)= `${item.Patron.first_name} ${item.Patron.last_name}`
+            td= item.loaned_on
+            td= item.return_by
+            td= item.returned_on
             td
-              if item.Loan.returned_on == null || item.Loan.returned_on.length == 0
-                - var loanId = item.Loan.id
+              if item.returned_on == null || item.returned_on.length == 0
+                - var loanId = item.id
                 include ../reusable/returnBookButton
     - tablePageIndex += 1

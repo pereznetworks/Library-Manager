@@ -10,33 +10,41 @@ var utils = require('../utils/index.js') /* importing my own helper utils */
 /* GET loans page. */
 router.get('/loans', function(req, res, next) {
 
-  var idInt = parseInt(req.params.id);
+  // static variables, route paths and loan table column names
+  res.locals.createNewRoute = locals.loansPg.createNewRoute;
+  res.locals.queryForAll = locals.loansPg.queryForAll;
+  res.locals.queryForOverdue = locals.loansPg.queryForOverdue;
+  res.locals.queryForCheckedOut = locals.loansPg.queryForCheckedOut;
+  res.locals.columnArray = locals.loansPg.columnArray;
+  res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+  res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+  res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  db.Books.findAll({
-      include: [{
-              model: db.Loans,
-              include: [{
-                      model: db.Patrons,
-              }]
-       }]
-   }).then(function(books){
+  // using Promise.all to handle to async db queries
+  Promise.all([
+     db.Patrons.findAll(),
+     db.Loans.findAll({
+       include: [{
+               model: db.Books,
+               required: false
+        }]
+     })
+   ])
+   .then(function([patrons, loans]){
 
-    res.locals.createNewRoute = locals.loansPg.createNewRoute;
-    res.locals.queryForAll = locals.loansPg.queryForAll;
-    res.locals.queryForOverdue = locals.loansPg.queryForOverdue;
-    res.locals.queryForCheckedOut = locals.loansPg.queryForCheckedOut;
-    res.locals.columnArray = locals.loansPg.columnArray;
-    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
-    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
-    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+     // map the loans results into a loansArray,
+     // adding the patron object to each from the patrons results
+     if (loans){
+       let loansArray = loans.map(function(item, index){
+            item.Patron = patrons[item.patron_id]
+            return item
+       });
+       return loansArray;
+     }
+   }).then(function(loansArray){
 
-    if (books){
-      let loansArray = books.filter(function(item, index){
-        if (item.Loan !== null ){
-          return item
-        }
-      });
-
+    if (loansArray){
+      // paginate if more then 10 results
       if (loansArray.length < 9) {
         res.render("loanViews/index", {rowArray: loansArray, title: "Loans"} );
       } else {
@@ -62,48 +70,56 @@ router.get('/loans', function(req, res, next) {
 /* GET loans, filter for overdue loans page */
 router.get('/loans/overdue', function(req, res, next){
 
-  var idInt = parseInt(req.params.id);
+  // static variables, route paths and loan table column names
+  res.locals.createNewRoute = locals.loansPg.createNewRoute;
+  res.locals.queryForAll = locals.loansPg.queryForAll;
+  res.locals.queryForOverdue = locals.loansPg.queryForOverdue;
+  res.locals.queryForCheckedOut = locals.loansPg.queryForCheckedOut;
+  res.locals.columnArray = locals.loansPg.columnArray;
+  res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+  res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+  res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  db.Books.findAll({
-      include: [{
-              model: db.Loans,
-              include: [{
-                      model: db.Patrons,
-              }]
-       }]
-   }).then(function(books){
+  // using Promise.all to handle to async db queries
+  Promise.all([
+     db.Patrons.findAll(),
+     db.Loans.findAll({
+       include: [{
+               model: db.Books,
+               required: false
+        }]
+     })
+   ])
+   .then(function([patrons, loans]){
 
-    res.locals.createNewRoute = locals.loansPg.createNewRoute;
-    res.locals.queryForAll = locals.loansPg.queryForAll;
-    res.locals.queryForOverdue = locals.loansPg.queryForOverdue;
-    res.locals.queryForCheckedOut = locals.loansPg.queryForCheckedOut;
-    res.locals.columnArray = locals.loansPg.columnArray;
-    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
-    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
-    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+     // map the loans results into a loansArray,
+     // adding the patron object to each from the patrons results
+     if (loans){
+       let loansArray = loans.map(function(item, index){
+            item.Patron = patrons[item.patron_id]
+            return item
+       });
+       return loansArray;
+     }
+   }).then(function(loansArray){
 
-    if (books){
-      // this maps an array of the loan details, which can read as rows in the loans detail table
-      // in this case - an array of OVERDUE loans
-      // yes - I am searching the books table and including the loans and patron table
-      // this is because of the way the table associations work
-      let loansArray = books.filter(function(item, index){
-        if (item.Loan !== null ){
-          let returnBy = new Date(item.Loan.dataValues.return_by)
-          if (Date.now() > returnBy && item.Loan.dataValues.returned_on == null ){
+      // this creates an array of loans, which can read as rows in the loans detail table
+      // filtering for only  OVERDUE loans
+
+      let overdueLoansArray = loansArray.filter(function(item, index){
+          let returnBy = new Date(item.dataValues.return_by)
+          if (Date.now() > returnBy && item.dataValues.returned_on == null ){
             return item.dataValues
           }
-        }
       });
 
-      if (loansArray.length < 9) {
-        res.render("loanViews/index", {rowArray: loansArray, title: "Loans", filterTitle: 'Overdue Loans' } );
+      if (overdueLoansArray.length < 9) {
+      // paginate if more then 10 results
+        res.render("loanViews/index", {rowArray: overdueLoansArray, title: "Loans", filterTitle: 'Overdue Loans' } );
       } else {
         let pagesArray = utils.paginate(loansArray);
         res.render("loanViews/index", {pagesArray: pagesArray, title: "Loans", filterTitle: 'Overdue Loans' } );
       }
-
-    }
 
   }).catch(function(error){
 
@@ -122,47 +138,56 @@ router.get('/loans/overdue', function(req, res, next){
 /* GET loans, filter for checkedout loans page */
 router.get('/loans/checkedout', function(req, res, next){
 
-  var idInt = parseInt(req.params.id);
+  // static variables, route paths and loan table column names
+  res.locals.createNewRoute = locals.loansPg.createNewRoute;
+  res.locals.queryForAll = locals.loansPg.queryForAll;
+  res.locals.queryForOverdue = locals.loansPg.queryForOverdue;
+  res.locals.queryForCheckedOut = locals.loansPg.queryForCheckedOut;
+  res.locals.columnArray = locals.loansPg.columnArray;
+  res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+  res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+  res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  db.Books.findAll({
-      include: [{
-              model: db.Loans,
-              include: [{
-                      model: db.Patrons,
-              }]
-       }]
-   }).then(function(books){
+  // using Promise.all to handle to async db queries
+  Promise.all([
+     db.Patrons.findAll(),
+     db.Loans.findAll({
+       include: [{
+               model: db.Books,
+               required: false
+        }]
+     })
+   ])
+   .then(function([patrons, loans]){
 
-    res.locals.createNewRoute = locals.loansPg.createNewRoute;
-    res.locals.queryForAll = locals.loansPg.queryForAll;
-    res.locals.queryForOverdue = locals.loansPg.queryForOverdue;
-    res.locals.queryForCheckedOut = locals.loansPg.queryForCheckedOut;
-    res.locals.columnArray = locals.loansPg.columnArray;
-    res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
-    res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
-    res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+     // map the loans results into a loansArray,
+     // adding the patron object to each from the patrons results
+     if (loans){
+       let loansArray = loans.map(function(item, index){
+            item.Patron = patrons[item.patron_id]
+            return item
+       });
+       return loansArray;
+     }
+   })
+   .then(function(loansArray){
 
-    if (books){
-      // this maps an array of the loan details, which can read as rows in the loans detail table
+      // this creates an array of the loan details, which can read as rows in the loans detail table
       // in this case - an array of CHECKED OUT loans
-      // yes - I am searching the books table and including the loans and patron table
-      // this is because of the way the table associations work
-      let loansArray = books.filter(function(item, index){
-        if (item.Loan !== null ){
-          if ( item.Loan.returned_on == null ){
+
+      let checkedOutLoansArray = loansArray.filter(function(item, index){
+          if ( item.returned_on == null ){
             return item.dataValues
           }
-        }
       });
 
-      if (loansArray.length < 9) {
-        res.render("loanViews/index", {rowArray: loansArray, title: "Loans", filterTitle: 'Checked Out Loans' } );
+      if (checkedOutLoansArray.length < 9) {
+        // paginate if more then 10 results
+        res.render("loanViews/index", {rowArray: checkedOutLoansArray, title: "Loans", filterTitle: 'Checked Out Loans' } );
       } else {
         let pagesArray = utils.paginate(loansArray);
         res.render("loanViews/index", {pagesArray: pagesArray, title: "Loans", filterTitle: 'Checked Out Loans' } );
       }
-
-    }
 
   }).catch(function(error){
 
@@ -301,6 +326,84 @@ router.post('/loans', function(req, res, next) {
    });
 });
 
+/* GET loans page. */
+router.get('/loans/search', function(req, res, next) {
+
+  // getting the searchInput from req.query
+  var searchInput = req.query.searchInput;
+
+  // static path strings and array of loan table column names
+  res.locals.createNewRoute = locals.loansPg.createNewRoute;
+  res.locals.queryForAll = locals.loansPg.queryForAll;
+  res.locals.queryForOverdue = locals.loansPg.queryForOverdue;
+  res.locals.queryForCheckedOut = locals.loansPg.queryForCheckedOut;
+  res.locals.columnArray = locals.loansPg.columnArray;
+  res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+  res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+  res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+
+  /* TODO: add query
+     where: { <attribute>: {[Op.like] : `%${searchInput}%` }}
+  */
+  // using Promise.all to handle 2 async db queries
+  Promise.all([
+     db.Patrons.findAll(),
+     db.Loans.findAll({
+       include: [{
+               model: db.Books,
+               required: false
+        }]
+     })
+   ])
+   .then(function([patrons, loans]){
+
+     // map the loans results into a loansArray,
+     // adding the patron object to each from the patrons results
+     if (loans){
+       let loansArray = loans.map(function(item, index){
+            item.Patron = patrons[item.patron_id]
+            return item
+       });
+       return loansArray;
+     }
+   })
+   .then(function(loansArray){
+
+    // paginate if more than 10 results
+    if (loansArray){
+      if (loansArray.length < 9) {
+        res.render("loanViews/index", {rowArray: loansArray, title: "Loans"} );
+      } else {
+        let pagesArray = utils.paginate(loansArray);
+        res.render("loanViews/index", {pagesArray: pagesArray, title: "Loans"} );
+      }
+    }
+
+  }).catch(function(error){
+
+    // set locals, only providing error in development
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
+
+   });
+});
 
 // exporting router so it can be used by express app
 module.exports = router;
+
+
+/* IDEA: code snippet for a findAll books with a Loan and a Patron for each
+
+  db.Books.findAll({
+      include: [{
+              model: db.Loans,
+              include: [{
+                      model: db.Patrons,
+              }]
+       }]
+   })
+ */
