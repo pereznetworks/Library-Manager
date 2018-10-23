@@ -144,6 +144,9 @@
 
       no Loans search for now
 
+      added a search title so it's clear when viewing search results
+
+
 ## Project Update 23:
 
   Extra Credit Feature: Pagination
@@ -164,11 +167,13 @@
 
       otherwise normal process for 'tabling' of book, loans or patron data
 
-    But nav bar for pagination links in footer of each page,
+    Nav bar for pagination links in footer of each main page,
 
       displays at bottom of page at all times
 
       is blank, no pagination links, if no pagination needed
+
+      footer pagination nav bar runs full length section
 
     also fixed overdue and checked out books and loans
 
