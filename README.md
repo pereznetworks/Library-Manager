@@ -30,7 +30,7 @@
     - [Project Update 3](#project-update-3)
     - [Project Update 2](#project-update-2)
     - [Project Update 1](#project-update-1)
-  - [For the original project files and project instruction](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
+  - [For the original project files and project instructions](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
   - [Developer Notes](#developer-notes)
   - [Hard DB Reset](#hard-db-reset)
 
@@ -106,8 +106,10 @@
             Patron Detail Page
             New Patron Page
 
-        Validaton and Messages for Required Fields and Forms
-          work as required
+        Input and Form Validation
+          for required fields and forms...
+          validation built into model attributes
+          polite 'this field is required' messages
 
   [back to Content Menu](#contents)
 
@@ -157,7 +159,7 @@
 
           read the following first
 
-  - [For the original project files and a project instruction](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
+  - [The original project files and a project instructions](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
   - [Developer Notes](#developer-notes)
   - [Hard DB Reset](#hard-db-reset)
 
