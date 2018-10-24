@@ -99,8 +99,9 @@ router.get('/loans/overdue', function(req, res, next){
      // adding the patron object to each from the patrons results
      if (loans){
        let loansArray = loans.map(function(item, index){
-            item.Patron = patrons[item.patron_id]
-            return item
+         var idofelement = item.patron_id - 1;
+         item.Patron = patrons[idofelement]
+         return item
        });
        return loansArray;
      }
@@ -167,8 +168,9 @@ router.get('/loans/checkedout', function(req, res, next){
      // adding the patron object to each from the patrons results
      if (loans){
        let loansArray = loans.map(function(item, index){
-            item.Patron = patrons[item.patron_id]
-            return item
+         var idofelement = item.patron_id - 1;
+         item.Patron = patrons[idofelement]
+         return item
        });
        return loansArray;
      }
@@ -211,44 +213,45 @@ router.get('/loans/checkedout', function(req, res, next){
 */
 router.get('/loans/new', function(req, res, next) {
  // handling multiple async calls, chaining callbacks with then and catch
-  Promise.all([
-     db.Patrons.findAll(),
-     db.Books.findAll({
-       include: [{
-               model: db.Loans,
-               required: false
-        }]
-     })
-   ])
+ Promise.all([
+    db.Patrons.findAll(),
+    db.Books.findAll({
+        include: [{
+                  model: db.Loans,
+                  where: { book_id: Sequelize.col('Books.id')},
+                  required: false
+                }]
+      })
+  ])
   .then(([patrons, books]) => {
 
-      // first for the book and patron's drop down meny....
-      // produce a new lists of available books and current patrons
-      // since we're doing this each time this form is produced
-      // books no longer available for loan will not show up on this list
+    // first for the book and patron's drop down meny....
+    // produce a new lists of available books and current patrons
+    // since we're doing this each time this form is produced
+    // books no longer available for loan will not show up on this list
 
-      res.locals.books = books.filter(function(item, index){
-        // filtering out books that are already loaned out
-          if (item.Loan == null || item.Loan.dataValues.returned_on !== null ){
-            // return just each book's title, author, genre and first_published
-              return item.dataValues;
-          }
-        });  // produces an array of book objects, that are available to be loaned
+    let availableBooks = books.filter(function(item, index){
+      // filtering out books that are already loaned out
+        if (item.Loan == null || item.Loan.dataValues.returned_on != null ){
+          // return just each book's title, author, genre and first_published
+            return item.dataValues;
+        }
+      });  // produces an array of book objects, that are available to be loaned
 
-      res.locals.patrons = patrons.map(function(item, index){
-        // produces array of patron objects...
-          return item.dataValues;
-        }); // each with name, contact info and library id
+    let currentPatrons = patrons.map(function(item, index){
+      // produces array of patron objects...
+        return item.dataValues;
+      }); // each with name, contact info and library id
 
-      /* for loaned_on date, formatted date yyyy-mm-dd */
-      res.locals.dateLoanedOn = utils.getADate();
+    /* for loaned_on date, formatted date yyyy-mm-dd */
+    res.locals.dateLoanedOn = utils.getADate();
 
-      /* for return_by date, formatted date yyyy-mm-dd */
-      const defaultDaysLoanedBookDue = 7;
-      res.locals.dateReturnBy = utils.getADate(defaultDaysLoanedBookDue);
+    /* for return_by date, formatted date yyyy-mm-dd */
+    const defaultDaysLoanedBookDue = 7;
+    res.locals.dateReturnBy = utils.getADate(defaultDaysLoanedBookDue);
 
       // finally... with all this data, render the create new form
-      res.render('loanViews/createNewLoan', {loan: {}, newFormTitle: 'New Loan'});
+      res.render('loanViews/createNewLoan', {loan: {}, books: availableBooks, patrons: currentPatrons, newFormTitle: 'New Loan'});
     })
   .catch((error) => {
     // set locals, only providing error in development
