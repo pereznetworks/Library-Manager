@@ -40,6 +40,15 @@
 
         final walk-through for project
 
+        fixed several issues
+
+        remaining bugs
+
+          new loan form
+
+            a returned book checkout again does not get filtered out
+            from the drop-down menu for available books
+
   NEXT:
 
       in a way that fits with the 'Library Manager' scenario...
