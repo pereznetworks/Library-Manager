@@ -8,7 +8,10 @@
 
   NEXT:
 
-        a remove Book, Patron feature will added in a future release
+        a remove Book and a remove Patron feature may be added in a future releases
+
+        an internal delete function may be added in a future release
+         for removing a record from specific table may be added to
 
   TODO:
 
