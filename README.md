@@ -42,10 +42,25 @@
 
   NEXT:
 
-        a remove Book and a remove Patron feature may be added in a future releases
+      in a way that fits with the 'Libray Manager' scenario...
+
+        a remove Book and a remove Patron feature
+          may be added in a future releases
 
         an internal delete function may be added in a future release
-         for removing a record from specific table may be added to
+         for removing a record from specific table
+
+        other ideas
+
+            more advanced sequelize db functions
+
+              like a raw view and export into json or csv of data
+
+            a more modern mobile first UI
+
+            modern menu's and icons in place of just navs, button and links
+
+            upgrade to UI rendering to react
 
   TODO:
 
