@@ -620,6 +620,15 @@ Overall UI flow the same
 
           to get around this I did a Hard DB Reset
 
+    Seqeulize auto-incremented id's
+
+        So javascript array count element up from 0.
+        but sequelize's auto-incremented id's start from 1
+
+        so in a n array derived from a sequelize table
+          you have to +1 to the array's element number...
+           to get it's auto-incremented_id
+
 [Hard DB Reset](#hard-db-reset).
 
           basically,

@@ -13,8 +13,9 @@ module.exports = (sequelize, DataTypes) => {
                  book_id: {
                               allowNull: false,
                                    type: DataTypes.INTEGER,
-                               validate: {  // not empty must be a number
+                               validate: {
                                              isNumeric: {
+                                               // not empty must be a number
                                                         msg: "Please choose a book title"
                                                        },
                                          }
@@ -22,8 +23,9 @@ module.exports = (sequelize, DataTypes) => {
                patron_id: {
                               allowNull: false,
                                    type: DataTypes.INTEGER,
-                               validate: {  // not empty must be a number
+                               validate: {
                                              isNumeric: {
+                                               // not empty must be a number
                                                         msg: "Please choose a patron"
                                                        },
                                          }
@@ -32,6 +34,8 @@ module.exports = (sequelize, DataTypes) => {
                               allowNull: false,
                                    type: DataTypes.DATEONLY,
                                validate: {
+                                            // validated as date
+                                            // but this field is auto-populated
                                           isDate: true,
                                          }
                          },
@@ -39,12 +43,16 @@ module.exports = (sequelize, DataTypes) => {
                               allowNull: false,
                                    type: DataTypes.DATEONLY,
                                validate: {
+                                            // validated as date
+                                            // but this field is auto-populated
                                           isDate: true,
                                          }
                          },
              returned_on: {
                                    type: DataTypes.DATEONLY,
                                validate: {
+                                            // validated as date
+                                            // but this field is auto-populated
                                           isDate: true,
                                          }
                          }

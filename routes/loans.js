@@ -36,7 +36,10 @@ router.get('/loans', function(req, res, next) {
      // adding the patron object to each from the patrons results
      if (loans){
        let loansArray = loans.map(function(item, index){
-            item.Patron = patrons[item.patron_id]
+          // javascript array count element up from 0
+          // sequelize's auto-incremented id's start from 1
+            var idofelement = item.patron_id - 1;
+            item.Patron = patrons[idofelement]
             return item
        });
        return loansArray;

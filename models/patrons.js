@@ -16,26 +16,41 @@ module.exports = (sequelize, DataTypes) => {
                               validate: { // must have letters, capped words, allows numbers
                                          notEmpty: {
                                                     msg: "Please enter Patron's first name"
-                                                  }
+                                                  },
+                                        noNumbers: function(str){
+                                          // if any numbers throw error
+                                                      if (str.match(/\d/g)) {
+                                                        throw new Error('Please enter a name');
+                                                      }
+                                                    }
                                         }
                          },
               last_name: {
                               allowNull: false,
                                    type: DataTypes.STRING,
-                               validate: {// must have letters, capped words, allows numbers
-                                        notEmpty: {
-                                                   msg: "Please enter Patron's last name"
-                                                  }
+                               validate: {
+                                            notEmpty: {
+                                              // not empty
+                                                       msg: "Please enter Patron's last name"
+                                                     },
+                                            noNumbers: function(str){
+                                              // if str contains any numbers throw error
+                                                          if (str.match(/\d/g)) {
+                                                            throw new Error('Please enter a name');
+                                                          }
+                                                       }
                                         }
                           },
                 address: {
                               allowNull: false,
                                    type: DataTypes.STRING,
-                               validate: { // not empty at least 3 words (5 word breaks)
+                               validate: {
                                         notEmpty: {
+                                          // not empty at least 3 words (5 word breaks)
                                                    msg: "Please enter Patron's address"
                                                   },
                                          enoughWordBreaks: function(str){
+                                           // checking for enough words breaks to be a full address
                                                               if (str){
                                                                   var wordBrks = /.\b/g
                                                                   if (5 > str.match(wordBrks).length){
@@ -48,8 +63,10 @@ module.exports = (sequelize, DataTypes) => {
                   email: {
                               allowNull: false,
                                    type: DataTypes.STRING,
-                               validate: { // must be a properly formated email address
-                                                  isEmail: true
+                               validate: { 
+                                         // must be a properly formated email address
+                                           isEmail: true
+
                                          }
                          },
              library_id: {
@@ -64,12 +81,11 @@ module.exports = (sequelize, DataTypes) => {
                zip_code: {
                               allowNull: false,
                                    type: DataTypes.INTEGER,
-                               validate: { // allows numbers and letters
-                            // must have letters, capped words, at least 3 words and allows numbers
-                                     notEmpty: {
+                               validate: {
+                                     notEmpty: {  // not empty
                                                 msg: "Please enter Patron's zip code or postal code"
                                                },
-                                     moreThan5: function(str){
+                                     moreThan5: function(str){  // checking for at least a 5 char long alphanumeric string
                                                           if (str){
                                                               var alphaNumeric = /[(A-Z0-9)]/g
                                                               if (5 > str.match(alphaNumeric).length){
