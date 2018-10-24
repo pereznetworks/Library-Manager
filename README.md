@@ -6,6 +6,8 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [For Developers](#for-developers)
   - [Project Updates](#project-updates)
+    - [Project Update 24](#project-update-24)
+    - [Project Update 23](#project-update-23)
     - [Project Update 22](#project-update-22)
     - [Project Update 21](#project-update-21)
     - [Project Update 20](#project-update-20)
