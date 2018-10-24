@@ -44,10 +44,14 @@
 
         remaining bugs
 
-          new loan form
+          new loan form bug
 
             a returned book checkout again does not get filtered out
             from the drop-down menu for available books
+
+            cause is loan history of book, means that book will show up twice in a simple findAll, that includes Loan matching book_id
+
+            now to figure out how to fix...
 
   NEXT:
 
