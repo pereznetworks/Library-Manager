@@ -77,10 +77,10 @@ router.get('/books/overdue', function(req, res, next){
           }
       });
       if (booksArray.length < 9) {
-        res.render("bookViews/index", {rowArray: booksArray, title: "Books", filterTitle: 'Overdue Books' } );
+        res.render("bookViews/index", {rowArray: booksArray, title: "Books", filterTitle: 'Overdue Loans' } );
       } else {
         let pagesArray = utils.paginate(booksArray);
-        res.render("bookViews/index", {pagesArray: pagesArray, title: "Books", filterTitle: 'Overdue Books' } );
+        res.render("bookViews/index", {pagesArray: pagesArray, title: "Books", filterTitle: 'Overdue Loans' } );
       }
     }
   }).catch(function(error){

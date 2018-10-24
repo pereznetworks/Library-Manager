@@ -183,10 +183,10 @@ router.get('/loans/checkedout', function(req, res, next){
 
       if (checkedOutLoansArray.length < 9) {
         // paginate if more then 10 results
-        res.render("loanViews/index", {rowArray: checkedOutLoansArray, title: "Loans", filterTitle: 'Checked Out Loans' } );
+        res.render("loanViews/index", {rowArray: checkedOutLoansArray, title: "Loans", filterTitle: 'Checked Out Books' } );
       } else {
         let pagesArray = utils.paginate(loansArray);
-        res.render("loanViews/index", {pagesArray: pagesArray, title: "Loans", filterTitle: 'Checked Out Loans' } );
+        res.render("loanViews/index", {pagesArray: pagesArray, title: "Loans", filterTitle: 'Checked Out Books' } );
       }
 
   }).catch(function(error){
@@ -325,8 +325,6 @@ router.post('/loans', function(req, res, next) {
       res.render(error);
    });
 });
-
-// TODO: add search route...
 
 // exporting router so it can be used by express app
 module.exports = router;
