@@ -1,87 +1,5 @@
 # TD-Project10: Build a Library Manager
 
-## Contents:
-  - [For Project Reviewer](#for-the-project-reviewer)
-  - [Project Status](#project-status)
-  - [Project Updates](#project-updates)
-    - [Project Update 22](#project-update-22)
-    - [Project Update 21](#project-update-21)
-    - [Project Update 20](#project-update-20)
-    - [Project Update 19](#project-update-19)
-    - [Project Update 18](#project-update-18)
-    - [Project Update 17](#project-update-17)
-    - [Project Update 16](#project-update-16)
-    - [Project Update 15](#project-update-15)
-    - [Project Update 14](#project-update-14)
-    - [Project Update 13](#project-update-13)
-    - [Project Update 12](#project-update-12)
-    - [Project Update 11](#project-update-11)
-    - [Project Update 10](#project-update-10)  
-    - [Project Update 9](#project-update-9)
-    - [Project Update 8](#project-update-8)
-    - [Project Update 7](#project-update-7)
-    - [Project Update 6](#project-update-6)
-    - [Project Update 5](#project-update-5)
-    - [Project Update 4](#project-update-4)
-    - [Project Update 3](#project-update-3)
-    - [Project Update 2](#project-update-2)
-    - [Project Update 1](#project-update-1)
-  - [For the original project files and a project instruction, follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
-  - [Developer Notes](#developer-notes)
-  - [Hard DB Reset](#hard-db-reset)
-
-# For the Project Reviewer (or anyone cloning this project's GitHub rep.)
-
-    Basics steps:
-
-      to run this version of Team TreeHouse, Library Manager...
-
-        download or clone of project from my Github rep
-
-        npm install
-
-        npm start
-
-          since this for development release...
-
-            if testing with Chrome browser
-
-             npm start, runs the app with the --inspect flag
-
-                "node --inspect ./bin/www"
-
-      to modify and test your own changes to the code
-
-        read the following first
-
-        - [For the original project files and a project instruction, follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
-        - [Developer Notes](#developer-notes)
-        - [Hard DB Reset](#hard-db-reset)
-
-        then just make changes to
-
-          /bin
-          /config
-          /migrations - did'nt use migrations
-          /models
-          /public
-          /routes
-          /seeders
-          /views
-          /utils
-          seedData.json
-          app.js
-
-          library.db - can't be modified or viewed directly 
-
-      if you want to leave the safety of Express Generator's environment
-
-          make changes to package.json
-
-
-
-  [back to Content Menu](#contents)
-
 ## Project Status
 
   DOING:
@@ -140,6 +58,101 @@
           work as required
 
   [back to Content Menu](#contents)
+
+## For the Project Reviewer
+
+      Basics steps:
+
+        to run this version of Team TreeHouse, Library Manager...
+
+          download or clone of project from my Github rep
+
+          npm install
+
+          npm start
+
+  [back to Content Menu](#contents)
+
+## For Developers
+
+      Basics steps:
+
+      to run this version of Team TreeHouse, Library Manager...
+
+          download or clone of project from my Github rep
+
+          npm install
+
+          npm start
+
+      when testing, recommend using Chrome browser
+
+          npm start is set to run the app with the --inspect flag
+
+              "node --inspect ./bin/www"
+
+       modify your own changes to the code
+
+       then when ready run 'npm start'
+
+          but,
+
+          read the following first
+
+          - [For the original project files and a project instruction, follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
+          - [Developer Notes](#developer-notes)
+          - [Hard DB Reset](#hard-db-reset)
+
+          then following folders and files comprise the Library Manager appear
+
+            /bin
+            /config
+            /migrations - did'nt use migrations
+            /models
+            /public
+            /routes
+            /seeders
+            /views
+            /utils
+            seedData.json
+            app.js
+
+            library.db - can't be modified or viewed directly
+
+            package.json - npm package management
+
+    [back to Content Menu](#contents)
+
+## Contents:
+  - [For Project Reviewer](#for-the-project-reviewer)
+  - [For Developers](#for-developers)
+  - [Project Status](#project-status)
+  - [Project Updates](#project-updates)
+    - [Project Update 22](#project-update-22)
+    - [Project Update 21](#project-update-21)
+    - [Project Update 20](#project-update-20)
+    - [Project Update 19](#project-update-19)
+    - [Project Update 18](#project-update-18)
+    - [Project Update 17](#project-update-17)
+    - [Project Update 16](#project-update-16)
+    - [Project Update 15](#project-update-15)
+    - [Project Update 14](#project-update-14)
+    - [Project Update 13](#project-update-13)
+    - [Project Update 12](#project-update-12)
+    - [Project Update 11](#project-update-11)
+    - [Project Update 10](#project-update-10)  
+    - [Project Update 9](#project-update-9)
+    - [Project Update 8](#project-update-8)
+    - [Project Update 7](#project-update-7)
+    - [Project Update 6](#project-update-6)
+    - [Project Update 5](#project-update-5)
+    - [Project Update 4](#project-update-4)
+    - [Project Update 3](#project-update-3)
+    - [Project Update 2](#project-update-2)
+    - [Project Update 1](#project-update-1)
+  - [For the original project files and a project instruction, follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
+  - [Developer Notes](#developer-notes)
+  - [Hard DB Reset](#hard-db-reset)
 
 ## Project Updates:
 
