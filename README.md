@@ -108,9 +108,9 @@
 
           read the following first
 
-          - [For the original project files and a project instruction](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
-          - [Developer Notes](#developer-notes)
-          - [Hard DB Reset](#hard-db-reset)
+  - [For the original project files and a project instruction](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
+  - [Developer Notes](#developer-notes)
+  - [Hard DB Reset](#hard-db-reset)
 
           the following folders and files comprise the Library Manager app
 
