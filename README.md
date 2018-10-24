@@ -581,6 +581,11 @@ Overall UI flow the same
         I completed the Sequelize/Node.js workshop using both v3 and v4
         I will use these as model to make sure Sequelize v4 syntax and methods used in this app
 
+    Date Formatting:
+
+        use DATATYPES. or Sequelize.DATEONLY for yyyy-mm-dd dates ie... 2018-10-11
+
+
     Not Using sample library.db that came with project files, seems to work only with seqeulize v3:
 
         Solution is simple: Express app runs sequelize bootstrapped code
@@ -588,18 +593,29 @@ Overall UI flow the same
         along with seeders... can then refresh library.db when I need to
         see HARD DB RESET below
 
-    Model associatons, finally got the right mix:
-
-        see [Project Status](#project-status) for details..
-        may need more as I get into filtering queries for overdue and checked-out
-
-    For whatever reason, after adding ANY-KIND of model assoications...
+    For whatever reason, after adding ANY-KIND of model associations...
 
         I could NOT get the seeders past this one error:
 
         ERROR: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
 
-          to get around this I did a HARD DB RESET.
+          to get around this I did a [Hard DB Reset](#hard-db-reset).
+
+          basically,
+
+            rm -rf library.db (after making a backup)
+
+            remove model associations from code
+
+            get your seeders ready
+
+            start the app, which creates a blank library.db
+
+            run seeders, after seed data is inserted,
+
+            add associations back in to code
+
+            restart app and everything is ok....
 
 ## HARD DB RESET:
 
@@ -614,16 +630,12 @@ Overall UI flow the same
       6: restart the server app ( for my app, npm start), this create a new db
       7: stop the server
       8: run sequelize db:seed:all
-      9: add the desired model associations back in
+      9: add the desired model associations back into models/index.js
       10: restart the server app
       11: when your db starts up, it will check the model associations...
       12: if no errors, your good to go, otherwise back to drawing board
       13: with good associations...
-          now can access a page that runs code that runs query
+          now can access a page that runs code that runs a query that uses the models
           and see if the associations work as expected with seed data in the tables
-
-    Date Formatting:
-
-        use DATATYPES. or Sequelize.DATEONLY for yyyy-mm-dd dates ie... 2018-10-11
 
     [back to Content Menu](#contents)
