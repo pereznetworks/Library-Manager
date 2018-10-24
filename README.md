@@ -42,7 +42,7 @@
 
   NEXT:
 
-      in a way that fits with the 'Libray Manager' scenario...
+      in a way that fits with the 'Library Manager' scenario...
 
         a remove Book and a remove Patron feature
           may be added in a future releases
@@ -166,7 +166,7 @@
           the following folders and files comprise the Library Manager app
 
           - I ended up not using migrations in my project
-            but the sequelize config is setup to track migrations
+            but the sequelize config is setup to track migrations and seeders
           - I did use seeders to insert sample data into my library db
 
             /bin
