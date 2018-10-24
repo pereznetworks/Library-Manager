@@ -621,18 +621,30 @@ Overall UI flow the same
 
 ## HARD DB RESET:
 
-      I used this to get model associations to work with seed data:
-      (also nice to try, if odd behavior occurs if/when making changes to your model associations)
+      I used this to work through fundamental problems and bugs in sequelize code
 
-      1: delete library.db ( in my app, model/index.js creates it if there is none )
-      2: remove model associations (in my app, all in one place, models/index.js)
-      3: remove seeders history from seedData.json, leaving just the []
-      4: RUN sequelize seed:generate -name <name of model> FOR EACH MODEL/TABLE
-      5: add your code and data for each model/table to each seed file - mine were in /seeders
-      6: restart the server app ( for my app, npm start), this create a new db
+        nice to try, for example ...
+
+        if odd behavior occurs if/when making changes to your model associations
+
+      1: delete library.db, (after making a backup)
+          ( in my app, model/index.js creates it if there is none )
+      2: remove model associations
+          (in my app, all in one place, models/index.js)
+      3: remove seeders history from seedData.json,
+          leaving just the []
+      4: RUN sequelize seed:generate -name <name of model>
+          FOR EACH MODEL/TABLE your db will need
+      5: add your code and data for each model/table
+          to a separate seed file for each model
+          mine were in the /seeders folder
+      6: restart the server app
+          ( for my app, npm start), this create a new blank db if theres is none
       7: stop the server
-      8: run sequelize db:seed:all
-      9: add the desired model associations back into models/index.js
+      8: run the seeders
+          sequelize db:seed:all
+      9: add the desired model associations back into your code
+          mine are in one place, models/index.js
       10: restart the server app
       11: when your db starts up, it will check the model associations...
       12: if no errors, your good to go, otherwise back to drawing board
