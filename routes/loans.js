@@ -218,7 +218,7 @@ router.get('/loans/new', function(req, res, next) {
     db.Books.findAll({
         include: [{
                   model: db.Loans,
-                  where: { book_id: Sequelize.col('Books.id')},
+                  where: { returned_on: Sequelize.col('Books.id')},
                   required: false
                 }]
       })
@@ -232,7 +232,7 @@ router.get('/loans/new', function(req, res, next) {
 
     let availableBooks = books.filter(function(item, index){
       // filtering out books that are already loaned out
-        if (item.Loan == null || item.Loan.dataValues.returned_on != null ){
+        if (item.Loan == null || item.Loan.dataValues.returned_on !== null ){
           // return just each book's title, author, genre and first_published
             return item.dataValues;
         }
