@@ -599,7 +599,9 @@ Overall UI flow the same
 
         ERROR: SQLITE_CONSTRAINT: FOREIGN KEY constraint failed
 
-          to get around this I did a [Hard DB Reset](#hard-db-reset).
+          to get around this I did a Hard DB Reset
+
+[Hard DB Reset](#hard-db-reset).
 
           basically,
 
