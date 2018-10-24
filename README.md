@@ -199,9 +199,9 @@
 
     Search input form integrated into layout template
 
-      Books search route working, using same view as books all/overdue/checkout
+      Books search route working, using same view as Books main page
 
-      Patrons search route working, using same vieww as patrons main page
+      Patrons search route working, using same view as patrons main page
 
       Search is not case-sensitive,
 
@@ -209,7 +209,7 @@
 
       no Loans search for now
 
-      added a search title so it's clear when viewing search results
+      added a search title, so it's clear when viewing search results
 
 ## Project Update 23:
 
