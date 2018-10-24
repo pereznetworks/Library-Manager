@@ -71,6 +71,8 @@
 
           npm start
 
+          open localhost:3000 in an internet browser
+
   [back to Content Menu](#contents)
 
 ## For Developers
@@ -85,13 +87,17 @@
 
           npm start
 
+          open localhost:3000 in an internet browser
+
       when testing, recommend using Chrome browser
 
           npm start is set to run the app with the --inspect flag
 
               "node --inspect ./bin/www"
 
-       modify your own changes to the code
+              can use node.js chrome browser developer tools
+
+       then make your own changes to the code
 
        then when ready run 'npm start'
 
@@ -99,11 +105,11 @@
 
           read the following first
 
-          - [For the original project files and a project instruction, follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
+          - [For the original project files and a project instruction](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
           - [Developer Notes](#developer-notes)
           - [Hard DB Reset](#hard-db-reset)
 
-          then following folders and files comprise the Library Manager appear
+          the following folders and files comprise the Library Manager app
 
             /bin
             /config
@@ -150,7 +156,7 @@
     - [Project Update 3](#project-update-3)
     - [Project Update 2](#project-update-2)
     - [Project Update 1](#project-update-1)
-  - [For the original project files and a project instruction, follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
+  - [For the original project files and project instruction](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
   - [Developer Notes](#developer-notes)
   - [Hard DB Reset](#hard-db-reset)
 
@@ -536,7 +542,7 @@ Overall UI flow the same
 
   I did indeed downloaded the project files
 
-[For the original project files and a readme follow this link](https://github.com/pereznetworks/TD-Project10/tree/master/project-file-library-manager-v1)
+[For the original project files and instructions ](https://github.com/pereznetworks/TD-Project10/tree/master/project-file-library-manager-v1)
 
   Read, studied and created my own markdown-style version of the project instructions
 
