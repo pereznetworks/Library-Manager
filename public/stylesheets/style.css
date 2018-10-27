@@ -48,13 +48,13 @@ p {
 
 }
 .main_page_title{
-  margin: 10px 50px;
+  margin: 10px 36px;
 }
 ul {
   margin: auto 0;
   width: 90%;
   list-style-type: none;
-  margin: 0 50px;
+  margin: 0 25px;
   line-height: 1.6em;
   padding: 0;
 }
