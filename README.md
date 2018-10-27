@@ -64,9 +64,9 @@
 
 ## Project Status
 
-  DOING:
+  TODO:
 
-        final walk-through for project
+      PROJECT SUBMITTED, waiting for results of project review
 
   NEXT:
 
@@ -94,13 +94,13 @@
 
             upgrade to UI rendering to react
 
-  TODO:
-
-        submit project
-
   DONE:
 
     During final walk-through:
+
+      added data to demonstrate pagination across loans, patrons and books
+
+      fixed variable declaration typo in patrons route
 
       fixed new loan checked-out books in drop-menu bug:
 
