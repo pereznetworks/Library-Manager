@@ -172,7 +172,7 @@
 
               "node --inspect ./bin/www"
 
-              can use node.js chrome browser developer tools
+              can use with node.js chrome browser developer tools
 
        then make your own changes to the code
 

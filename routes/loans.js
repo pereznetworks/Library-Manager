@@ -22,7 +22,7 @@ router.get('/loans', function(req, res, next) {
   res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
   res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  // using Promise.all to handle to async db queries
+  // using Promise.all to handle 2 async db queries
   Promise.all([
      db.Patrons.findAll(),
      db.Loans.findAll({
@@ -49,12 +49,14 @@ router.get('/loans', function(req, res, next) {
    }).then(function(loansArray){
 
     if (loansArray){
-      // paginate if more then 10 results
-      if (loansArray.length < 9) {
+      // to paginate or not to paginate
+      if (loansArray.length < 11) {
         res.render("loanViews/index", {rowArray: loansArray, title: "Loans"} );
       } else {
         let pagesArray = utils.paginate(loansArray);
         res.render("loanViews/index", {pagesArray: pagesArray, title: "Loans"} );
+        // actual pagination done implemented by...
+        // bookViews, loanViews and patronViews index.pug templates
       }
 
     }
@@ -85,7 +87,7 @@ router.get('/loans/overdue', function(req, res, next){
   res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
   res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
-  // using Promise.all to handle to async db queries
+  // using Promise.all to handle 2 async db queries
   Promise.all([
      db.Patrons.findAll(),
      db.Loans.findAll({
@@ -226,10 +228,10 @@ router.get('/loans/new', function(req, res, next) {
   .then(([patrons, books]) => {
 
     // first for the book and patron's drop down menu....
-    // produce a new lists of available books and current patrons
+    // produce new list of available books and current patrons
 
     // since we're doing this each time this form is produced
-    // books no longer available for loan will not show up on this list
+    // books no longer available for loans will not show up on this list
 
     // having a current:true or false field means...
     // not having to compare loaned_on and returned_on dates
@@ -275,11 +277,13 @@ router.get('/loans/new', function(req, res, next) {
 router.post('/loans', function(req, res, next) {
 
   var newLoan = req.body;
+
   // set previous loans for the book to current: false
   // there should only be one, but just being safe
   // assuming that mutliple copies of the same book, will have a different book_id
-  // so each book_id represents exactly 1 copy
+  // so each book_id represents exactly 1 copy of a book
   // that 1 copy can only be checked out, once at a time
+
   db.Loans.update(
     {current: false},
     {where: {
@@ -298,7 +302,7 @@ router.post('/loans', function(req, res, next) {
   }).catch(function(error){
      // if validation fails, render the form again, with the input and validation msgs
       if(error.name === "SequelizeValidationError") {
-
+         // yes, have to do all this all over again....
           Promise.all([
              db.Patrons.findAll(),
              db.Books.findAll({

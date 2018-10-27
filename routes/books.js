@@ -13,6 +13,7 @@ var utils = require('../utils/index.js') /* importing my own helper utils */
 router.get('/books', function(req, res, next) {
   db.Books.findAll().then(function(books){
 
+    // static variable and paths
     res.locals.queryForAll = locals.booksPg.queryForAll;
     res.locals.queryForOverdue = locals.booksPg.queryForOverdue;
     res.locals.queryForCheckedOut = locals.booksPg.queryForCheckedOut;
@@ -23,13 +24,17 @@ router.get('/books', function(req, res, next) {
     res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
     if (books){
-            // this maps an array of the book details, which can read as rows in the book detail table
+      // this maps an array of the book details
+      // which can iterated more simply in the book detail table
       let booksArray = books.map(function(item, index){
         return item.dataValues
       });
-      if (booksArray.length < 9) {
+      // to paginate or not to paginate..
+      if (booksArray.length < 11) {
         res.render("bookViews/index", {rowArray: booksArray, title: "Books" } );
       } else {
+        // actual pagination implemented by...
+        // bookViews/loanViews and patronViews index.pug templates
         let pagesArray = utils.paginate(booksArray);
         res.render("bookViews/index", {pagesArray: pagesArray, title: "Books" } );
       }
@@ -58,6 +63,7 @@ router.get('/books/overdue', function(req, res, next){
               }]
     }).then(function(books){
 
+    // static variable and paths
     res.locals.queryForAll = locals.booksPg.queryForAll;
     res.locals.queryForOverdue = locals.booksPg.queryForOverdue;
     res.locals.queryForCheckedOut = locals.booksPg.queryForCheckedOut;
@@ -76,11 +82,14 @@ router.get('/books/overdue', function(req, res, next){
             return item.dataValues
           }
       });
-      if (booksArray.length < 9) {
+      // to paginate or not to paginate
+      if (booksArray.length < 11) {
         res.render("bookViews/index", {rowArray: booksArray, title: "Books", filterTitle: 'Overdue Loans' } );
       } else {
         let pagesArray = utils.paginate(booksArray);
         res.render("bookViews/index", {pagesArray: pagesArray, title: "Books", filterTitle: 'Overdue Loans' } );
+        // actual pagination implemented by...
+        // bookViews/loanViews and patronViews index.pug templates
       }
     }
   }).catch(function(error){
@@ -107,6 +116,7 @@ router.get('/books/checkedout', function(req, res, next){
               }]
     }).then(function(books){
 
+    // static variable and paths
     res.locals.queryForAll = locals.booksPg.queryForAll;
     res.locals.queryForOverdue = locals.booksPg.queryForOverdue;
     res.locals.queryForCheckedOut = locals.booksPg.queryForCheckedOut;
@@ -124,11 +134,14 @@ router.get('/books/checkedout', function(req, res, next){
         return item.dataValues
       });
 
-      if (booksArray.length < 9) {
+      // to paginate or not to paginate
+      if (booksArray.length < 11) {
         res.render("bookViews/index", {rowArray: booksArray, title: "Books", filterTitle: 'Checked Out Books' } );
       } else {
         let pagesArray = utils.paginate(booksArray);
         res.render("bookViews/index", {pagesArray: pagesArray, title: "Books", filterTitle: 'Checked Out Books' } );
+        // actual pagination implemented by...
+        // bookViews/loanViews and patronViews index.pug templates
       }
 
     }
@@ -172,7 +185,6 @@ router.get('/books/book_detail/:id', function(req, res, next) {
       // breaking down the array of objects in the Book array ...
       // into objects that can be more easily read as rows ...
       // in the book's update and book's loan details table
-      // TODO: if the returned data is uniform enough - refactor this into modular function
 
       if (book.Loan){
 
@@ -203,6 +215,7 @@ router.get('/books/book_detail/:id', function(req, res, next) {
 
 /* GET new book form */
 router.get('/books/new', function(req, res, next) {
+  // very simple new book form page
   res.render('bookViews/createNewBook', {book: {}, newFormTitle: 'New Book'});
 });
 
@@ -213,7 +226,9 @@ router.post('/books', function(req, res, next) {
   }).catch(function(error){
       if(error.name === "SequelizeValidationError") {
 
-        // input validation msgs will be at different indexes based on which fields had invalid input
+        // render the input validation msgs
+        // note: will be at different indexes based on which fields had invalid input
+        // so cannot simply iterate ... must refer to each using object key/value notation
 
         res.render("bookViews/createNewBook", {book: db.Books.build(req.body), errors: error.errors, newFormTitle: "New Book"})
 
@@ -229,31 +244,31 @@ router.post('/books', function(req, res, next) {
 router.post('/books/update', function(req, res, next) {
 
   db.Books.findOne({
+     // updating the book record that matches the id
       where: {id: req.body.id}
     }).then(function(book) {
         return book.update(req.body);
       }).then(function(){
+        // after update, display main books page
         res.redirect(`/books`);
       }).catch(function(error){
+        // if validation errors, re-render form with error msgs
          if(error.name === "SequelizeValidationError") {
            res.render('bookViews/createNewBook', {patrons: db.Books.build(req.body), errors: error.errors, title: "New Book"})
          } else {
            throw error;
          }
       }).catch(function(error){
-         res.render('error');
+        res.locals.message = "Oops, something went wrong";
+        res.locals.error = createError(500);
+        res.status(error.status || 500);
+        res.render('error');
       });
-  /*
-  res.locals.message = "Oops, this page is under construction";
-  res.locals.error = createError(500);
-  res.status(error.status || 500);
-  res.render('error');
-  */
 });
 
 /* search route for Books page. */
 router.get('/books/search/', function(req, res, next) {
-  db.Books.findAll({
+  db.Books.findAll({  // search on all fields displayed in book table
             where: {
                   [Op.or]: [
                       {
@@ -272,6 +287,7 @@ router.get('/books/search/', function(req, res, next) {
                }
   }).then(function(books){
 
+    // static paths and variables
     res.locals.queryForAll = locals.booksPg.queryForAll;
     res.locals.queryForOverdue = locals.booksPg.queryForOverdue;
     res.locals.queryForCheckedOut = locals.booksPg.queryForCheckedOut;
@@ -282,15 +298,20 @@ router.get('/books/search/', function(req, res, next) {
     res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
 
     if (books){
-            // this maps an array of the book details, which can read as rows in the book detail table
+
+      // this maps an array of the book details, which can read as rows in the book detail table
       let booksArray = books.map(function(item, index){
         return item.dataValues
       });
-      if (booksArray.length < 9) {
+
+      // to paginate or not to paginate
+      if (booksArray.length < 11) {
         res.render("bookViews/index", {rowArray: booksArray, title: "Books", search: " - Search results:" } );
       } else {
         let pagesArray = utils.paginate(booksArray);
         res.render("bookViews/index", {pagesArray: pagesArray, title: "Books", search: " - Search results:" } );
+        // actual pagination done implemented by...
+        // bookViews, loanViews and patronViews index.pug templates
       }
     }
   }).catch(function(error){
