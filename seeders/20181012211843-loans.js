@@ -47,6 +47,79 @@ module.exports = {
                 returned_on:'2018-10-17',
                 current: true
             },
+            {
+                book_id:16,
+                patron_id:5,
+                loaned_on:'2018-09-18',
+                return_by:'2018-09-25',
+                returned_on:'2018-09-24',
+                current: true
+            },
+            {
+                book_id:5,
+                patron_id:6,
+                loaned_on:'2018-09-23',
+                return_by:'2018-09-30',
+                returned_on:'2018-09-29',
+                current: true
+            },
+            {
+                book_id:6,
+                patron_id:7,
+                loaned_on:'2018-08-20',
+                return_by:'2018-08-27',
+                returned_on:'2018-08-26',
+                current: true
+            },
+            {
+                book_id:10,
+                patron_id:8,
+                loaned_on:'2018-07-18',
+                return_by:'2018-07-25',
+                returned_on:'2018-07-24',
+                current: true
+            },
+            {
+                book_id:12,
+                patron_id:9,
+                loaned_on:'2018-08-13',
+                return_by:'2018-08-20',
+                returned_on:'2018-08-17',
+                current: true
+            },
+            {
+                book_id:4,
+                patron_id:10,
+                loaned_on:'2018-05-18',
+                return_by:'2018-05-25',
+                returned_on:'2018-05-24',
+                current: false
+            },
+            {
+                book_id:3,
+                patron_id:12,
+                loaned_on:'2018-04-23',
+                return_by:'2018-04-30',
+                returned_on:'2018-04-28',
+                current: true
+            },
+            {
+                book_id:7,
+                patron_id:13,
+                loaned_on:'2018-03-20',
+                return_by:'2018-03-27',
+                returned_on:'2018-03-27',
+                current: true
+            },
+            {
+                book_id:17,
+                patron_id:14,
+                loaned_on:'2018-02-19',
+                return_by:'2018-02-26',
+                returned_on:'2018-02-24',
+                current: true
+            },
+
         ]);
 
   },
