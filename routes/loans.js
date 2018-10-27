@@ -219,10 +219,7 @@ router.get('/loans/new', function(req, res, next) {
     db.Patrons.findAll(),
     db.Books.findAll({
         include: [{
-                  model: db.Loans,
-                  // TODO: update this with.. both? 
-                  // where: {returned_on: {[Op.ne]: null}}
-                  // where: {current: true}
+                  model: db.Loans
                 }]
       })
   ])
@@ -230,16 +227,22 @@ router.get('/loans/new', function(req, res, next) {
 
     // first for the book and patron's drop down menu....
     // produce a new lists of available books and current patrons
+
     // since we're doing this each time this form is produced
     // books no longer available for loan will not show up on this list
 
+    // having a current:true or false field means...
+    // not having to compare loaned_on and returned_on dates
+
     let availableBooks = books.filter(function(item, index){
-      // filtering out books that are already loaned out
-        if (item.current=true && item.Loan == null || item.Loan.dataValues.returned_on !== null ){
-          // return just each book's title, author, genre and first_published
+      // filtering out books that are already either...
+        if (item.Loan == null){   // have never been loaned out
+          return item.dataValues;
+        } else if (item.Loan.dataValues.current == true && item.Loan.dataValues.returned_on !== null ){
+         // or the latest or current loan shows it has been turned in
             return item.dataValues;
-        }
-      });  // produces an array of book objects, that are available to be loaned
+        } // returnng an object of just the book's title author genre and year first_published
+      });  // which produces an array of book objects
 
     let currentPatrons = patrons.map(function(item, index){
       // produces array of patron objects...
