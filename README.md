@@ -6,6 +6,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [For Developers](#for-developers)
   - [Project Updates](#project-updates)
+    - [Project Update 25](#project-update-25)
     - [Project Update 24](#project-update-24)
     - [Project Update 23](#project-update-23)
     - [Project Update 22](#project-update-22)
@@ -40,19 +41,6 @@
 
         final walk-through for project
 
-        fixed several issues
-
-        remaining bugs
-
-          new loan form bug
-
-            a returned book checkout again does not get filtered out
-            from the drop-down menu for available books
-
-            cause is loan history of book, means that book will show up twice in a simple findAll, that includes Loan matching book_id
-
-            now to figure out how to fix...
-
   NEXT:
 
       in a way that fits with the 'Library Manager' scenario...
@@ -67,11 +55,15 @@
 
             more advanced sequelize db functions
 
-              like a raw view and export into json or csv of data
+                explore using model instances
 
-            a more modern mobile first UI
+                so I can set and save instead of a bulk update
 
-            modern menu's and icons in place of just navs, button and links
+                also a view and export into json or csv of data
+
+            a fully modern mobile first UI
+
+            modern menu's and icons in place of just button and links
 
             upgrade to UI rendering to react
 
@@ -80,6 +72,15 @@
         submit project
 
   DONE:
+
+    During final walk-through:
+
+      fixed new loan checked-out books in drop-menu bug:
+
+        includes updates to new loan form and loan post route
+        see update 25...
+
+  - [Project Update 25](#project-update-25)
 
     Project Extra Credit Features:
 
@@ -205,6 +206,38 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 25:
+
+  fixed New Loan form and new Loan post route
+
+      Loaned out books no longer appear in drop-down menu
+        new loan form route test for current == true
+          and returned_on !== null
+
+      new Loan post route
+          updates field, current = true
+            where book_id of loan = book_id
+              then creates new loan and has field of current = true
+
+              note: when not using input from form, a.k.a req.body
+                have to build an object with updated fields
+                  and use a where clause to tell update
+                    which record to update
+
+                    ```
+                      db.Loans.update(
+                       {current: false},
+                       {where: {
+                                 book_id: req.body.book_id
+                               }
+                       }
+                    ).then()
+
+                    ```
+              in future releases of this project
+                need to explore using model instances
+                  so I can set and save instead of a bulk update
 
 ## Project Update 24:
 
