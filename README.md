@@ -1,5 +1,32 @@
 # TD-Project10: Build a Library Manager
 
+## For the Project Reviewer
+
+      In addition to Project Expectations,
+
+      I also implemented...
+
+      Project Extra Credit Features:
+
+             Pagination for Books, Loans and Patrons page
+
+             Search for Books and Patrons
+
+      To get the project working...
+
+        Basics steps:
+
+        to run this version of Team TreeHouse, Library Manager...
+
+          download or clone of project from my Github rep
+
+          npm install
+
+          npm start  (runs with --inspect flag)
+
+          open localhost:3000 in an internet browser
+
+  [Content Menu](#contents)
 
 ## Contents:
   - [Project Status](#project-status)
@@ -124,22 +151,6 @@
           for required fields and forms...
           validation built into model attributes
           polite 'this field is required' messages
-
-  [back to Content Menu](#contents)
-
-## For the Project Reviewer
-
-      Basics steps:
-
-        to run this version of Team TreeHouse, Library Manager...
-
-          download or clone of project from my Github rep
-
-          npm install
-
-          npm start
-
-          open localhost:3000 in an internet browser
 
   [back to Content Menu](#contents)
 
