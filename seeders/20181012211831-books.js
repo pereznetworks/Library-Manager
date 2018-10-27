@@ -93,6 +93,30 @@ module.exports = {
             author:'Jane Austen',
             genre:'Classic',
             first_published:1815
+        },
+        {
+            title:`To Kill a Mockingbird`,
+            author:'Harper Lee',
+            genre:'Modern Classic',
+            first_published:1960
+        },
+        {
+            title:`Animal Farm`,
+            author:'George Orwell',
+            genre:'Modern Classic',
+            first_published:1945
+        },
+        {
+            title:`A Tale of Two Cities`,
+            author:'Charles Dickens',
+            genre:'Classic',
+            first_published:1859
+        },
+        {
+            title:`Le Comte de Monte-Cristo`,
+            author:'Alexandre Dumas',
+            genre:'Classic',
+            first_published:1844
         }
       ]);
   },

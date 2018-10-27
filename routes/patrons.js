@@ -22,10 +22,10 @@ router.get('/patrons', function(req, res, next) {
         return item.dataValues
       });
 
-      if (patronsArray.length < 9) {
+      if (patronsArray.length < 11) {
         res.render("patronViews/index", {rowArray: patronsArray, title: "Patrons" });
       } else {
-        let pagesArray = utils.paginate(bpatronsArray);
+        let pagesArray = utils.paginate(patronsArray);
         res.render("patronViews/index", {pagesArray: pagesArray, title: "Patrons" });
       }
 
@@ -215,10 +215,10 @@ router.get('/patrons/search', function(req, res, next) {
         });
 
         // paginate if more than 10 results
-        if (patronsArray.length < 9) {
+        if (patronsArray.length < 11) {
           res.render("patronViews/index", {rowArray: patronsArray, title: "Patrons", search: " - Search results:"});
         } else {
-          let pagesArray = utils.paginate(bpatronsArray);
+          let pagesArray = utils.paginate(patronsArray);
           res.render("patronViews/index", {pagesArray: pagesArray, title: "Patrons", search: " - Search results:" });
         }
 

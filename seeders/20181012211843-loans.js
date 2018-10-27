@@ -10,32 +10,32 @@ module.exports = {
             {
                 book_id:15,
                 patron_id:2,
-                loaned_on:'2018-10-10',
-                return_by:'2020-10-17',
+                loaned_on:'2018-10-18',
+                return_by:'2018-10-25',
                 returned_on:null,
                 current: true
             },
             {
                 book_id:4,
                 patron_id:1,
-                loaned_on:'2018-10-11',
-                return_by:'2018-10-18',
+                loaned_on:'2018-10-23',
+                return_by:'2018-10-30',
                 returned_on:null,
                 current: true
             },
             {
                 book_id:8,
                 patron_id:1,
-                loaned_on:'2018-10-12',
-                return_by:'2018-10-19',
+                loaned_on:'2018-10-24',
+                return_by:'2018-10-31',
                 returned_on:null,
                 current: true
             },
             {
                 book_id:9,
                 patron_id:3,
-                loaned_on:'2018-10-13',
-                return_by:'2018-10-20',
+                loaned_on:'2018-10-25',
+                return_by:'2018-11-01',
                 returned_on:null,
                 current: true
             },
