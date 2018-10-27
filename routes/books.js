@@ -155,10 +155,10 @@ router.get('/books/book_detail/:id', function(req, res, next) {
         model: db.Loans,
         where: { book_id: Sequelize.col('Books.id')},
         required: false,
-              include: [{
-                  model: db.Patrons,
-                  required: false
-              }]
+        include: [{
+                    model: db.Patrons,
+                    required: false
+                  }]
       }]
     }).then(function(book){
 

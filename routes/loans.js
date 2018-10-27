@@ -1,7 +1,9 @@
 // importing express and setting up a router
 var express = require('express');
 var router = express.Router();
+var createError = require('http-errors');
 var Sequelize = require('../models').sequelize;
+var Op = Sequelize.Op;
 
 var db = require('../models/index.js'); /* importing sequelize db */
 var locals = require("../views/locals"); /* importing static vars */
@@ -218,21 +220,22 @@ router.get('/loans/new', function(req, res, next) {
     db.Books.findAll({
         include: [{
                   model: db.Loans,
-                  where: { returned_on: Sequelize.col('Books.id')},
-                  required: false
+                  // TODO: update this with.. both? 
+                  // where: {returned_on: {[Op.ne]: null}}
+                  // where: {current: true}
                 }]
       })
   ])
   .then(([patrons, books]) => {
 
-    // first for the book and patron's drop down meny....
+    // first for the book and patron's drop down menu....
     // produce a new lists of available books and current patrons
     // since we're doing this each time this form is produced
     // books no longer available for loan will not show up on this list
 
     let availableBooks = books.filter(function(item, index){
       // filtering out books that are already loaned out
-        if (item.Loan == null || item.Loan.dataValues.returned_on !== null ){
+        if (item.current=true && item.Loan == null || item.Loan.dataValues.returned_on !== null ){
           // return just each book's title, author, genre and first_published
             return item.dataValues;
         }
@@ -267,25 +270,44 @@ router.get('/loans/new', function(req, res, next) {
 
 /* POST create new loan */
 router.post('/loans', function(req, res, next) {
-  // take the data in req.body from the form and create a new row in the loans table
-  db.Loans.create(req.body).then(function(loan) {
-    // then render main loans table
-    res.redirect(`/loans`);
+
+  var newLoan = req.body;
+  // set previous loans for the book to current: false
+  // there should only be one, but just being safe
+  // assuming that mutliple copies of the same book, will have a different book_id
+  // so each book_id represents exactly 1 copy
+  // that 1 copy can only be checked out, once at a time
+  db.Loans.update(
+    {current: false},
+    {where: {
+              book_id: req.body.book_id
+            }
+    }
+  ).then(function(result){
+      // before using form input data to create new loan..
+      // set as current loan
+      req.body.current = true;
+      // take the data in req.body from the form, create a new row in the loans table
+      return db.Loans.create(newLoan)
+  }).then(function(loan) {
+      // then render main loans table
+      res.redirect(`/loans`);
   }).catch(function(error){
      // if validation fails, render the form again, with the input and validation msgs
       if(error.name === "SequelizeValidationError") {
-        Promise.all([
-           db.Patrons.findAll(),
-           db.Books.findAll({
-             include: [{
-                     model: db.Loans,
-                     required: false
-              }]
-           })
-         ])
-        .then(([patrons, books]) => {
 
-            // first for the book and patron's drop down meny....
+          Promise.all([
+             db.Patrons.findAll(),
+             db.Books.findAll({
+               include: [{
+                       model: db.Loans,
+                       required: false
+                }]
+             })
+          ])
+          .then(([patrons, books]) => {
+
+            // first for the book and patron's drop down menu....
             // produce a new lists of available books and current patrons
             // since we're doing this each time this form is produced
             // books no longer available for loan will not show up on this list
@@ -312,8 +334,10 @@ router.post('/loans', function(req, res, next) {
 
             // finally... with all this data, render the create new form
             res.render('loanViews/createNewLoan', {loan: db.Loans.build(req.body), errors: error.errors, newFormTitle: "New Loan"});
+
           })
           .catch((error) => {
+              // if some error occurs rendering the new loan form page with the validation error msgs
               // set locals, only providing error in development
             res.locals.message = error.message;
             res.locals.error = req.app.get('env') === 'development' ? error : {};
@@ -321,16 +345,25 @@ router.post('/loans', function(req, res, next) {
             // render the error page
             res.status(error.status || 500);
             res.render('error');
-        }); // end Promise.all
+
+           }); // end Promise.all
 
       } else {
-        // if not a validation error...
+        //
         throw error;
       }
+
   }).catch(function(error){
-      res.render(error);
-   });
-});
+    // catch error, if something goes wrong db.Loans.findAll or db.Loans.update
+    res.locals.message = error.message;
+    res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+    // render the error page
+    res.status(error.status || 500);
+    res.render('error');
+  });
+
+}); // end /loan post route
 
 // exporting router so it can be used by express app
 module.exports = router;

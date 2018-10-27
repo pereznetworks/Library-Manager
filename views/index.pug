@@ -1,8 +1,8 @@
 extends layout
 //- passed in variables to fill-in tag textContents's, href url paths and css id's
 block content
-  h1= title
-  ul
+  h1(class="main_page_title")= title
+  ul(class="main_page")
     li(id=bookSectionId)
       p= booksTitle
       ul

@@ -44,12 +44,19 @@ input[type=submit] {
 p {
   margin: 20px auto;
 }
+.main_page{
+
+}
+.main_page_title{
+  margin: 10px 50px;
+}
 ul {
   margin: auto 0;
   width: 90%;
   list-style-type: none;
-  margin: 0 10px;
+  margin: 0 50px;
   line-height: 1.6em;
+  padding: 0;
 }
 nav {
   margin: auto 0;
@@ -251,7 +258,8 @@ input[type=text], select {
     margin: auto 0;
     width: 90%;
     list-style-type: none;
-    margin: 0 1px;
+    margin: 0 50px;
+    padding: 0;
     line-height: 1.6em;
   }
   nav ul li {

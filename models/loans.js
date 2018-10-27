@@ -54,8 +54,13 @@ module.exports = (sequelize, DataTypes) => {
                                             // validated as date
                                             // but this field is auto-populated
                                           isDate: true,
-                                         }
-                         }
+                                          }
+                      },
+             current: {
+                             allowNull: false,
+                             type: DataTypes.BOOLEAN,
+
+                      }
       }, {
               timestamps: false,
              underscored: true
