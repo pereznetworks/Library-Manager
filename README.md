@@ -80,6 +80,11 @@
 
         other ideas
 
+            sure is a lot of repeated code....
+              due to context-based info
+                is hard to re-factor to DRY
+                  but would like to try it
+
             more advanced sequelize db functions
 
                 explore using model instances
