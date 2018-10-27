@@ -107,8 +107,6 @@
         includes updates to new loan form and loan post route
         see update 25...
 
-  - [Project Update 25](#project-update-25)
-
     Project Extra Credit Features:
 
        Pagination for Books, Loans and Patrons page
