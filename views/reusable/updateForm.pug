@@ -83,7 +83,7 @@ else if title == "Patron"
             input(id=`${value.toLowerCase()}` name='email' type="text" placeholder=patronObject.email value=submitData.email)
             each item in errors
               if item.path == 'email'
-                span(class="inputErrMsg")= item.message
+                span(class="inputErrMsg") Please enter a valid email address
         else if columnNo == 5
           p
             label(for=`${value.toLowerCase()}`)= value

@@ -222,6 +222,23 @@
 
   [back to Content Menu](#contents)
 
+## Project Update 29
+
+  Patron Update form
+
+    correct page rendered after update submitted
+
+    entire patron detail re-rendered correctly on validation errors
+
+    placeholder values remind user what was there before
+
+    values insert user's submitted data
+
+    user can clear the library_id, but it is still autopopulated
+
+  TODO : implement custom unique model attribute datatype/validation
+
+
 ## Project Update 28
 
   Added model validation for all dates to Loan model
