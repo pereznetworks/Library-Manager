@@ -33,6 +33,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [For Developers](#for-developers)
   - [Project Updates](#project-updates)
+    - [Project Update 26](#project-update-26)
     - [Project Update 25](#project-update-25)
     - [Project Update 24](#project-update-24)
     - [Project Update 23](#project-update-23)
@@ -220,6 +221,10 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
+## Project Update 26:
+
+  fixed book detail update form error validation
 
 ## Project Update 25:
 
