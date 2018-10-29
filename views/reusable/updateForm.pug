@@ -51,7 +51,6 @@ else if title == "Patron"
   if errors
     form(action="/patrons/update", method="post")
       - var columnNo = 0;
-      - console.log(columnArray, rowArray)
       each value in columnArray
         if columnNo == 0
           p(class="id")
@@ -88,7 +87,7 @@ else if title == "Patron"
         else if columnNo == 5
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(name='library_id'  type="text" placeholder=patronsObject.library_id value=``)
+            input(name='library_id'  type="text" placeholder=patronObject.library_id value=``)
             each item in errors
               if item.path == 'library_id'
                 span(class="inputErrMsg")= item.message
@@ -104,7 +103,6 @@ else if title == "Patron"
   else
     form(action="/patrons/update", method="post")
       - var columnNo = 0;
-      - console.log(columnArray, rowArray)
       each value in columnArray
         if columnNo == 0
           p(class="id")

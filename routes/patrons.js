@@ -180,8 +180,71 @@ router.post('/patrons/update', function(req, res, next) {
         res.redirect(`/patrons`);
       }).catch(function(error){
          if(error.name === "SequelizeValidationError") {
-           // if invalid input, re-render the form with the error msgs
-           res.render('patronViews/update', {patrons: db.Patrons.build(req.body), errors: error.errors, title: "New Patron"})
+
+           // query patrons table and re-render patrons all over again
+           // with validation errors..
+
+           db.Patrons.findOne({
+               where: { id:req.body.id},
+               include: [{
+                       model: db.Loans,
+                       where: { patron_id: Sequelize.col('Patrons.id') },
+                       required: false,
+                       include: [{
+                               model: db.Books,
+                               where: { id: Sequelize.col('Loans.book_id')},
+                               required: false
+                       }]
+                }]
+             }).then(function(Patron){
+
+               // static paths and variables
+               res.locals.title = 'Patron';
+               res.locals.columnArray = locals.patronsPg.columnArray;
+               res.locals.loansColumnArray = locals.loansPg.columnArray;
+               res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+               res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+               res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+
+               // breaking down the array of objects in the patron details
+               // to be read as rows in the patron update and details table
+               let patronObject = Patron.dataValues;
+
+               if (Patron.Loans){
+
+                 // simplifying the patrons array of arrays of objects
+                 // to make it easier to iterate in pug template
+
+                 let loansArray = Patron.Loans.map(function(item, index){
+                   return item.dataValues;
+                 });
+
+                 let booksArray = loansArray.map(function(item, index){
+                   return item.Book.dataValues;
+                 });
+
+                 res.render("patronViews/patron_detail", {booksArray: booksArray, loansArray: loansArray, patronObject: patronObject, submitData: db.Patrons.build(req.body), errors: error.errors, title: "Patron" });
+
+               } else {  // in case patron has no loan history yet
+
+                 res.render("patronViews/patron_detail", {patronObject: patronObject, submitData: db.Patrons.build(req.body), errors: error.errors, title: "Patron" });
+
+               }
+
+           }).catch(function(error){
+             // set locals, only providing error in development
+               if (error){
+                 res.locals.message = error.message;
+                 res.locals.error =  error
+               } else {
+                 res.locals.message = "Oops, there's been a server error";
+                 res.locals.error = createError(500);
+               }
+               // render the error page
+               res.status(error.status || 500);
+               res.render('error');
+            });
+
          } else {
            throw error;
          }
