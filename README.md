@@ -222,6 +222,14 @@
 
   [back to Content Menu](#contents)
 
+## Project Update 28
+
+  Added model validation for all dates to Loan model
+
+  Added error messages to for date validation to new loan and return book form
+
+  Fixed both forms so that on submit the loans listing page is loaded
+
 ## Project Update 27:
 
   Removed logic to prevent already loaned books from being in new loans book select menu
