@@ -221,6 +221,11 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+## Project Update 30
+
+  implemented custom unique model attribute datatype/validation
+
+    for Library Id
 
 ## Project Update 29
 
@@ -234,9 +239,7 @@
 
     values insert user's submitted data
 
-    user can clear the library_id, but it is still autopopulated
-
-  TODO : implement custom unique model attribute datatype/validation
+    user can clear the library_id, but it is still auto-populated
 
 
 ## Project Update 28

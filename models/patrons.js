@@ -65,13 +65,37 @@ module.exports = (sequelize, DataTypes) => {
                                    type: DataTypes.STRING,
                                validate: {
                                          // must be a properly formated email address
-                                           isEmail: true
+                                           isEmail: true,
+                                           isUnique: function(value, next) {
+                                                         var db = require('../models/index.js'); /* importing sequelize db  */
+                                                         db.Patrons.find({
+                                                             where: {email: value},
+                                                             attributes: ['id']
+                                                         })
+                                                             .then(function(error, patron) {
+
+                                                                 if (error)
+                                                                     // Some unexpected error occured with the find method
+                                                                     return next(error);
+
+                                                                 if (patron)
+                                                                     // email already in use by another patron
+                                                                     // Pass the error to the next method.
+                                                                     return next('Sorry, that email is already in use!');
+
+                                                                 // if we get this far, submitted value for email is ok
+                                                                 // send next() empty, so validator will move on
+                                                                 next();
+
+                                                             }); // end isUnique call back function
+
+                                                     }
                                          }
+
                          },
              library_id: {
                               allowNull: false,
                                    type: DataTypes.STRING,
-                                 unique: true,
                                validate: { // auto set MCL0100 + patron count + 1
                                            uniqueLibraryId: function(value){  // checking for at least a 5 char long alphanumeric string
                                                                   var alphaNumeric = /[(A-Z0-9)]/g;
@@ -79,18 +103,32 @@ module.exports = (sequelize, DataTypes) => {
                                                                         throw new Error("Please enter a library_id");
                                                                   } else if (!value.match(/(\d){4}$/g) || !value.match(/^([A-Z]){3}/gi)){
                                                                         throw new Error("Please enter a unique id starting with 3 letters followed by 4 numbers, or submit with the value autopopulated in the field ");
-                                                                  } else {
-
-                                                                    var db = require('./index.js');
-
-                                                                    db.Patrons.find({where:{library_id: value}})
-                                                                      .then(function (match) { // This gets called
-                                                                        if (match){
-                                                                          throw new Error(`That library_id, ${value}, is already in use!`);
-                                                                        } // But this isn't triggering a validation error.
-                                                                      });
                                                                   }
                                                             },
+                                                  isUnique: function(value, next) {
+                                                                var db = require('../models/index.js'); /* importing sequelize db  */
+                                                                db.Patrons.find({
+                                                                    where: {library_id: value},
+                                                                    attributes: ['id']
+                                                                })
+                                                                    .then(function(error, patron) {
+
+                                                                        if (error)
+                                                                            // Some unexpected error occured with the find method
+                                                                            return next(error);
+
+                                                                        if (patron)
+                                                                            // library_id already in use by another patron
+                                                                            // Pass the error to the next method.
+                                                                            return next('Sorry, that library_id is already in use!');
+
+                                                                        // if we get this far, submitted value for library_id ok
+                                                                        // send next() empty, so validator will move on
+                                                                        next();
+
+                                                                    }); // end isUnique call back function
+
+                                                            }
                                           }
                           },
                zip_code: {

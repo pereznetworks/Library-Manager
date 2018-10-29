@@ -2,48 +2,75 @@ extends ../layout
 //- create new Patron form template
 block content
   h1= newFormTitle
-  form(action="/patrons", method="post")
-    p
-      label(for=first_name) First Name
-      input(name='first_name' type="text" value=patrons.dataValues.first_name)
-      if errors
-        each item in errors
-          if item.path == 'first_name'
-            span(class="inputErrMsg")= item.message
-    p
-      label(for=last_name) Last Name
-      input(name='last_name' type="text" value=patrons.dataValues.last_name)
-      if errors
-        each item in errors
-          if item.path == 'last_name'
-            span(class="inputErrMsg")= item.message
-    p
-      label(for=address) Address
-      input(name='address' type="text" value=patrons.dataValues.address)
-      if errors
-        each item in errors
-          if item.path == 'address'
-            span(class="inputErrMsg")= item.message
-    p
-      label(for=email) Email
-      input(name='email' type="text" value=patrons.dataValues.email)
-      if errors
-        each item in errors
-          if item.path == 'email'
-            span(class="inputErrMsg")= `Please enter an email address`
-    p
-      label(for=library_id) Library ID:
-      input(name='library_id'  type="text" placeholder=patrons.dataValues.library_id value=``)
-      if errors
-        each item in errors
-          if item.path == 'library_id'
-            span(class="inputErrMsg")= item.message
-
-    p
-      label(for=zip_code) Zip Code
-      input(name='zip_code' type="text" value=patrons.dataValues.zip_code)
-      if errors
-        each item in errors
-          if item.path == 'zip_code'
-            span(class="inputErrMsg")= item.message
-    input(type="submit" value=`Create New Patron`)
+  if errors
+    form(action="/patrons", method="post")
+      p
+        label(for=first_name) First Name
+        input(name='first_name' type="text" value=submitData.first_name)
+        if errors
+          each item in errors
+            if item.path == 'first_name'
+              span(class="inputErrMsg")= item.message
+      p
+        label(for=last_name) Last Name
+        input(name='last_name' type="text" value=submitData.last_name)
+        if errors
+          each item in errors
+            if item.path == 'last_name'
+              span(class="inputErrMsg")= item.message
+      p
+        label(for=address) Address
+        input(name='address' type="text" value=submitData.address)
+        if errors
+          each item in errors
+            if item.path == 'address'
+              span(class="inputErrMsg")= item.message
+      p
+        label(for=email) Email
+        input(name='email' type="text" value=submitData.email)
+        if errors
+          each item in errors
+            if item.path == 'email'
+              if item.validatorKey == "isUnique"
+                span(class="inputErrMsg") Sorry, that's another Patron's email address!
+              else
+                span(class="inputErrMsg")= `Please enter a valid email address`
+      p
+        label(for=library_id) Library ID:
+        input(name='library_id'  type="text" placeholder=patron.dataValues.library_id value=submitData.library_id)
+        if errors
+          each item in errors
+            if item.path == 'library_id'
+              if item.validatorKey == "isUnique"
+                span(class="inputErrMsg") Sorry, that library_id is already in use!
+              else
+                span(class="inputErrMsg")= item.message
+      p
+        label(for=zip_code) Zip Code
+        input(name='zip_code' type="text" value=submitData.zip_code)
+        if errors
+          each item in errors
+            if item.path == 'zip_code'
+              span(class="inputErrMsg")= item.message
+      input(type="submit" value=`Create New Patron`)
+  else
+    form(action="/patrons", method="post")
+      p
+        label(for=first_name) First Name
+        input(name='first_name' type="text" value='')
+      p
+        label(for=last_name) Last Name
+        input(name='last_name' type="text" value='')
+      p
+        label(for=address) Address
+        input(name='address' type="text" value='')
+      p
+        label(for=email) Email
+        input(name='email' type="text" value='')
+      p
+        label(for=library_id) Library ID:
+        input(name='library_id'  type="text" placeholder=patron.dataValues.library_id value=patron.dataValues.library_id)
+      p
+        label(for=zip_code) Zip Code
+        input(name='zip_code' type="text" value='')
+      input(type="submit" value=`Create New Patron`)

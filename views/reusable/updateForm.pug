@@ -83,14 +83,20 @@ else if title == "Patron"
             input(id=`${value.toLowerCase()}` name='email' type="text" placeholder=patronObject.email value=submitData.email)
             each item in errors
               if item.path == 'email'
-                span(class="inputErrMsg") Please enter a valid email address
+                if item.validatorKey == "isUnique"
+                  span(class="inputErrMsg") Sorry, that's another Patron's email address!
+                else
+                  span(class="inputErrMsg")= `Please enter a valid email address`
         else if columnNo == 5
           p
             label(for=`${value.toLowerCase()}`)= value
             input(name='library_id'  type="text" placeholder=patronObject.library_id value=submitData.library_id)
             each item in errors
               if item.path == 'library_id'
-                span(class="inputErrMsg")= item.message
+                if item.validatorKey == "isUnique"
+                  span(class="inputErrMsg") Sorry, that library_id is already in use!
+                else
+                  span(class="inputErrMsg")= item.message
         else if columnNo == 6
           p
             label(for=`${value.toLowerCase()}`)= value

@@ -127,13 +127,11 @@ router.get('/patrons/new', function(req, res, next) {
 
     // the next library id is always the num of patrons minus 1
     // plus... MCL + 100 and a leading zero
-    let nextLibraryId = utils.getNextLibraryID(numOfPatrons);
-
-    // autopopulate the library_id field
-    newEmptyPatron.dataValues.library_id = nextLibraryId;
+    // populate the library_id field
+    newEmptyPatron.dataValues.library_id = utils.getNextLibraryID(numOfPatrons);
 
     // render form with this newEmptyPatron template
-    res.render('patronViews/createNewPatron', {patrons: newEmptyPatron, nextLibraryId: nextLibraryId, newFormTitle: 'New Patron'});
+    res.render('patronViews/createNewPatron', {patron: newEmptyPatron, newFormTitle: 'New Patron'});
 
   });
 });
@@ -152,11 +150,10 @@ router.post('/patrons', function(req, res, next) {
           // with error msg for each invalid input
           db.Patrons.count().then(function(numOfPatrons){
 
-           let patronInfoSubmitted = db.Patrons.build(req.body)
-           let nextLibraryId = utils.getNextLibraryID(numOfPatrons);
-           patronInfoSubmitted.dataValues.library_id = nextLibraryId;
+           let newPatron= db.Patrons.build({first_name: '',last_name: '',address: '', email:'', zip_code:''})
+           newPatron.dataValues.library_id = utils.getNextLibraryID(numOfPatrons);
 
-           res.render('patronViews/createNewPatron', {patrons: patronInfoSubmitted , errors: error.errors, title: "New Patron"})
+           res.render('patronViews/createNewPatron', {patron: newPatron, submitData: req.body, errors: error.errors, title: "New Patron"})
         });
 
       } else {
@@ -166,7 +163,7 @@ router.post('/patrons', function(req, res, next) {
     res.locals.message = "Oops, there's been some error";
     res.status(error.status || 500);
     res.render('error');
-   });
+  });
 });
 
 /* POST update new patron */
