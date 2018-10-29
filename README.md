@@ -78,7 +78,6 @@
       Fixed Create Loan and error validation
       Fixed Return Book form and error validation
 
-
       Using custom unique validation function
         Added to library_id validation,
           isUnique and validation to using format, MCL0100
