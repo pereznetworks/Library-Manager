@@ -223,11 +223,11 @@ router.post('/patrons/update', function(req, res, next) {
                    return item.Book.dataValues;
                  });
 
-                 res.render("patronViews/patron_detail", {booksArray: booksArray, loansArray: loansArray, patronObject: patronObject, submitData: db.Patrons.build(req.body), errors: error.errors, title: "Patron" });
+                 res.render("patronViews/patron_detail", {booksArray: booksArray, loansArray: loansArray, patronObject: patronObject, submitData: req.body, errors: error.errors, title: "Patron" });
 
                } else {  // in case patron has no loan history yet
 
-                 res.render("patronViews/patron_detail", {patronObject: patronObject, submitData: db.Patrons.build(req.body), errors: error.errors, title: "Patron" });
+                 res.render("patronViews/patron_detail", {patronObject: patronObject, submitData: req.body, errors: error.errors, title: "Patron" });
 
                }
 

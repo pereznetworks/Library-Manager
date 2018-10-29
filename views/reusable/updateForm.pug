@@ -55,46 +55,46 @@ else if title == "Patron"
         if columnNo == 0
           p(class="id")
             label(for=`${value}`)= value
-            input(id=`${value}` name='id' type="text" value=`${patronObject.id}`)
+            input(id=`${value}` name='id' type="text" value=`${submitData.id}`)
         else if columnNo == 1
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` name='first_name' type="text" value=`${patronObject.first_name}`)
+            input(id=`${value.toLowerCase()}` name='first_name' type="text" placeholder=patronObject.first_name value=`${submitData.first_name}`)
             each item in errors
               if item.path == 'first_name'
                 span(class="inputErrMsg")= item.message
         else if columnNo == 2
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` name='last_name' type="text" value=`${patronObject.last_name}`)
+            input(id=`${value.toLowerCase()}` name='last_name' type="text" placeholder=patronObject.last_name value=`${submitData.last_name}`)
             each item in errors
               if item.path == 'last_name'
                 span(class="inputErrMsg")= item.message
         else if columnNo == 3
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` name='address' type="text" value=patronObject.address)
+            input(id=`${value.toLowerCase()}` name='address' type="text" placeholder=patronObject.address value=submitData.address)
             each item in errors
               if item.path == 'address'
                 span(class="inputErrMsg")= item.message
         else if columnNo == 4
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` name='email' type="text" value=patronObject.email)
+            input(id=`${value.toLowerCase()}` name='email' type="text" placeholder=patronObject.email value=submitData.email)
             each item in errors
               if item.path == 'email'
                 span(class="inputErrMsg")= item.message
         else if columnNo == 5
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(name='library_id'  type="text" placeholder=patronObject.library_id value=``)
+            input(name='library_id'  type="text" placeholder=patronObject.library_id value=submitData.library_id)
             each item in errors
               if item.path == 'library_id'
                 span(class="inputErrMsg")= item.message
         else if columnNo == 6
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(id=`${value.toLowerCase()}` name='zip_code' type="text" value=patronObject.zip_code)
+            input(id=`${value.toLowerCase()}` name='zip_code' type="text" placeholder=patronObject.zip_code value=submitData.zip_code)
             each item in errors
               if item.path == 'zip_code'
                 span(class="inputErrMsg")= item.message
@@ -127,7 +127,7 @@ else if title == "Patron"
         else if columnNo == 5
           p
             label(for=`${value.toLowerCase()}`)= value
-            input(name='library_id'  type="text" placeholder=patronObject.library_id value=``)
+            input(name='library_id'  type="text" placeholder=patronObject.library_id value=patronObject.library_id)
         else if columnNo == 6
           p
             label(for=`${value.toLowerCase()}`)= value
