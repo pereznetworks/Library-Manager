@@ -78,9 +78,14 @@
       Fixed Create Loan and error validation
       Fixed Return Book form and error validation
 
-      Added to library_id validation,
-        isUnique and validation to using format, MCL0100
-      Added isUnique to email validation, also
+
+      Using custom unique validation function
+        Added to library_id validation,
+          isUnique and validation to using format, MCL0100
+        Added isUnique to email validation, also
+
+      Using custom Date string parser,
+        Added to Loan model for loaned_on, return_by and returned_on dates
 
       Per reviewer comments
         removed logic so all that books will show in create new loan form
