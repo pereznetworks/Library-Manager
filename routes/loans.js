@@ -236,15 +236,22 @@ router.get('/loans/new', function(req, res, next) {
     // having a current:true or false field means...
     // not having to compare loaned_on and returned_on dates
 
-    let availableBooks = books.filter(function(item, index){
-      // filtering out books that are already either...
-        if (item.Loan == null){   // have never been loaned out
-          return item.dataValues;
-        } else if (item.Loan.dataValues.current == true && item.Loan.dataValues.returned_on !== null ){
-         // or the latest or current loan shows it has been turned in
-            return item.dataValues;
-        } // returnng an object of just the book's title author genre and year first_published
-      });  // which produces an array of book objects
+    /* Apparently, this logic goes beyond the requirement of the project...
+      requirement is that ALL books should be in the select, or drop-down menu
+      ... whether the book is loaned out or not
+    */
+      // let availableBooks = books.filter(function(item, index){
+      //   // filtering out books that are already either...
+      //     if (item.Loan == null){   // have never been loaned out
+      //       return item.dataValues;
+      //     } else if (item.Loan.dataValues.current == true && item.Loan.dataValues.returned_on !== null ){
+      //      // or the latest or current loan shows it has been turned in
+      //         return item.dataValues;
+      //     } // returnng an object of just the book's title author genre and year first_published
+      //   });  // which produces an array of book objects
+
+
+    let availableBooks = books;
 
     let currentPatrons = patrons.map(function(item, index){
       // produces array of patron objects...

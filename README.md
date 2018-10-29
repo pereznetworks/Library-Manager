@@ -222,6 +222,10 @@
 
   [back to Content Menu](#contents)
 
+## Project Update 27:
+
+  Removed logic to prevent already loaned books from being in new loans book select menu
+
 ## Project Update 26:
 
   fixed book detail update form error validation
