@@ -33,6 +33,10 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [For Developers](#for-developers)
   - [Project Updates](#project-updates)
+    - [Project Update 26](#project-update-30)
+    - [Project Update 25](#project-update-29)
+    - [Project Update 24](#project-update-28)
+    - [Project Update 23](#project-update-27)
     - [Project Update 26](#project-update-26)
     - [Project Update 25](#project-update-25)
     - [Project Update 24](#project-update-24)
@@ -67,7 +71,27 @@
 
   TODO:
 
-      PROJECT SUBMITTED, waiting for results of project review
+      PROJECT RE-SUBMITTED, waiting for results of project review
+
+      Fixed Book detail update form error validation
+      Fixed Patron Detail - Patron Update Form and error validation
+      Fixed Create Loan and error validation
+      Fixed Return Book form and error validation
+
+      Added to library_id validation,
+        isUnique and validation to using format, MCL0100
+      Added isUnique to email validation, also
+
+      Per reviewer comments
+        removed logic so all that books will show in create new loan form
+        whether loaned out or not
+
+        there is nothing in the project requirements about it
+        I still have...
+            the 'current' attribute in the Loan model
+            and am still updating the current attribute
+              when returning and loaning books
+        So I can easily implement the feature in the future
 
   NEXT:
 
@@ -221,11 +245,12 @@
   Project Updates list from most recent update to oldest
 
   [back to Content Menu](#contents)
+
 ## Project Update 30
 
   implemented custom unique model attribute datatype/validation
 
-    for Library Id
+    for Library id and for email
 
 ## Project Update 29
 
