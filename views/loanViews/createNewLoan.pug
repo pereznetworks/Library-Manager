@@ -27,19 +27,13 @@ block content
         input(type="text" name="loaned_on" placeholder='yyyy-mm-dd' value=loan.loaned_on)
         each item in errors
           if item.path == 'loaned_on'
-            if validatorKey == "isTodayDate"
-              span(class="inputErrMsg")= item.message
-            else
-              span(class="inputErrMsg") Please enter a date, format: yyyy-mm-dd
+             span(class="inputErrMsg")= item.message
       p
         label(for="return_by") Return By:
         input(type="text" name="return_by" placeholder='yyyy-mm-dd' value=loan.return_by)
         each item in errors
           if item.path == 'return_by'
-            if item.validatorKey == 'plus7days'
               span(class="inputErrMsg")= item.message
-            else
-              span(class="inputErrMsg") Please enter a date, format: yyyy-mm-dd
       input(type="submit" value=`Create New Loan`)
   else
     form(action="/loans", method="post")
