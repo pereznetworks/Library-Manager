@@ -6,11 +6,27 @@ block content
   p #[strong Loaned By: ] #{patronName}
   p #[strong Loaned On: ] #{loaned_on}
   p #[strong Return by: ] #{return_by}
-  form(action="/returns", method="post")
+  if errors
+    form(action="/returns", method="post")
        p(class="id")
         input(id="loanId" name="loanId" value=loanId)
        p
         label(for="returned_on") Returned on:
-        input(id="returned_on" name="returned_on" type="text" value=returnedOn)
+        input(id="returned_on" name="returned_on" type="text" placeholder='yyyy-mmm-dd' value=loan.returned_on)
+        each item in errors
+          if item.path == 'returned_on'
+            if validatorKey = "isTodayDate"
+              span(class="inputErrMsg")= item.message
+            else
+              span(class="inputErrMsg") Please enter a date, format: yyyy-mm-dd
+       p
+        input(type="submit" value="Return Book")
+  else
+    form(action="/returns", method="post")
+       p(class="id")
+        input(id="loanId" name="loanId" value=loanId)
+       p
+        label(for="returned_on") Returned on:
+        input(id="returned_on" name="returned_on" type="text" placeholder='yyyy-mm-dd' values=returnedOn)
        p
         input(type="submit" value="Return Book")

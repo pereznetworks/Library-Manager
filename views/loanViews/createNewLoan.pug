@@ -27,7 +27,10 @@ block content
         input(type="text" name="loaned_on" placeholder='yyyy-mm-dd' value=loan.loaned_on)
         each item in errors
           if item.path == 'loaned_on'
-            span(class="inputErrMsg") Please enter a date, format: yyyy-mm-dd
+            if validatorKey == "isTodayDate"
+              span(class="inputErrMsg")= item.message
+            else
+              span(class="inputErrMsg") Please enter a date, format: yyyy-mm-dd
       p
         label(for="return_by") Return By:
         input(type="text" name="return_by" placeholder='yyyy-mm-dd' value=loan.return_by)

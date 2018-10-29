@@ -49,9 +49,9 @@ router.get('/return/return_book/:id', function(req, res, next) {
       // render the error page
       res.status(error.status || 500);
       res.render('error');
-    }); // end return book, update loan
+    }); // end findOne.loan for book form
 
-  });  // end router.get /return/return_book
+  });  // end router.get /return/return_book form
 
   /* POST return book, i.e... update loan with returned_on date*/
   router.post('/returns', function(req, res, next) {
@@ -63,7 +63,45 @@ router.get('/return/return_book/:id', function(req, res, next) {
           res.redirect(`/loans`);
         }).catch(function(error){
            if(error.name === "SequelizeValidationError") {
-             res.render('patronViews/createNewPatron', {patrons: db.Patrons.build(req.body), errors: error.errors, title: "New Patron"})
+
+             db.Loans.findOne({
+                  where: { id: req.body.loanId},
+                  include: [{
+                    model: db.Books,
+                    where: { id: Sequelize.col('Loans.book_id')},
+                  }]
+             }).then((loan) => {
+               return db.Patrons.findById(loan.patron_id).then(patron => {
+                 loan.Patron = patron;
+                 return loan;
+                });
+             }).then((loan) => {
+
+                 /* break down book array of objects..
+                    to just what is needed to return the book..
+                  */
+                 res.locals.loanId = loan.dataValues.id;
+                 res.locals.bookTitle = loan.Book.dataValues.title;
+                 res.locals.patronName = `${loan.Patron.first_name} ${loan.Patron.last_name}`;
+                 res.locals.loaned_on = loan.dataValues.loaned_on;
+                 res.locals.return_by = loan.dataValues.return_by;
+
+                 /* get returned_on date, formatted date yyyy-mm-dd */
+                 res.locals.returnedOn = utils.getADate();
+
+                 // finally... with all this data, render the return book form, along with the errors
+                 res.render('returnBookViews', {loan: req.body, errors: error.errors, newFormTitle: 'New Loan'});
+               })
+             .catch((error) => {
+               // set locals, only providing error in development
+               res.locals.message = error.message;
+               res.locals.error = req.app.get('env') === 'development' ? error : {};
+
+               // render the error page
+               res.status(error.status || 500);
+               res.render('error');
+             }); // end RE-render return book form
+
            } else {
              throw error;
            }
