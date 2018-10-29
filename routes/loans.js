@@ -285,11 +285,10 @@ router.post('/loans', function(req, res, next) {
 
   var newLoan = req.body;
 
-  // set previous loans for the book to current: false
-  // there should only be one, but just being safe
-  // assuming that mutliple copies of the same book, will have a different book_id
-  // so each book_id represents exactly 1 copy of a book
-  // that 1 copy can only be checked out, once at a time
+  // still keeping current field updated
+  // but no longer using at present
+  // project requirements are to show all books in new loan form
+  // regardless of whether that book is loaned out or not
 
   db.Loans.update(
     {current: false},
@@ -302,7 +301,7 @@ router.post('/loans', function(req, res, next) {
       // set as current loan
       req.body.current = true;
       // take the data in req.body from the form, create a new row in the loans table
-      return db.Loans.create(newLoan)
+      return db.Loans.create(newLoan);
   }).then(function(loan) {
       // then render main loans table
       res.redirect(`/loans`);
@@ -347,7 +346,7 @@ router.post('/loans', function(req, res, next) {
             res.locals.dateReturnBy = utils.getADate(defaultDaysLoanedBookDue);
 
             // finally... with all this data, render the create new form
-            res.render('loanViews/createNewLoan', {loan: db.Loans.build(req.body), errors: error.errors, newFormTitle: "New Loan"});
+            res.render('loanViews/createNewLoan', {loan: req.body, errors: error.errors, newFormTitle: "New Loan"});
 
           })
           .catch((error) => {

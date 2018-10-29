@@ -35,7 +35,6 @@ module.exports = (sequelize, DataTypes) => {
                                    type: DataTypes.DATEONLY,
                                validate: {
                                             // validated as date
-                                            // but this field is auto-populated
                                           isDate: true,
                                          }
                          },
@@ -44,15 +43,33 @@ module.exports = (sequelize, DataTypes) => {
                                    type: DataTypes.DATEONLY,
                                validate: {
                                             // validated as date
-                                            // but this field is auto-populated
                                           isDate: true,
+                                          plus7days: function(value){
+                                              var lYear = this.loaned_on.slice(0,4);
+                                              var lMonth = ( parseInt(this.loaned_on.slice(5,7)) - 1);
+                                              var lDay = this.loaned_on.slice(8);
+                                              var rYear = value.slice(0,4);
+                                              var rMonth = ( parseInt(value.slice(5,7)) - 1 );
+                                              var rDay = value.slice(8);
+
+                                              var startLoan = new Date(lYear, rMonth , lDay);
+                                              var endLoan = new Date(rYear, rMonth, rDay);
+
+                                              var oneDay = 24*60*60*1000;
+
+                                              var diffDays = Math.round(Math.abs((startLoan.getTime() - endLoan.getTime())/(oneDay)));
+
+                                              if (diffDays > 7 ){
+                                                throw new Error('A book should be checked out no more than 7 days')
+                                              }
+
+                                          }
                                          }
                          },
              returned_on: {
                                    type: DataTypes.DATEONLY,
                                validate: {
                                             // validated as date
-                                            // but this field is auto-populated
                                           isDate: true,
                                           }
                       },
