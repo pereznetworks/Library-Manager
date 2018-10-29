@@ -1,22 +1,52 @@
-
 if title == "Book"
-  form(action="/books/update", method="post")
-    p(class="id")
-      label(for=`${value}`)= value
-      input(id=`${value}` type="text" name='id' value=book.id)
-    p
-      label(for=`${book.title.toLowerCase()}`) Title
-      input(id=`${book.title.toLowerCase()}` type="text" name='title' value=book.title)
-    p
-      label(for=`${book.author.toLowerCase()}`) Author
-      input(id=`${book.author.toLowerCase()}` type="text" name='author' value=book.author)
-    p
-      label(for=`${book.genre.toLowerCase()}`) Genre
-      input(id=`${book.genre.toLowerCase()}` type="text" name='genre' value=book.genre)
-    p
-      label(for=`${book.first_published}`) First Published
-      input(id=`${book.first_published}` type="text" name='first_published' value=book.first_published)
-    input(type="submit" value=`Update`)
+  if errors
+    form(action="/books/update", method="post")
+      p(class="id")
+        label(for=`${value}`)= value
+        input(id=`${value}` type="text" name='id' value=updatedBookInfo.id)
+      p
+        label(for=`${book.title.toLowerCase()}`) Title
+        input(id=`${book.title.toLowerCase()}` type="text" name='title' value=updatedBookInfo.title)
+        each item in errors
+          if item.path == 'title'
+            span(class="inputErrMsg")= item.message
+      p
+        label(for=`${book.author.toLowerCase()}`) Author
+        input(id=`${book.author.toLowerCase()}` type="text" name='author' value=updatedBookInfo.author)
+        each item in errors
+          if item.path == 'author'
+            span(class="inputErrMsg")= item.message
+      p
+        label(for=`${book.genre.toLowerCase()}`) Genre
+        input(id=`${book.genre.toLowerCase()}` type="text" name='genre' value=updatedBookInfo.genre)
+        each item in errors
+          if item.path == 'genre'
+            span(class="inputErrMsg")= item.message
+      p
+        label(for=`${book.first_published}`) First Published
+        input(id=`${book.first_published}` type="text" name='first_published' value=updatedBookInfo.first_published)
+        each item in errors
+          if item.path == 'first_published'
+            span(class="inputErrMsg")= item.message
+      input(type="submit" value=`Update`)
+  else
+    form(action="/books/update", method="post")
+      p(class="id")
+        label(for=`${value}`)= value
+        input(id=`${value}` type="text" name='id' value=book.id)
+      p
+        label(for=`${book.title.toLowerCase()}`) Title
+        input(id=`${book.title.toLowerCase()}` type="text" name='title' value=book.title)
+      p
+        label(for=`${book.author.toLowerCase()}`) Author
+        input(id=`${book.author.toLowerCase()}` type="text" name='author' value=book.author)
+      p
+        label(for=`${book.genre.toLowerCase()}`) Genre
+        input(id=`${book.genre.toLowerCase()}` type="text" name='genre' value=book.genre)
+      p
+        label(for=`${book.first_published}`) First Published
+        input(id=`${book.first_published}` type="text" name='first_published' value=book.first_published)
+      input(type="submit" value=`Update`)
 else if title == "Patron"
   form(action="/patrons/update", method="post")
     - var columnNo = 0;

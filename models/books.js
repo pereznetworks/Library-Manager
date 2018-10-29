@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
                              type: DataTypes.STRING,
                          validate: {
                                         notEmpty: {
-                                          // not empty 
+                                          // not empty
                                                    msg: "Please enter a book title"
                                                   },
                                    }
@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
                          validate: {
                                       isNumeric: {
                                         // force numbers only
-                                                 msg: "Please enter the year the book first published"
+                                                 msg: "Please enter the year the book was first published"
                                                  }
                                       }
                    },

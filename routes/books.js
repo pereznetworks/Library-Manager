@@ -240,7 +240,7 @@ router.post('/books', function(req, res, next) {
    });
 });
 
-/* POST update new patron */
+/* POST update book  */
 router.post('/books/update', function(req, res, next) {
 
   db.Books.findOne({
@@ -248,21 +248,77 @@ router.post('/books/update', function(req, res, next) {
       where: {id: req.body.id}
     }).then(function(book) {
         return book.update(req.body);
-      }).then(function(){
+    }).then(function(book){
         // after update, display main books page
         res.redirect(`/books`);
-      }).catch(function(error){
-        // if validation errors, re-render form with error msgs
-         if(error.name === "SequelizeValidationError") {
-           res.render('bookViews/createNewBook', {patrons: db.Books.build(req.body), errors: error.errors, title: "New Book"})
-         } else {
-           throw error;
-         }
-      }).catch(function(error){
+
+    }).catch(function(error){
+
+      if(error.name === "SequelizeValidationError") {
+
+      // render the input validation msgs
+      // note: will be at different indexes based on which fields had invalid input
+      // so cannot simply iterate ... must iterate through the entire errors array for each input field
+
+      let errorArray = error.errors;
+
+          db.Books.findOne({
+            where: { id: req.body.id },
+            include: [{
+              model: db.Loans,
+              where: { book_id: Sequelize.col('Books.id')},
+              required: false,
+              include: [{
+                          model: db.Patrons,
+                          required: false
+                        }]
+            }]
+          }).then(function(book){
+
+          // passing some static variables to be rendered
+          res.locals.bookHrefPath = locals.loansPg.bookHrefPath;
+          res.locals.patronHrefPath = locals.loansPg.patronHrefPath;
+          res.locals.actionHrefPath = locals.loansPg.actionHrefPath;
+          res.locals.title = 'Book';
+          res.locals.bookTitle = book.dataValues.title;
+
+          // breaking down the array of objects in the Book array ...
+          // into objects that can be more easily read as rows ...
+          // in the book's update and book's loan details table
+
+          if (book.Loan){
+
+            // rendering the book detial page with book, loan and patron detail
+            res.render("bookViews/book_detail", {updatedBookInfo: req.body, errors: errorArray, book: book.dataValues, loan: book.Loan.dataValues, patron: book.Loan.Patron.dataValues});
+
+          } else {  // if book has no loan history ...
+
+            // rendering the book detial page with book detail only
+            res.render("bookViews/book_detail", {updatedBookInfo: req.body, errors: errorArray, book: book.dataValues});
+          }
+
+        }).catch(function(error){
+
+          res.locals.message = error.message;
+          res.locals.error = error;
+          res.status(error.status || 500);
+          res.render('error');
+
+        });
+
+      } else {
+
+        throw error;
+
+      }
+
+    }).catch(function(error){
+
         res.locals.message = "Oops, something went wrong";
         res.locals.error = createError(500);
         res.status(error.status || 500);
         res.render('error');
+
       });
 });
 

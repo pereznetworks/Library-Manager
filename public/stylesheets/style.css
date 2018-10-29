@@ -65,6 +65,12 @@ nav {
   width: auto;
   /*border-bottom: 2px solid #D8B493;*/
 }
+#paginateNav {
+  margin: 5% 0;
+  color: #fff;
+  background-color: #019875;
+  width: auto;
+}
 nav ul li a {
   color:#fff;
   background-color: #019875;
@@ -167,8 +173,9 @@ input[type=text], select {
   color: #aaa;
 }
 .inputErrMsg{
-  margin-left: 15%;
+  margin-left: 5%;
   font-style: italic;
+  font-size: 16px;
   color: red;
 }
 .autosetLabel {
