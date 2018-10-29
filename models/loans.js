@@ -83,11 +83,17 @@ module.exports = (sequelize, DataTypes) => {
                                                       var lYear = this.loaned_on.slice(0,4);
                                                       var lMonth = ( parseInt(this.loaned_on.slice(5,7)) - 1);
                                                       var lDay = this.loaned_on.slice(8);
+
+                                                      var startLoan = new Date(lYear, lMonth , lDay);
+
                                                       var rYear = value.slice(0,4);
                                                       var rMonth = ( parseInt(value.slice(5,7)) - 1 );
                                                       var rDay = value.slice(8);
 
-                                                      var startLoan = new Date(lYear, lMonth , lDay);
+                                                      if (isNaN(rYear) || isNaN(rMonth) || isNaN(rDay)){
+                                                        throw new Error('Please, enter a date, format: yyyy-mm-dd');
+                                                      }
+
                                                       var endLoan = new Date(rYear, rMonth, rDay);
 
                                                       var oneDay = 24*60*60*1000;
