@@ -30,11 +30,15 @@ block content
       if errors
         each item in errors
           if item.path == 'email'
-            span(class="inputErrMsg") There is something wrong with this email address
+            span(class="inputErrMsg")= `Please enter an email address`
     p
       label(for=library_id) Library ID:
-        span(class='autosetLabel')= `${value=patrons.dataValues.library_id}`
-      input(class="autoSetField" name='library_id' type="text" value=patrons.dataValues.library_id)
+      input(name='library_id'  type="text" placeholder=patrons.dataValues.library_id value=``)
+      if errors
+        each item in errors
+          if item.path == 'library_id'
+            span(class="inputErrMsg")= item.message
+
     p
       label(for=zip_code) Zip Code
       input(name='zip_code' type="text" value=patrons.dataValues.zip_code)

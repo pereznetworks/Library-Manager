@@ -207,7 +207,7 @@ router.get('/patrons/search', function(req, res, next) {
   res.locals.createNewRoute = locals.patronsPg.createNewRoute;
   res.locals.patronHrefPath = locals.patronsPg.patronHrefPath;
 
-  // search on fields displayed in patron table  
+  // search on fields displayed in patron table
   db.Patrons.findAll({
           where: {
             [Op.or]:[

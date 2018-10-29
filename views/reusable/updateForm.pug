@@ -48,38 +48,91 @@ if title == "Book"
         input(id=`${book.first_published}` type="text" name='first_published' value=book.first_published)
       input(type="submit" value=`Update`)
 else if title == "Patron"
-  form(action="/patrons/update", method="post")
-    - var columnNo = 0;
-    - console.log(columnArray, rowArray)
-    each value in columnArray
-      if columnNo == 0
-        p(class="id")
-          label(for=`${value}`)= value
-          input(id=`${value}` name='id' type="text" value=`${patronObject.id}`)
-      else if columnNo == 1
-        p
-          label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` name='first_name' type="text" value=`${patronObject.first_name}`)
-      else if columnNo == 2
-        p
-          label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` name='last_name' type="text" value=`${patronObject.last_name}`)
-      else if columnNo == 3
-        p
-          label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` name='address' type="text" value=patronObject.address)
-      else if columnNo == 4
-        p
-          label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` name='email' type="text" value=patronObject.email)
-      else if columnNo == 5
-        p
-          label(for=`${value.toLowerCase()}`)= value
-              span(class='updateautosetLabel')= patronObject.library_id
-          input(class='updateautoSetField' id=`${value.toLowerCase()}` name='library_id' type="text" value=patronObject.library_id)
-      else if columnNo == 6
-        p
-          label(for=`${value.toLowerCase()}`)= value
-          input(id=`${value.toLowerCase()}` name='zip_code' type="text" value=patronObject.zip_code)
-      - columnNo += 1
-    input(type="submit" value=`Update ${title}`)
+  if errors
+    form(action="/patrons/update", method="post")
+      - var columnNo = 0;
+      - console.log(columnArray, rowArray)
+      each value in columnArray
+        if columnNo == 0
+          p(class="id")
+            label(for=`${value}`)= value
+            input(id=`${value}` name='id' type="text" value=`${patronObject.id}`)
+        else if columnNo == 1
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` name='first_name' type="text" value=`${patronObject.first_name}`)
+            each item in errors
+              if item.path == 'first_name'
+                span(class="inputErrMsg")= item.message
+        else if columnNo == 2
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` name='last_name' type="text" value=`${patronObject.last_name}`)
+            each item in errors
+              if item.path == 'last_name'
+                span(class="inputErrMsg")= item.message
+        else if columnNo == 3
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` name='address' type="text" value=patronObject.address)
+            each item in errors
+              if item.path == 'address'
+                span(class="inputErrMsg")= item.message
+        else if columnNo == 4
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` name='email' type="text" value=patronObject.email)
+            each item in errors
+              if item.path == 'email'
+                span(class="inputErrMsg")= item.message
+        else if columnNo == 5
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(name='library_id'  type="text" placeholder=patronsObject.library_id value=``)
+            each item in errors
+              if item.path == 'library_id'
+                span(class="inputErrMsg")= item.message
+        else if columnNo == 6
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` name='zip_code' type="text" value=patronObject.zip_code)
+            each item in errors
+              if item.path == 'zip_code'
+                span(class="inputErrMsg")= item.message
+        - columnNo += 1
+      input(type="submit" value=`Update ${title}`)
+  else
+    form(action="/patrons/update", method="post")
+      - var columnNo = 0;
+      - console.log(columnArray, rowArray)
+      each value in columnArray
+        if columnNo == 0
+          p(class="id")
+            label(for=`${value}`)= value
+            input(id=`${value}` name='id' type="text" value=`${patronObject.id}`)
+        else if columnNo == 1
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` name='first_name' type="text" value=`${patronObject.first_name}`)
+        else if columnNo == 2
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` name='last_name' type="text" value=`${patronObject.last_name}`)
+        else if columnNo == 3
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` name='address' type="text" value=patronObject.address)
+        else if columnNo == 4
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` name='email' type="text" value=patronObject.email)
+        else if columnNo == 5
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(name='library_id'  type="text" placeholder=patronObject.library_id value=``)
+        else if columnNo == 6
+          p
+            label(for=`${value.toLowerCase()}`)= value
+            input(id=`${value.toLowerCase()}` name='zip_code' type="text" value=patronObject.zip_code)
+        - columnNo += 1
+      input(type="submit" value=`Update ${title}`)
