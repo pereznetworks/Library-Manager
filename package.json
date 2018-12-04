@@ -5,6 +5,8 @@
   "scripts": {
     "start": "node --inspect ./bin/www"
   },
+  "author": "Daniel Perez",
+  "license": "MIT",
   "dependencies": {
     "constantinople": "^3.1.1",
     "cookie-parser": "~1.4.3",
