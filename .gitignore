@@ -1,2 +1,5 @@
+# on macOS filesystems ignore .DS_Store
+**/.DS_Store
+
 # Project 10 specific directories and files
 node_modules/
