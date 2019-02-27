@@ -66,9 +66,9 @@ const getADate = function(returninSoManyDays){
 
 /* pagination method
   // used by all 3 routes; loans books and pages
-  // method to separate more an array with more than 10 elements...
+  // method to separate an array with more than 10 elements...
   // into an array of arrays, 10 element per 1 array
-  // actual pagination done implemented by...
+  // this makes pagination easier ans is implemented by...
   //  bookViews/loanViews and patronViews index.pug templates
 */
 const paginate = function(anArray){
@@ -86,6 +86,8 @@ const paginate = function(anArray){
 /* method used to validate input fields for model attributes
    did'nt use these..
    a scope issue prevents validaton in models from using these methods
+   for example the methods after the doc or record from the model exists
+   does not work as part of the validation while being created
  */
 
 const checkIfNumbersOnly = function(inputField){

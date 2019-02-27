@@ -755,38 +755,36 @@ Overall UI flow the same
           you have to +1 to the array's element number...
            to get it's auto-incremented_id
 
-[Hard DB Reset](#hard-db-reset).
-
-          basically,
-
-            rm -rf library.db (after making a backup)
-
-            remove model associations from code
-
-            get your seeders ready
-
-            start the app, which creates a blank library.db
-
-            run seeders, after seed data is inserted,
-
-            add associations back in to code
-
-            restart app and everything is ok....
-
 ## HARD DB RESET:
 
-      I used this to work through fundamental problems and bugs in sequelize code
+  I used this to work through fundamental problems and bugs in sequelize code
+  nice to try, for example ...
+  if odd behavior occurs if/when making changes to your model associations
 
-        nice to try, for example ...
+  short-version,
 
-        if odd behavior occurs if/when making changes to your model associations
+    rm -rf library.db (after making a backup)
+
+    remove model associations from code
+
+    restart app, which creates a blank library.db
+
+    empty seeders.json, run seeders,
+
+    after seed data is inserted....
+
+    add associations back in to code
+
+    restart app and hopefully everything is ok....
+
+  long-version
 
       1: delete library.db, (after making a backup)
           ( in my app, model/index.js creates it if there is none )
       2: remove model associations
           (in my app, all in one place, models/index.js)
       3: remove seeders history from seedData.json,
-          leaving just the []
+          leaving just the, []
       4: RUN sequelize seed:generate -name <name of model>
           FOR EACH MODEL/TABLE your db will need
       5: add your code and data for each model/table
