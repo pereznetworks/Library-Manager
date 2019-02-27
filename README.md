@@ -754,12 +754,17 @@ Overall UI flow the same
 
 ## HARD DB RESET:
 
-  - PREFACE: this is best kept for the development stage of an app only
-    - if your in production, should read Seqeulize's docs, and/or underlying db-engine, like SQLite, on working with production data
-
-  - I used this to work through fundamental problems and bugs in my sequelize code
+- PREFACE:
+  - BACK-UP your data and server  
+    - and hopefully already have a BACK-UP of your data and server
+  - WHAT THIS WILL NOT DO...
+    - if your in production, STOP HERE and..
+      - read up on underlying db-engine, like SQLite, for working with production data
+    - this process WILL NOT FIX CORRUPTED DATA AND/OR DB
+  - WHAT THIS WILL DO
+    - I used this to work through fundamental problems and bugs in my sequelize code
     - nice to try, for example ...
-    - if odd behavior occurs if/when making changes to your model associations
+      - if odd behavior occurs if/when making changes to your model associations
     - also because the db file may be gitignore'ed
       - so a revert does not fix the library db file after bad things happened
       - probably not a good idea to rely on git to fix your library db file anyway
