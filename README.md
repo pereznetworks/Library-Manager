@@ -731,8 +731,8 @@ Overall UI flow the same
     - use DATATYPES. or Sequelize.DATEONLY for yyyy-mm-dd dates ie... 2018-10-11
 
 
-  - 5: Not Using sample library.db that came with project files, seems to work only with seqeulize v3:
-
+  - 5: Not Using sample library.db that came with project files,
+    - seems to work only with seqeulize v3:
     - Solution is simple: Express app runs sequelize bootstrapped code
     - which uses config file and creates a new libary.db in none exists
     - along with seeders... can then refresh library.db when I need to
@@ -754,51 +754,83 @@ Overall UI flow the same
 
 ## HARD DB RESET:
 
-  I used this to work through fundamental problems and bugs in sequelize code
-  nice to try, for example ...
-  if odd behavior occurs if/when making changes to your model associations
+  - PREFACE: this is best kept for the development stage of an app only
+    - if your in production, should read Seqeulize's docs, and/or underlying db-engine, like SQLite, on working with production data
 
-  short-version,
+  - I used this to work through fundamental problems and bugs in my sequelize code
+    - nice to try, for example ...
+    - if odd behavior occurs if/when making changes to your model associations
+    - also because the db file may be gitignore'ed
+      - so a revert does not fix the library db file after bad things happened
+      - probably not a good idea to rely on git to fix your library db file anyway
 
-    rm -rf library.db (after making a backup)
+  - short-version,
 
-    remove model associations from code
+    - 1: rm -rf library.db (after making a backup)
 
-    restart app, which creates a blank library.db
+    - 2: remove model associations from code
 
-    empty seeders.json, run seeders,
+    - 3: restart app, which creates a blank library.db, stop the app
 
-    after seed data is inserted....
+    - 4: empty seeders.json, run seeders,
 
-    add associations back in to code
+    - 5: after seed data is inserted....stop the app
 
-    restart app and hopefully everything is ok....
+    - 6: add associations back in to code
 
-  long-version
+    - 7: restart app and test if model associations work....
 
-      1: delete library.db, (after making a backup)
-          ( in my app, model/index.js creates it if there is none )
-      2: remove model associations
-          (in my app, all in one place, models/index.js)
-      3: remove seeders history from seedData.json,
-          leaving just the, []
-      4: RUN sequelize seed:generate -name <name of model>
-          FOR EACH MODEL/TABLE your db will need
-      5: add your code and data for each model/table
-          to a separate seed file for each model
-          mine were in the /seeders folder
-      6: restart the server app
-          ( for my app, npm start), this create a new blank db if theres is none
-      7: stop the server
-      8: run the seeders
-          sequelize db:seed:all
-      9: add the desired model associations back into your code
-          mine are in one place, models/index.js
-      10: restart the server app
-      11: when your db starts up, it will check the model associations...
-      12: if no errors, your good to go, otherwise back to drawing board
-      13: with good associations...
-          now can access a page that runs code that runs a query that uses the models
-          and see if the associations work as expected with seed data in the tables
+ - long-version
+
+    - 1: delete library.db, (after making a backup)
+      - in my this repo, model/index.js creates it if there is none
+
+    - 2: remove model associations
+      - in my app, all in one place, models/index.js
+
+    - 3: remove seeders history from seedData.json,
+      - edit the json file, leaving just the outermost array brackets, []
+
+    - 4: RUN sequelize seed:generate -name <name of model>
+      - FOR EACH MODEL/TABLE your db will need
+      - this will create a js file that can be run to add data that fits that model
+      - to may seem incomplete, doesn't yet have your code
+
+    - 5: add your code and data for each model/table
+      - to each separate seed file for each model that you just generated
+      - defaults to /seeders folder
+
+    - 6: restart the server app
+      - code in the repo, it's npm start
+      - also, code in this repo, model/index.js, this create a new blank db if there is none
+
+    - 7: stop the server
+
+    - 8: run the seeders
+      - sequelize db:seed:all
+        - this updates your models from and adds the sample data you saved to the seeder files
+      - if your using git, do a commit now, so you always revert back to this point
+
+    - 9: add the desired model associations back into your code
+      - in this repo, all in one place, models/index.js
+
+    - 10: restart the server app
+      - which now has all the models, associations and sample data  
+
+    - 11: when your db starts up, it will check the model associations...
+
+    - 12: if errors DO occur, back to drawing board
+      - using git revert back to step 8
+        - re-work your associations
+
+    - 13: if NO errors, your app is now running,
+      - with associations that don't crash your app...
+      - still not out of the woods yet...
+
+    - 14: now to test the associations
+      - access a web-page form/table...
+      - that runs code that runs a query that uses the model and associations
+      - see if the associations work as expected with seed data in the tables
+
 
   [back to Content Menu](#contents)
