@@ -284,9 +284,10 @@
 - WHAT THIS WILL NOT DO...
   - if your in production, STOP HERE and..
     - read up on underlying db-engine, like SQLite, for working with production data
-  - this process WILL NOT FIX CORRUPTED DATA AND/OR DB
-- WHAT THIS WILL DO
-  - I used this to work through fundamental problems and bugs in my sequelize code
+  - this process WILL NOT FIX CORRUPTED DATA AND/OR CORRUPTED DBs
+- WHAT THIS MAY DO
+  - If your app is in the development stages... 
+  - can use this to work through fundamental problems and bugs in your sequelize code
   - nice to try, for example ...
     - if odd behavior occurs if/when making changes to your model associations
   - also because the db file may be gitignore'ed
