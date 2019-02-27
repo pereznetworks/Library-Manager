@@ -204,10 +204,6 @@
       - then when ready run 'npm start'
       - but, read the following first
 
-- [The original project files and a project instructions](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
-- [Developer Notes](#developer-notes)
-- [Hard DB Reset](#hard-db-reset)
-
   - 4: the following folders and files comprise the Library Manager app
 
     - I ended up not using migrations in my project
@@ -227,6 +223,11 @@
         - app.js
         - library.db - can't be modified or viewed directly
         - package.json - npm package management
+
+  - 5: more info...
+  - [The original project files and a project instructions](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
+  - [Developer Notes](#developer-notes)
+  - [Hard DB Reset](#hard-db-reset)
 
 [back to Content Menu](#contents)
 
