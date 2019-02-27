@@ -241,10 +241,10 @@
 
 - 2: This is an Express.js app:
 
-  - Sequelize for data,
+  - Sequelize/SQLite for data,
   - Pug for html rendering,
-  - with Express for roputing http req/res
-  - and a whole bunch of npm modules
+  - with Express for routing http get/put req/res
+  - and a whole bunch of npm modules... see package.json
 
 - 3: Sequelize v4 is different from the v3 demo'ed in the Sequelize/Node.js workshop:
 
@@ -286,7 +286,7 @@
     - read up on underlying db-engine, like SQLite, for working with production data
   - this process WILL NOT FIX CORRUPTED DATA AND/OR CORRUPTED DBs
 - WHAT THIS MAY DO
-  - If your app is in the development stages... 
+  - If your app is in the development stages...
   - can use this to work through fundamental problems and bugs in your sequelize code
   - nice to try, for example ...
     - if odd behavior occurs if/when making changes to your model associations
