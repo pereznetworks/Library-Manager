@@ -708,7 +708,7 @@ Overall UI flow the same
 
 ## Developer Notes:
 
-    Lots pages and subpages in the html-mockup:
+    Lots of pages and subpages in the [html-mockup](z-project-files-library-manager-v1/html-mockup/):
 
         lots of components and sub-components
         Will need to make sure I don't make the routing over-complicated
