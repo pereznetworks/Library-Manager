@@ -5,6 +5,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [For Developers](#for-developers)
   - [Project Updates](#project-updates)
+  - [Initial Project Development](./dev-project.md)
 
 ## Project Status
 
