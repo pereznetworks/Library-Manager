@@ -5,6 +5,7 @@
   - [For Project Reviewer](#for-the-project-reviewer)
   - [For Developers](#for-developers)
   - [Project Updates](#project-updates)
+  - [Original Project Files](#more-info)
   - [Initial Project Development](./dev-project.md)
 
 ## Project Status
@@ -85,10 +86,8 @@
         - library.db - can't be modified or viewed directly
         - package.json - npm package management
 
-  - 5: more info...
+## More info
   - [The original project files and a project instructions](https://github.com/pereznetworks/TD-Project10/tree/master/z-project-files-library-manager-v1)
-  - [Developer Notes](#developer-notes)
-  - [Hard DB Reset](#hard-db-reset)
 
 [back to Content Menu](#contents)
 
