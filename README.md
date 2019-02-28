@@ -104,12 +104,19 @@
 
 - 3: Sequelize v4 is different from the v3 demo'ed in the Sequelize/Node.js workshop:
 
-  - I completed the Sequelize/Node.js workshop using both v3 and v4
-  - I will use these as model to make sure Sequelize v4 syntax and methods used in this app
+  - in this rep I use sequelize with sqlite3
+    - [Seqeulize - Getting Started](http://docs.sequelizejs.com/manual/installation/getting-started.html#installation)
+  - the migrations and seeding of data are done using the cli
+    - [Seqeulize CLI documentation](https://github.com/sequelize/cli#documentation)
+  - key to this implementation is...
+    - configuration of sequelize: ./data/config/config.json
+    - model definition:  ./models/index.js
 
 - 4: Date Formatting:
 
-  - use DATATYPES. or Sequelize.DATEONLY for yyyy-mm-dd dates ie... 2018-10-11
+  - in this repo I use DATATYPES. or Sequelize.DATEONLY for yyyy-mm-dd dates ie... 2018-10-11
+  - for a full DATE timestamp use sequelize.DATE
+  - [DATA TYPES](http://docs.sequelizejs.com/manual/tutorial/models-definition.html#data-types)
 
 - 5: Not Using sample library.db that came with project files,
   - seems to work only with seqeulize v3:
@@ -135,12 +142,28 @@
 ## HARD DB RESET:
 
 - PREFACE:
+
+  - to use these steps you will need:
+
+    - sequelize v4, sqlite3 and sequelize-cli --saved to npm package.json
+
+    - make sure the version of sequelize-cli installed
+      - so if you ever installed a previous version globally then...
+      - from the folder you cloned this repo in...
+      - npm uninstall -g sequelize-cli
+        - this will uninstall the global version of the seqeulize-cli
+          - the other sequelize project, you may have in another folder, is safe
+      - npm install sequelize-cli --save
+          - installs it only for the local folder
+
 - BACK-UP your data and server  
   - and hopefully already have a BACK-UP of your data and server
+
 - WHAT THIS WILL NOT DO...
   - if your in production, STOP HERE and..
     - read up on underlying db-engine, like SQLite, for working with production data
   - this process WILL NOT FIX CORRUPTED DATA AND/OR CORRUPTED DBs
+
 - WHAT THIS MAY DO
   - If your app is in the development stages...
   - can use this to work through fundamental problems and bugs in your sequelize code
