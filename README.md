@@ -166,12 +166,12 @@
 
 - WHAT THIS MAY DO
   - If your app is in the development stages...
-  - can use this to work through fundamental problems and bugs in your sequelize code
-  - nice to try, for example ...
-    - if odd behavior occurs if/when making changes to your model associations
-  - also because the db file may be gitignore'ed
-    - so a revert does not fix the library db file after bad things happened
-    - probably not a good idea to rely on git to fix your library db file anyway
+    - can use this to work through fundamental problems and bugs in your sequelize code
+    - nice to try, for example ...
+      - if odd behavior occurs if/when making changes to your model associations
+    - also because the db file may be gitignore'ed
+      - so a revert does not fix the library db file after bad things happened
+      - not a good idea to rely on git to fix your library db file anyway
 
 - short-version,
 
