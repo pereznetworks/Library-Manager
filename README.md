@@ -156,19 +156,28 @@
       - npm install sequelize-cli --save
           - installs it only for the local folder
 
+      - a json formatted copy of your data-tables
+
 - BACK-UP your data and server  
   - and hopefully already have a BACK-UP of your data and server
+  - you will need a json exported copy of your data-tables
 
 - WHAT THIS WILL NOT DO...
-  - if your in production, STOP HERE and..
+  - if you're needing help with a db in production, STOP HERE and..
     - read up on underlying db-engine, like SQLite, for working with production data
   - this process WILL NOT FIX CORRUPTED DATA AND/OR CORRUPTED DBs
 
 - WHAT THIS MAY DO
+
+  - give you a clean method for...
+    - starting with fresh set of sample data-tables
+    - you will need to already have the json formatted exported copy of your data tables
+     - or some json sample data that resembles the actual data your app/db will use in production
+
   - If your app is in the development stages...
-    - can use this to work through fundamental problems and bugs in your sequelize code
+    - can use this to work through fundamental problems in your sequelize code
     - nice to try, for example ...
-      - if odd behavior occurs if/when making changes to your model associations
+      - if odd behavior occurs if/when adding or making changes to your model associations
     - also because the db file may be gitignore'ed
       - so a revert does not fix the library db file after bad things happened
       - not a good idea to rely on git to fix your library db file anyway
@@ -177,7 +186,7 @@
 
   - 1: rm -rf library.db (after making a backup)
 
-  - 2: remove model associations from code
+  - 2: remove the suspect model associations, validations. etc... from ypur code
 
   - 3: restart app, which creates a blank library.db, stop the app
 
@@ -185,9 +194,9 @@
 
   - 5: after seed data is inserted....stop the app
 
-  - 6: add associations back in to code
+  - 6: adjust, fix the associations, validations, etc.. that your working on
 
-  - 7: restart app and test if model associations work....
+  - 7: restart app and test if your code now works....
 
 - long-version
 
