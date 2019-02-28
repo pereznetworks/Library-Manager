@@ -2,7 +2,6 @@
 
 ## Contents:
   - [Project Status](#project-status)
-  - [For Project Reviewer](#for-the-project-reviewer)
   - [For Developers](#for-developers)
   - [Project Updates](#project-updates)
   - [Original Project Files](#more-info)
