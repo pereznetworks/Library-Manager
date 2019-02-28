@@ -69,17 +69,17 @@
     - I did use seeders to insert sample data into my library db
       - / (root)
         - /bin
-        - /config
-        - /migrations
-        - /models
+        - /data/config
+        - /data/migrations
+        - /data/models
+        - /data/seeders
+        - /data/seeders/seedData.json
+        - data/library.db - should'nt be modified or viewed directly - gitignored
         - /public
         - /routes
-        - /seeders
         - /views
         - /utils
-        - seedData.json
         - app.js
-        - library.db - can't be modified or viewed directly
         - package.json - npm package management
 
 ## More info
