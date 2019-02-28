@@ -1,3 +1,5 @@
+## Below are the initial project development notes I wrote as I worked on this project
+  - much of this just me thinking out-loud
 
 ## Contents
 - [Project Update 31](#project-update-31)

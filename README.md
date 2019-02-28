@@ -17,8 +17,9 @@
   - I may begin development on more feature for this project...
     - At that point this current master branch will become v.0.0.1
     - I will start a new master branch, which will become v.0.0.2
+    - no ETA on this...
 
-  Potential New Features:
+- Potential New Features:
 
   - Remove Book, Remove Patron
     - in a way that fits with the 'Library Manager' scenario...
