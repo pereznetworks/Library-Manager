@@ -3,3 +3,5 @@
 
 # Project 10 specific directories and files
 node_modules/
+data/
+data/*
