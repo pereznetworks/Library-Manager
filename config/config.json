@@ -1,6 +1,6 @@
 {
   "development": {
-    "storage":  "library.db",
+    "storage": "data/library.db",
     "dialect": "sqlite",
     "operatorsAliases": false,
     "seederStorage": "json",
@@ -8,12 +8,12 @@
     "seederStorageTableName": "seed_data"
   },
   "test": {
-    "storage":  "library.db",
+    "storage": "data/library.db",
     "dialect": "sqlite",
     "operatorsAliases": false
   },
   "production": {
-    "storage":  "library.db",
+    "storage": "data/library.db",
     "dialect": "sqlite",
     "operatorsAliases": false
   }
