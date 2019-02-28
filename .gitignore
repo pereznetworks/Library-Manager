@@ -3,5 +3,6 @@
 
 # Project 10 specific directories and files
 node_modules/
-data/
-data/*
+
+# the sequelize database itself 
+data/library.db
