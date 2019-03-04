@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* importing sequelize db */
-var db = require('../models/index.js');
+var db = require('../data/models/index.js');
 
 /* importing locals for rendering in pub templates */
 var locals = require("../views/locals")

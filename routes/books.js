@@ -5,7 +5,7 @@ var createError = require('http-errors');
 var Sequelize = require('../models').sequelize;
 var Op = Sequelize.Op;
 
-var db = require('../models/index.js'); /* importing sequelize db */
+var db = require('../data/models/index.js'); /* importing sequelize db */
 var locals = require("../views/locals"); /* importing static vars */
 var utils = require('../utils/index.js') /* importing my own helper utils */
 
