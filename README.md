@@ -1,5 +1,15 @@
 # TD-Project10: Build a Library Manager
 
+# Project status
+
+  As of April 2019, due to reported vulnerability for which there is as of yet no patch, the npm package sequelize-cli has been removed from this project.
+
+  As of April 2019, all other npm packages have been updated to most recent versions.
+
+# TODO:
+
+  Verify project works with newest verison of Seqeulize, and keep checking to see if sequelize-cli vulnerability has been patched.
+
 ## Contents:
   - [Project Status](#project-status)
   - [For Developers](#for-developers)
