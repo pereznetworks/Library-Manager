@@ -1,5 +1,7 @@
 # TD-Project10: Build a Library Manager
 
+This is Project 10, part of TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 10
+
 # Project status
 
   As of April 2019, due to reported vulnerability for which there is as of yet no patch, the npm package sequelize-cli has been removed from this project.
