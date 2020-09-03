@@ -1,6 +1,8 @@
-# TD-Project10: Build a Library Manager
+# Building a Library Manager app.  
 
 This is Project 10, part of TeamTreehouse, Tech Degree, Full Stack JavaScript, Unit 10
+
+For various media, hard and soft cover books, audio books.
 
 # Project status
 
